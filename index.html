@@ -38,49 +38,69 @@
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 4rem;
-      background: rgba(255,255,255,0.93);
+      background: rgba(10,6,18,0.85);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(192,38,211,0.15);
     }
-    .nav-logo img { height: 44px; width: auto; display: block; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+      color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent-m); }
-    .nav-links a.active { color: var(--text-primary); font-weight: 500; }
+    .nav-links a:hover { color: #e879f9; }
+    .nav-links a.active { color: rgba(255,255,255,0.9); font-weight: 500; }
 
     /* ── HERO ── */
     .hero {
       position: relative; overflow: hidden; text-align: center;
       padding: 90px 2rem 7rem;
-      background: linear-gradient(180deg, #fdf8ff 0%, #ffffff 100%);
-      border-bottom: 1px solid var(--border);
+      background: #0a0612;
+      border-bottom: 1px solid rgba(192,38,211,0.2);
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,4,16,0.88) 0%, rgba(8,4,16,0.55) 55%, rgba(8,4,16,0.75) 100%);
+      pointer-events: none;
     }
     .hero-canvas {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; pointer-events: none;
+      object-fit: cover; pointer-events: none; opacity: 0.4;
     }
     .hero-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+    .hero-text-box {
+      display: inline-block;
+      background: rgba(6,3,14,0.45);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(192,38,211,0.15);
+      border-radius: 4px;
+      padding: 0.6rem 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .hero-text-box .hero-sub { margin-bottom: 0; }
     .hero-eyebrow {
       font-family: 'Space Mono', monospace;
       font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 1.2rem; display: block;
+      color: rgba(232,121,249,0.8); margin-bottom: 0; display: block;
     }
     .hero-title {
       font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
-      color: var(--text-primary); margin-bottom: 1.5rem;
+      color: #fff; margin-bottom: 1.5rem;
     }
     .hero-title em {
       font-style: italic; font-weight: 300;
-      background: linear-gradient(135deg, #c026d3, #0891b2);
+      background: linear-gradient(135deg, #e879f9, #22d3ee);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero-sub {
-      font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.7;
+      font-size: 1.08rem; color: rgba(255,255,255,0.72);
+      max-width: 580px; margin: 0 auto; line-height: 1.75;
     }
     .hero-cta {
       display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
@@ -97,11 +117,13 @@
       color: #fff; border: none;
     }
     .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .btn-outline {
-      background: transparent; color: var(--text-secondary);
-      border: 1px solid var(--border-mid);
+      background: transparent; color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.28);
     }
-    .btn-outline:hover { border-color: var(--accent-m); color: var(--accent-m); }
+    .btn-outline:hover { border-color: #e879f9; color: #e879f9; }
 
     /* ── MAIN ── */
     main { max-width: 1200px; margin: 0 auto; padding: 0 3rem 6rem; }
@@ -172,26 +194,71 @@
     }
     .pillar-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
 
-    /* ── STAT BAR ── */
-    .stat-bar {
-      display: flex; gap: 0; border: 1px solid var(--border-mid);
-      border-radius: 6px; overflow: hidden; margin: 3rem 0;
+    /* ── LAB SHOWCASE ── */
+    .lab-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 3.5rem 0;
+      position: relative;
     }
-    .stat {
-      flex: 1; padding: 2rem; text-align: center;
-      border-right: 1px solid var(--border-mid); background: var(--surface);
+    .lab-showcase-text { position: relative; z-index: 2; }
+    .lab-showcase-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent-m); display: block; margin-bottom: 1rem;
     }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700;
-      background: linear-gradient(135deg, #c026d3, #0891b2);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      display: block; margin-bottom: 0.3rem;
+    .lab-showcase-heading {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--text-primary); margin-bottom: 1.25rem;
     }
-    .stat-label {
-      font-size: 0.78rem; color: var(--text-muted);
-      font-family: 'Space Mono', monospace; letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .lab-showcase-body {
+      font-size: 1rem; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 1.75rem;
+    }
+    /* gradient blob */
+    .lab-showcase-blob {
+      position: absolute;
+      width: 520px; height: 420px;
+      top: 50%; left: -60px;
+      transform: translateY(-50%);
+      background: radial-gradient(ellipse at 30% 40%, rgba(0,210,220,0.18) 0%, rgba(160,40,220,0.14) 45%, transparent 75%),
+                  radial-gradient(ellipse at 70% 65%, rgba(0,180,255,0.12) 0%, rgba(200,30,210,0.1) 50%, transparent 72%);
+      filter: blur(38px);
+      pointer-events: none; z-index: 1;
+    }
+    /* photo collage */
+    .lab-photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+    .lab-photo-grid img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 8px;
+      display: block;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .lab-photo-grid img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,180,220,0.15), 0 2px 8px rgba(160,40,220,0.12);
+    }
+    .lab-photo-grid .photo-tall {
+      grid-row: span 2;
+      height: 100%;
+      min-height: 300px;
+    }
+    .lab-photo-grid .photo-wide {
+      height: 180px;
+    }
+    @media (max-width: 860px) {
+      .lab-showcase { grid-template-columns: 1fr; gap: 2rem; }
+      .lab-showcase-blob { display: none; }
+      .lab-photo-grid .photo-tall { min-height: 200px; }
     }
 
     /* ── FOOTER ── */
@@ -247,6 +314,8 @@
 
 <!-- HERO -->
 <header class="hero">
+  <img src="assets/img/Home-page-bkgd.jpg" alt="" class="hero-bg-img">
+  <div class="hero-overlay"></div>
   <svg class="hero-canvas" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="hglow" cx="50%" cy="45%" r="55%">
@@ -288,9 +357,13 @@
     <line x1="0" y1="300" x2="1440" y2="300" stroke="#0891b2" stroke-width="0.3" opacity="0.05"/>
   </svg>
   <div class="hero-inner">
-    <span class="hero-eyebrow">The Maurer Lab · University of Michigan</span>
+    <div class="hero-text-box">
+      <span class="hero-eyebrow">The Maurer Lab · University of Michigan</span>
+    </div>
     <h1 class="hero-title">Understanding <em>Biology</em><br>to Improve Gene Therapy</h1>
-    <p class="hero-sub">We research recombinant AAV vectors through the lens of their host cells to identify targets for improving the safety and efficacy of gene delivery.</p>
+    <div class="hero-text-box">
+      <p class="hero-sub">We research recombinant AAV vectors through the lens of their host cells to identify targets for improving the safety and efficacy of gene delivery.</p>
+    </div>
     <div class="hero-cta">
       <a href="research.html" class="btn btn-primary">Our Research</a>
       <a href="people.html" class="btn btn-outline">Meet the Team</a>
@@ -300,23 +373,19 @@
 
 <main>
 
-  <!-- STAT BAR -->
-  <div class="stat-bar" style="margin-top: 3rem;">
-    <div class="stat">
-      <span class="stat-num">2024</span>
-      <span class="stat-label">Lab Founded</span>
+  <!-- LAB SHOWCASE -->
+  <div class="lab-showcase">
+    <div class="lab-showcase-blob"></div>
+    <div class="lab-showcase-text">
+      <span class="lab-showcase-eyebrow">Envisioning the Future</span>
+      <h2 class="lab-showcase-heading">The Maurer Lab moved to its newly renovated space!</h2>
+      <p class="lab-showcase-body">With eight 11-foot benches, a dedicated tissue culture suite, a microscope room, and a private office, we have plenty of space for discovery in a fun and inclusive environment.</p>
+      <a href="join.html" class="btn btn-primary">Join Our Team →</a>
     </div>
-    <div class="stat">
-      <span class="stat-num">AAV</span>
-      <span class="stat-label">Vector Focus</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">U-M</span>
-      <span class="stat-label">Ann Arbor, MI</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">FNIH</span>
-      <span class="stat-label">Bespoke Consortium</span>
+    <div class="lab-photo-grid">
+      <img src="assets/img/Image_20260127_084918_031.jpeg" alt="Tissue culture suite" class="photo-tall">
+      <img src="assets/img/micro-1.jpg" alt="Researcher at microscope" class="photo-wide">
+      <img src="assets/img/unnamed.webp" alt="Lab benches" class="photo-wide">
     </div>
   </div>
 
@@ -413,8 +482,4 @@
 <footer>
   <span class="footer-logo">Maurer Lab</span>
   <span>Room 4217 · 930 N. University Ave. · Ann Arbor, MI 48109</span>
-  <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
-</footer>
-
-</body>
-</html>
+  <a href="/cdn-cgi/l/email-protection#b9d8dad4d8cccbdccbf9ccd4d0dad197dcddcc"><span cla
