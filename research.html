@@ -6,8 +6,596 @@
   <title>Research — Maurer Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/research.css">
+  <style>
+/* ============================================================
+   base.css — Maurer Lab
+   Variables, reset, typography, buttons, nav, footer, layout
+   ============================================================ */
+
+/* ── VARIABLES ── */
+:root {
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --surface2: #f5f2fa;
+  --border: rgba(120, 90, 180, 0.12);
+  --border-mid: rgba(120, 90, 180, 0.2);
+  --accent-m: #c026d3;
+  --accent-c: #0891b2;
+  --text-primary: #18151f;
+  --text-secondary: #4a4460;
+  --text-muted: #8a82a0;
+}
+
+/* ── RESET ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── LAYOUT ── */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem 6rem;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #c026d3, #0891b2);
+  color: #fff; border: none;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+.btn-outline:hover { border-color: #e879f9; color: #e879f9; }
+
+/* ── NAV ── */
+header > nav, body > nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 4rem;
+  background: #0a0612;
+  border-bottom: 1px solid rgba(192,38,211,0.15);
+  transition: padding 0.3s ease, border-color 0.3s ease;
+}
+header > nav.nav-scrolled, body > nav.nav-scrolled {
+  padding: 0.35rem 4rem;
+  border-bottom-color: rgba(192,38,211,0.25);
+}
+.nav-logo img { height: 82px; width: auto; display: block; transition: height 0.3s ease; }
+.nav-scrolled .nav-logo img { height: 52px; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: #e879f9; }
+.nav-links a.active { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin: 4rem 0 2rem;
+}
+.section-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--accent-m);
+}
+.section-tag.cyan { color: var(--accent-c); }
+.section-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--border-mid), transparent);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background: #04020e;
+}
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.footer-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0.75;
+  display: block;
+}
+.footer-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(4,2,16,0.55) 0%, rgba(8,4,28,0.45) 100%);
+}
+.footer-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 3rem 3rem 2rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.footer-logo-img {
+  height: 90px;
+  width: auto;
+  max-width: 320px;
+  display: block;
+  object-fit: contain;
+  object-position: left center;
+}
+.footer-umich-img {
+  height: 32px; width: auto; max-width: 220px; display: block;
+  opacity: 0.9; object-fit: contain; object-position: left center;
+}
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.footer-nav-label,
+.footer-address-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent-c);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.footer-nav a {
+  font-size: 0.9rem; color: rgba(255,255,255,0.55);
+  text-decoration: none; transition: color 0.18s;
+}
+.footer-nav a:hover { color: #e879f9; }
+.footer-address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.footer-address p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6;
+}
+.footer-address a {
+  font-size: 0.85rem; color: var(--accent-c);
+  text-decoration: none; margin-top: 0.3rem;
+  transition: color 0.18s;
+}
+.footer-address a:hover { color: #e879f9; }
+.footer-bottom {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 1rem 3rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.72rem; color: rgba(255,255,255,0.22);
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  header > nav, body > nav { padding: 1rem 1.5rem; }
+  main { padding: 0 1.5rem 4rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2.5rem 1.5rem 2rem; }
+  .footer-brand { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 2rem; }
+  .footer-bottom { padding: 1rem 1.5rem 1.5rem; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-brand { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================================
+   research.css — Maurer Lab
+   Research page styles
+   ============================================================ */
+
+/* ── HERO ── */
+.research-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 5rem;
+  background: #0a0612;
+}
+.research-hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.research-hero-bg { display: none; }
+.research-hero-overlay { display: none; }
+.research-hero-inner {
+  position: relative; z-index: 2;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.research-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(232,121,249,0.8); display: block; margin: 0 0 1rem;
+}
+.research-hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
+  color: #fff; margin: 0 0 1rem;
+}
+.research-hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #e879f9, #22d3ee);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.research-hero-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.65);
+  max-width: 540px; margin: 0 auto; line-height: 1.75;
+}
+
+/* ── SHARED EYEBROW ── */
+.research-section-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent-c); display: block; margin-bottom: 0.75rem;
+}
+
+/* ── DIVIDER ── */
+.research-divider {
+  width: 100%; overflow: hidden;
+  pointer-events: none; margin: 3rem 0;
+  line-height: 0;
+}
+.research-divider svg {
+  display: block; width: 100%; height: 70px;
+}
+
+/* ── INTRO ── */
+.research-intro {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 4rem;
+  align-items: center;
+  margin: 4rem 0;
+}
+.research-intro-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--text-primary); margin-bottom: 1.25rem;
+}
+.research-intro-text p {
+  font-size: 1rem; color: var(--text-secondary);
+  line-height: 1.82; margin-bottom: 1rem;
+}
+.research-intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.research-intro-stat {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.2rem;
+}
+.research-intro-stat:last-child { border-bottom: none; }
+.stat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.8rem; font-weight: 700;
+  background: linear-gradient(135deg, #c026d3, #0891b2);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.72rem; color: var(--text-muted);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ── LIVE CELL IMAGING ── */
+.research-imaging {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin: 2rem 0 4rem;
+}
+.research-imaging-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.gif-wrap {
+  display: flex; flex-direction: column; gap: 0;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.research-gif {
+  width: 100%; display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #0a0612;
+}
+.gif-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  line-height: 1.4;
+}
+.research-imaging-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--text-primary); margin-bottom: 1.25rem;
+}
+.research-imaging-text p {
+  font-size: 1rem; color: var(--text-secondary);
+  line-height: 1.82; margin-bottom: 1rem;
+}
+.research-link-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-c); text-decoration: none;
+  border: 1px solid rgba(8,145,178,0.35);
+  border-radius: 3px;
+  padding: 0.6rem 1.25rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.research-link-btn:hover {
+  background: rgba(8,145,178,0.08);
+  border-color: var(--accent-c);
+  color: #22d3ee;
+}
+
+/* ── RESEARCH PILLARS ── */
+.research-pillars {
+  margin: 2rem 0 4rem;
+}
+.research-pillars-header {
+  margin-bottom: 2rem;
+}
+.research-pillars-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 300; color: var(--text-primary); line-height: 1.15;
+}
+.pillar-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.pillar-card:hover {
+  background: #fdf8ff;
+  border-color: var(--border-mid);
+  transform: translateY(-3px);
+}
+.pillar-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  opacity: 0; transition: opacity 0.2s;
+}
+.pillar-card:hover::before { opacity: 1; }
+.pillar-card:nth-child(1)::before,
+.pillar-card:nth-child(3)::before {
+  background: linear-gradient(90deg, #c026d3, #e879f9);
+}
+.pillar-card:nth-child(2)::before {
+  background: linear-gradient(90deg, #0891b2, #22d3ee);
+}
+.pillar-card-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.pillar-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+.pillar-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; border-radius: 2px;
+}
+.pillar-tag--m {
+  color: var(--accent-m);
+  background: rgba(192,38,211,0.07);
+  border: 1px solid rgba(192,38,211,0.2);
+}
+.pillar-tag--c {
+  color: var(--accent-c);
+  background: rgba(8,145,178,0.07);
+  border: 1px solid rgba(8,145,178,0.2);
+}
+.pillar-card-title {
+  font-size: 1.15rem; font-weight: 500;
+  color: var(--text-primary); margin-bottom: 0.85rem;
+  line-height: 1.3;
+}
+.pillar-card-body {
+  font-size: 0.92rem; color: var(--text-secondary);
+  line-height: 1.72;
+}
+
+/* ── PUBLICATIONS ── */
+.research-pubs {
+  margin: 2rem 0 4rem;
+}
+.research-pubs-header { margin-bottom: 2rem; }
+.research-pubs-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 300; color: var(--text-primary); line-height: 1.15;
+}
+.pub-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.pub-card {
+  display: flex; flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.pub-card:hover {
+  background: #fdf8ff;
+  border-color: var(--border-mid);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(192,38,211,0.08);
+}
+.pub-journal {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent-c); margin-bottom: 0.75rem;
+}
+.pub-title {
+  font-size: 1rem; font-weight: 500;
+  color: var(--text-primary); line-height: 1.55;
+  flex: 1; margin-bottom: 1.25rem;
+}
+.pub-link {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-m); margin-top: auto;
+}
+.pub-all {
+  text-align: center;
+  padding: 2.5rem 0 1rem;
+}
+.pub-all-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(8,145,178,0.5);
+  border-radius: 4px;
+  padding: 1.1rem 2.5rem;
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(192,38,211,0.12), rgba(8,145,178,0.12));
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.pub-all-btn:hover {
+  background: linear-gradient(135deg, rgba(192,38,211,0.22), rgba(8,145,178,0.22));
+  border-color: #0891b2;
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .research-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .research-imaging { grid-template-columns: 1fr; gap: 2.5rem; }
+  .pillar-cards { grid-template-columns: 1fr; }
+  .pub-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .research-imaging-media { grid-template-columns: 1fr; }
+}
+
+/* ── RESEARCH OVERVIEW FIGURE ── */
+.research-figure {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin: 2rem 0 4rem;
+  background: #0a0612;
+  border-radius: 10px;
+  border: 1px solid rgba(192,38,211,0.15);
+  padding: 3rem;
+  overflow: hidden;
+}
+.research-figure-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-weight: 300; line-height: 1.15;
+  color: #fff; margin-bottom: 1.25rem;
+}
+.research-figure-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #e879f9, #22d3ee);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.research-figure-text p {
+  font-size: 1rem; color: rgba(255,255,255,0.62);
+  line-height: 1.82;
+}
+.research-figure-text .research-section-eyebrow {
+  color: var(--accent-c);
+}
+.research-figure-img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.research-figure-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  /* image has black bg — blend it with the dark card */
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .research-figure {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .research-figure-img { max-width: 360px; margin: 0 auto; }
+}
+
+  </style>
 </head>
 <body>
 
@@ -26,8 +614,61 @@
 
 <!-- ── HERO ── -->
 <header class="research-hero">
-  <div class="research-hero-overlay"></div>
-  <img src="assets/img/synth-hexagons.jpg" alt="" class="research-hero-bg">
+  <!-- Hexagon clusters left and right of title -->
+  <svg class="research-hero-canvas" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Left cluster — magenta/violet -->
+    <!-- fade left edge -->
+    <defs>
+      <linearGradient id="lfade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0a0612" stop-opacity="1"/>
+        <stop offset="60%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="rfade" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%" stop-color="#0a0612" stop-opacity="1"/>
+        <stop offset="60%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="272.0,190.0 246.0,235.0 194.0,235.0 168.0,190.0 194.0,145.0 246.0,145.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.8" opacity="0.55">
+      <animate attributeName="fill" values="rgba(192,38,211,0.04);rgba(192,38,211,0.14);rgba(192,38,211,0.04)" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="0.8;1.6;0.8" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0.9;0.55" dur="3s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="256.0,190.0 238.0,221.2 202.0,221.2 184.0,190.0 202.0,158.8 238.0,158.8" fill="none" stroke="#e879f9" stroke-width="0.8" opacity="0.35"/>
+    <polygon points="190.0,155.0 175.0,181.0 145.0,181.0 130.0,155.0 145.0,129.0 175.0,129.0" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.3"/>
+    <polygon points="310.0,155.0 295.0,181.0 265.0,181.0 250.0,155.0 265.0,129.0 295.0,129.0" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.28"/>
+    <polygon points="190.0,225.0 175.0,251.0 145.0,251.0 130.0,225.0 145.0,199.0 175.0,199.0" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.26"/>
+    <polygon points="310.0,225.0 295.0,251.0 265.0,251.0 250.0,225.0 265.0,199.0 295.0,199.0" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.28"/>
+    <polygon points="248.0,100.0 234.0,124.2 206.0,124.2 192.0,100.0 206.0,75.8 234.0,75.8" fill="none" stroke="#e879f9" stroke-width="0.8" opacity="0.2"/>
+    <polygon points="248.0,280.0 234.0,304.2 206.0,304.2 192.0,280.0 206.0,255.8 234.0,255.8" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.2"/>
+    <polygon points="124.0,190.0 112.0,210.8 88.0,210.8 76.0,190.0 88.0,169.2 112.0,169.2" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.15"/>
+    <polygon points="364.0,190.0 352.0,210.8 328.0,210.8 316.0,190.0 328.0,169.2 352.0,169.2" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.15"/>
+    <polygon points="150.0,120.0 140.0,137.3 120.0,137.3 110.0,120.0 120.0,102.7 140.0,102.7" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="330.0,120.0 320.0,137.3 300.0,137.3 290.0,120.0 300.0,102.7 320.0,102.7" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="150.0,260.0 140.0,277.3 120.0,277.3 110.0,260.0 120.0,242.7 140.0,242.7" fill="none" stroke="#8b5cf6" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="330.0,260.0 320.0,277.3 300.0,277.3 290.0,260.0 300.0,242.7 320.0,242.7" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.1"/>
+    <!-- Right cluster — cyan/teal -->
+    <polygon points="1272.0,190.0 1246.0,235.0 1194.0,235.0 1168.0,190.0 1194.0,145.0 1246.0,145.0" fill="rgba(8,145,178,0.04)" stroke="#0891b2" stroke-width="0.8" opacity="0.55">
+      <animate attributeName="fill" values="rgba(8,145,178,0.04);rgba(8,145,178,0.14);rgba(8,145,178,0.04)" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="0.8;1.6;0.8" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0.9;0.55" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="1256.0,190.0 1238.0,221.2 1202.0,221.2 1184.0,190.0 1202.0,158.8 1238.0,158.8" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.35"/>
+    <polygon points="1190.0,155.0 1175.0,181.0 1145.0,181.0 1130.0,155.0 1145.0,129.0 1175.0,129.0" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.3"/>
+    <polygon points="1310.0,155.0 1295.0,181.0 1265.0,181.0 1250.0,155.0 1265.0,129.0 1295.0,129.0" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.28"/>
+    <polygon points="1190.0,225.0 1175.0,251.0 1145.0,251.0 1130.0,225.0 1145.0,199.0 1175.0,199.0" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.26"/>
+    <polygon points="1310.0,225.0 1295.0,251.0 1265.0,251.0 1250.0,225.0 1265.0,199.0 1295.0,199.0" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.28"/>
+    <polygon points="1248.0,100.0 1234.0,124.2 1206.0,124.2 1192.0,100.0 1206.0,75.8 1234.0,75.8" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.2"/>
+    <polygon points="1248.0,280.0 1234.0,304.2 1206.0,304.2 1192.0,280.0 1206.0,255.8 1234.0,255.8" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.2"/>
+    <polygon points="1124.0,190.0 1112.0,210.8 1088.0,210.8 1076.0,190.0 1088.0,169.2 1112.0,169.2" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.15"/>
+    <polygon points="1364.0,190.0 1352.0,210.8 1328.0,210.8 1316.0,190.0 1328.0,169.2 1352.0,169.2" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.15"/>
+    <polygon points="1150.0,120.0 1140.0,137.3 1120.0,137.3 1110.0,120.0 1120.0,102.7 1140.0,102.7" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="1330.0,120.0 1320.0,137.3 1300.0,137.3 1290.0,120.0 1300.0,102.7 1320.0,102.7" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="1150.0,260.0 1140.0,277.3 1120.0,277.3 1110.0,260.0 1120.0,242.7 1140.0,242.7" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.1"/>
+    <polygon points="1330.0,260.0 1320.0,277.3 1300.0,277.3 1290.0,260.0 1300.0,242.7 1320.0,242.7" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.1"/>
+    <!-- Fade edges so clusters don't bleed to screen edge -->
+    <rect width="80" height="380" fill="url(#lfade)"/>
+    <rect x="1360" width="80" height="380" fill="url(#rfade)"/>
+  </svg>
   <div class="research-hero-inner">
     <span class="research-eyebrow">Maurer Lab · University of Michigan</span>
     <h1 class="research-hero-title">Our <em>Research</em></h1>
@@ -203,6 +844,39 @@
     </div>
   </section>
 
+  <!-- ── SYNTHWAVE DIVIDER ── -->
+  <div class="research-divider">
+    <svg viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rd3a" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stop-color="rgba(192,38,211,0)"/>
+          <stop offset="20%"  stop-color="rgba(192,38,211,0.9)"/>
+          <stop offset="50%"  stop-color="rgba(8,145,178,0.9)"/>
+          <stop offset="80%"  stop-color="rgba(8,145,178,0.9)"/>
+          <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
+        </linearGradient>
+        <linearGradient id="rd3b" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stop-color="rgba(232,121,249,0)"/>
+          <stop offset="20%"  stop-color="rgba(232,121,249,0.7)"/>
+          <stop offset="50%"  stop-color="rgba(34,211,238,0.7)"/>
+          <stop offset="80%"  stop-color="rgba(34,211,238,0.7)"/>
+          <stop offset="100%" stop-color="rgba(34,211,238,0)"/>
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="62" x2="230" y2="6" stroke="#e879f9" stroke-width="1.2" opacity="0.5"/>
+      <line x1="0" y1="70" x2="195" y2="18" stroke="#c026d3" stroke-width="0.8" opacity="0.35"/>
+      <line x1="1200" y1="62" x2="970" y2="6" stroke="#22d3ee" stroke-width="1.2" opacity="0.5"/>
+      <line x1="1200" y1="70" x2="1005" y2="18" stroke="#0891b2" stroke-width="0.8" opacity="0.35"/>
+      <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#rd3a)" stroke-width="2.2"/>
+      <path d="M0 42 Q150 25 300 42 Q450 59 600 42 Q750 25 900 42 Q1050 59 1200 42" fill="none" stroke="url(#rd3b)" stroke-width="1.4" opacity="0.7"/>
+      <path d="M0 28 Q150 11 300 28 Q450 45 600 28 Q750 11 900 28 Q1050 45 1200 28" fill="none" stroke="url(#rd3b)" stroke-width="1" opacity="0.5"/>
+      <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#rd3b)" stroke-width="1" opacity="0">
+        <animate attributeName="opacity" values="0;0.6;0" dur="2.8s" begin="0.7s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="1;5;1" dur="2.8s" begin="0.7s" repeatCount="indefinite"/>
+      </path>
+    </svg>
+  </div>
+
   <!-- ── PUBLICATIONS ── -->
   <section class="research-pubs">
     <div class="research-pubs-header">
@@ -257,7 +931,20 @@
       <span class="footer-address-label">Ann Arbor, Michigan</span>
       <p>Room 4217 &middot; 930 N. University Ave.</p>
       <p>Ann Arbor, MI 48109-1055</p>
-      <a href="/cdn-cgi/l/email-protection#afceccc2cedaddcaddefdac2c6ccc781cacbda"><span class="__cf_email__" data-cfemail="38595b55594d4a5d4a784d55515b50165d5c4d">[email&#160;protected]</span></a>
+      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
     </div>
   </div>
   <di
+
+<script>
+(function() {
+  var nav = document.querySelector('nav');
+  function onScroll() {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

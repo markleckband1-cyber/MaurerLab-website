@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Us — Maurer Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background: #fff; color: #18151f; font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.65; overflow-x: hidden; }
+
+    /* NAV */
+    body > nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 4rem; background: #0a0612; border-bottom: 1px solid rgba(192,38,211,0.15); transition: padding 0.3s ease; }
+    body > nav.nav-scrolled { padding: 0.35rem 4rem; border-bottom-color: rgba(192,38,211,0.25); }
+    .nav-logo img { height: 82px; width: auto; display: block; transition: height 0.3s ease; }
+    .nav-scrolled .nav-logo img { height: 52px; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #e879f9; }
+    .nav-links a.active { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 3rem 6rem; }
+
+    /* ── HERO ── */
+    .join-hero {
+      position: relative; overflow: hidden;
+      min-height: 360px; display: flex;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem 5rem;
+      background: #0a0612;
+    }
+    .join-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .join-hero-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .join-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,121,249,0.8); display: block; margin: 0 0 1rem; }
+    .join-hero-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; color: #fff; line-height: 1.08; margin: 0 0 1rem; }
+    .join-hero-h1 em { font-style: normal; background: linear-gradient(135deg, #e879f9, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .join-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+    /* ── INTRO ── */
+    .join-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin: 4rem 0; }
+    .join-intro-text h2 { font-size: 1.9rem; font-weight: 300; color: #18151f; line-height: 1.2; margin: 0 0 1.2rem; }
+    .join-intro-text h2 em { font-style: normal; color: #c026d3; }
+    .join-intro-text p { font-size: 1rem; color: #4a4460; line-height: 1.8; margin: 0 0 1.25rem; }
+    .join-intro-text p:last-child { margin: 0; }
+    .join-cta-email { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: #0891b2; text-decoration: none; border: 1px solid rgba(8,145,178,0.35); border-radius: 3px; padding: 0.6rem 1.2rem; transition: background 0.2s, border-color 0.2s; }
+    .join-cta-email:hover { background: rgba(8,145,178,0.07); border-color: #0891b2; }
+    .join-photo-wrap { border-radius: 10px; overflow: hidden; border: 1px solid rgba(120,90,180,0.18); }
+    .join-photo { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+
+    /* ── DIVIDER ── */
+    .join-divider { display: block; width: 100%; height: 60px; pointer-events: none; margin: 2.5rem 0; }
+
+    /* ── POSITIONS ── */
+    .positions-header { margin: 0 0 1.5rem; }
+    .positions-header h2 { font-size: 1.9rem; font-weight: 300; color: #18151f; margin: 0 0 0.4rem; }
+    .positions-header p { font-size: 0.95rem; color: #8a82a0; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; }
+
+    /* Tab pills */
+    .position-tabs { display: flex; gap: 0.5rem; margin: 0 0 2rem; flex-wrap: wrap; }
+    .pos-tab { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.45rem 1.1rem; border-radius: 3px; border: 1px solid rgba(120,90,180,0.25); background: transparent; color: #8a82a0; cursor: pointer; transition: all 0.2s; }
+    .pos-tab:hover { border-color: #c026d3; color: #c026d3; }
+    .pos-tab.active { background: rgba(192,38,211,0.08); border-color: #c026d3; color: #c026d3; }
+    .pos-tab-num { opacity: 0.5; margin-right: 0.3rem; }
+
+    /* Accordion groups */
+    .position-group { margin-bottom: 1.25rem; }
+    .pos-group-btn {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.4rem; background: #0a0612; border: 1px solid rgba(192,38,211,0.2);
+      border-radius: 6px; cursor: pointer; transition: background 0.2s, border-color 0.2s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .pos-group-btn:hover { background: rgba(192,38,211,0.06); border-color: rgba(192,38,211,0.4); }
+    .pos-group-btn.open { border-radius: 6px 6px 0 0; border-bottom-color: transparent; background: rgba(192,38,211,0.06); }
+    .pos-group-label { display: flex; align-items: center; gap: 1rem; }
+    .pos-group-num { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: #c026d3; letter-spacing: 0.12em; }
+    .pos-group-title { font-size: 1.05rem; font-weight: 500; color: #fff; }
+    .pos-group-count { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; margin-left: 0.75rem; }
+    .pos-group-chevron { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid rgba(255,255,255,0.4); transition: transform 0.25s; flex-shrink: 0; }
+    .pos-group-btn.open .pos-group-chevron { transform: rotate(180deg); }
+
+    .pos-group-body { display: none; border: 1px solid rgba(192,38,211,0.2); border-top: none; border-radius: 0 0 6px 6px; background: #fff; }
+    .pos-group-body.open { display: block; }
+
+    .position-item { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; border-bottom: 1px solid rgba(120,90,180,0.1); }
+    .position-item:last-child { border-bottom: none; }
+    .pos-item-info { flex: 1; }
+    .pos-item-title { font-size: 1rem; font-weight: 500; color: #18151f; margin: 0 0 0.2rem; }
+    .pos-item-sub { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8a82a0; }
+    .pos-apply-btn { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #0891b2; text-decoration: none; border: 1px solid rgba(8,145,178,0.35); border-radius: 3px; padding: 0.45rem 1rem; flex-shrink: 0; margin-left: 1.5rem; transition: background 0.2s, border-color 0.2s; }
+    .pos-apply-btn:hover { background: rgba(8,145,178,0.07); border-color: #0891b2; }
+
+    /* ── FOOTER ── */
+    .site-footer { position: relative; overflow: hidden; background: #04020e; }
+    .footer-bg { position: absolute; inset: 0; z-index: 0; }
+    .footer-bg-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; display: block; }
+    .footer-bg-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(4,2,16,0.55), rgba(8,4,28,0.45)); }
+    .footer-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 3rem 2rem; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; align-items: start; }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .footer-logo-img { height: 90px; width: auto; max-width: 320px; display: block; object-fit: contain; object-position: left center; }
+    .footer-umich-img { height: 32px; width: auto; max-width: 220px; display: block; opacity: 0.9; object-fit: contain; }
+    .footer-nav { display: flex; flex-direction: column; gap: 0.55rem; background: transparent; border: none; padding: 0; }
+    .footer-nav-label, .footer-address-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #0891b2; margin: 0 0 0.4rem; display: block; }
+    .footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.55); text-decoration: none; display: block; }
+    .footer-nav a:hover { color: #e879f9; }
+    .footer-address { display: flex; flex-direction: column; gap: 0.3rem; }
+    .footer-address p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin: 0; }
+    .footer-address a { font-size: 0.85rem; color: #0891b2; text-decoration: none; display: block; }
+    .footer-bottom { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 1rem 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; color: rgba(255,255,255,0.22); font-family: 'Space Mono', monospace; }
+
+    @media (max-width: 800px) {
+      body > nav { padding: 0.8rem 1.5rem; }
+      body > nav.nav-scrolled { padding: 0.35rem 1.5rem; }
+      main { padding: 2rem 1.5rem 4rem; }
+      .join-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .nav-links { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="people.html">People</a></li>
+    <li><a href="index.html#news-anchor">Lab News</a></li>
+    <li><a href="join.html" class="active">Join Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="join-hero">
+  <svg class="join-hero-canvas" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="jg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e879f9" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="jfade_l" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#0a0612" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="jfade_r" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%"   stop-color="#0a0612" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="jfade_cl" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="jfade_cr" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="1440" height="360" fill="#0a0612"/>
+    <rect width="1440" height="360" fill="url(#jg)"/>
+
+    <polygon points="394.0,163.0 394.0,197.0 364.6,214.0 335.2,197.0 335.2,163.0 364.6,146.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="361.7,218.9 361.7,252.9 332.3,269.9 302.9,252.9 302.9,218.9 332.3,201.9" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="297.1,218.9 297.1,252.9 267.7,269.9 238.3,252.9 238.3,218.9 267.7,201.9" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="264.8,163.0 264.8,197.0 235.4,214.0 206.0,197.0 206.0,163.0 235.4,146.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="297.1,107.1 297.1,141.1 267.7,158.1 238.3,141.1 238.3,107.1 267.7,90.1" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="361.7,107.1 361.7,141.1 332.3,158.1 302.9,141.1 302.9,107.1 332.3,90.1" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="453.5,163.0 453.5,197.0 424.0,214.0 394.6,197.0 394.6,163.0 424.0,146.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.18"/>
+    <polygon points="391.5,270.4 391.5,304.4 362.0,321.4 332.6,304.4 332.6,270.4 362.0,253.4" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="267.4,270.4 267.4,304.4 238.0,321.4 208.5,304.4 208.5,270.4 238.0,253.4" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="205.4,163.0 205.4,197.0 176.0,214.0 146.5,197.0 146.5,163.0 176.0,146.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.18"/>
+    <polygon points="267.4,55.6 267.4,89.6 238.0,106.6 208.5,89.6 208.5,55.6 238.0,38.6" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="391.5,55.6 391.5,89.6 362.0,106.6 332.6,89.6 332.6,55.6 362.0,38.6" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="383.8,199.5 383.8,228.4 358.7,242.8 333.7,228.4 333.7,199.5 358.7,185.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="325.0,233.4 325.0,262.3 300.0,276.7 275.0,262.3 275.0,233.4 300.0,218.9" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="266.3,199.5 266.3,228.4 241.3,242.8 216.2,228.4 216.2,199.5 241.3,185.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="266.3,131.6 266.3,160.5 241.3,175.0 216.2,160.5 216.2,131.6 241.3,117.2" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="325.0,97.7 325.0,126.6 300.0,141.1 275.0,126.6 275.0,97.7 300.0,83.3" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="383.8,131.6 383.8,160.5 358.7,175.0 333.7,160.5 333.7,131.6 358.7,117.2" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="354.9,177.3 354.9,201.1 334.3,213.0 313.7,201.1 313.7,177.3 334.3,165.4" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="329.8,202.4 329.8,226.2 309.2,238.1 288.6,226.2 288.6,202.4 309.2,190.5" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="295.5,193.2 295.5,217.0 274.9,228.9 254.3,217.0 254.3,193.2 274.9,181.3" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="286.3,158.9 286.3,182.7 265.7,194.6 245.1,182.7 245.1,158.9 265.7,147.0" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="311.4,133.8 311.4,157.6 290.8,169.5 270.2,157.6 270.2,133.8 290.8,121.9" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="345.7,143.0 345.7,166.8 325.1,178.7 304.5,166.8 304.5,143.0 325.1,131.1" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <!-- LEFT accent hex with pulse -->
+    <polygon points="364.8,142.6 364.8,217.4 300.0,254.8 235.2,217.4 235.2,142.6 300.0,105.2" fill="none" stroke="#c026d3" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="344.2,154.5 344.2,205.5 300.0,231.0 255.8,205.5 255.8,154.5 300.0,129.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.3"/>
+    <polygon points="329.4,163.0 329.4,197.0 300.0,214.0 270.6,197.0 270.6,163.0 300.0,146.0" fill="rgba(192,38,211,0.06)" stroke="#e879f9" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="329.4,163.0 329.4,197.0 300.0,214.0 270.6,197.0 270.6,163.0 300.0,146.0" fill="none" stroke="#e879f9" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0.55;0.9;0.55" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.5s" repeatCount="indefinite"/>
+    </polygon>
+    <rect width="100" height="360" fill="url(#jfade_l)"/>
+    <polygon points="1234.0,163.0 1234.0,197.0 1204.6,214.0 1175.2,197.0 1175.2,163.0 1204.6,146.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="1201.7,218.9 1201.7,252.9 1172.3,269.9 1142.9,252.9 1142.9,218.9 1172.3,201.9" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="1137.1,218.9 1137.1,252.9 1107.7,269.9 1078.3,252.9 1078.3,218.9 1107.7,201.9" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="1104.8,163.0 1104.8,197.0 1075.4,214.0 1046.0,197.0 1046.0,163.0 1075.4,146.0" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="1137.1,107.1 1137.1,141.1 1107.7,158.1 1078.3,141.1 1078.3,107.1 1107.7,90.1" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.28"/>
+    <polygon points="1201.7,107.1 1201.7,141.1 1172.3,158.1 1142.9,141.1 1142.9,107.1 1172.3,90.1" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.24"/>
+    <polygon points="1293.5,163.0 1293.5,197.0 1264.0,214.0 1234.6,197.0 1234.6,163.0 1264.0,146.0" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.18"/>
+    <polygon points="1231.5,270.4 1231.5,304.4 1202.0,321.4 1172.6,304.4 1172.6,270.4 1202.0,253.4" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="1107.4,270.4 1107.4,304.4 1078.0,321.4 1048.5,304.4 1048.5,270.4 1078.0,253.4" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="1045.4,163.0 1045.4,197.0 1016.0,214.0 986.5,197.0 986.5,163.0 1016.0,146.0" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.18"/>
+    <polygon points="1107.4,55.6 1107.4,89.6 1078.0,106.6 1048.5,89.6 1048.5,55.6 1078.0,38.6" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="1231.5,55.6 1231.5,89.6 1202.0,106.6 1172.6,89.6 1172.6,55.6 1202.0,38.6" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.08"/>
+    <polygon points="1223.8,199.5 1223.8,228.4 1198.7,242.8 1173.7,228.4 1173.7,199.5 1198.7,185.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1165.0,233.4 1165.0,262.3 1140.0,276.7 1115.0,262.3 1115.0,233.4 1140.0,218.9" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1106.3,199.5 1106.3,228.4 1081.3,242.8 1056.2,228.4 1056.2,199.5 1081.3,185.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1106.3,131.6 1106.3,160.5 1081.3,175.0 1056.2,160.5 1056.2,131.6 1081.3,117.2" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1165.0,97.7 1165.0,126.6 1140.0,141.1 1115.0,126.6 1115.0,97.7 1140.0,83.3" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1223.8,131.6 1223.8,160.5 1198.7,175.0 1173.7,160.5 1173.7,131.6 1198.7,117.2" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.06"/>
+    <polygon points="1194.9,177.3 1194.9,201.1 1174.3,213.0 1153.7,201.1 1153.7,177.3 1174.3,165.4" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1169.8,202.4 1169.8,226.2 1149.2,238.1 1128.6,226.2 1128.6,202.4 1149.2,190.5" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1135.5,193.2 1135.5,217.0 1114.9,228.9 1094.3,217.0 1094.3,193.2 1114.9,181.3" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1126.3,158.9 1126.3,182.7 1105.7,194.6 1085.1,182.7 1085.1,158.9 1105.7,147.0" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1151.4,133.8 1151.4,157.6 1130.8,169.5 1110.2,157.6 1110.2,133.8 1130.8,121.9" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1185.7,143.0 1185.7,166.8 1165.1,178.7 1144.5,166.8 1144.5,143.0 1165.1,131.1" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <!-- RIGHT accent hex with pulse -->
+    <polygon points="1204.8,142.6 1204.8,217.4 1140.0,254.8 1075.2,217.4 1075.2,142.6 1140.0,105.2" fill="none" stroke="#0891b2" stroke-width="0.6" opacity="0.22"/>
+    <polygon points="1184.2,154.5 1184.2,205.5 1140.0,231.0 1095.8,205.5 1095.8,154.5 1140.0,129.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.3"/>
+    <polygon points="1169.4,163.0 1169.4,197.0 1140.0,214.0 1110.6,197.0 1110.6,163.0 1140.0,146.0" fill="rgba(8,145,178,0.06)" stroke="#22d3ee" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="1169.4,163.0 1169.4,197.0 1140.0,214.0 1110.6,197.0 1110.6,163.0 1140.0,146.0" fill="none" stroke="#22d3ee" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" values="0.55;0.9;0.55" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
+    </polygon>
+    <rect x="1340" width="100" height="360" fill="url(#jfade_r)"/>
+
+    <!-- Soft fade toward center text zone -->
+    <rect x="380" width="120" height="360" fill="url(#jfade_cl)"/>
+    <rect x="940" width="120" height="360" fill="url(#jfade_cr)"/>
+  </svg>
+
+  <div class="join-hero-inner">
+    <span class="join-eyebrow">Maurer Lab · University of Michigan</span>
+    <h1 class="join-hero-h1">Join the <em>Team</em></h1>
+    <p class="join-hero-sub">We believe a great scientist can come from anywhere. We welcome trainees at all levels in a fun, inclusive, and intentionally mentored environment.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── INTRO ── -->
+  <section class="join-intro">
+    <div class="join-intro-text">
+      <h2>Come do science <em>with us</em></h2>
+      <p>The skills Anna mastered waiting tables and bartending for 14 years are the same skills that have made her a successful scientist. Anna provides intentional mentorship in a fun and inclusive environment, welcoming trainees at all levels of experience.</p>
+      <p>We are committed to increasing diversity among biomedical researchers by raising awareness about research careers among community college students and mentoring them through transfer to a four-year institution to pursue STEM degrees.</p>
+      <a href="mailto:acmaurer@umich.edu" class="join-cta-email">
+        acmaurer@umich.edu → Inquire about opportunities
+      </a>
+    </div>
+    <div class="join-photo-wrap">
+      <img src="assets/img/annasquadlab-e1724189463377.jpg" alt="Maurer Lab team in the lab" class="join-photo">
+    </div>
+  </section>
+
+  <!-- ── DIVIDER ── -->
+  <svg class="join-divider" viewBox="0 0 1100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="jdv" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="rgba(192,38,211,0)"/>
+        <stop offset="20%"  stop-color="rgba(192,38,211,0.7)"/>
+        <stop offset="50%"  stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="80%"  stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
+      </linearGradient>
+    </defs>
+    <line x1="0" y1="55" x2="220" y2="8" stroke="#c026d3" stroke-width="1" opacity="0.45"/>
+    <line x1="1100" y1="55" x2="880" y2="8" stroke="#0891b2" stroke-width="1" opacity="0.45"/>
+    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#jdv)" stroke-width="2"/>
+    <path d="M0 38 Q275 20 550 38 Q825 56 1100 38" fill="none" stroke="url(#jdv)" stroke-width="1.2" opacity="0.6"/>
+    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#jdv)" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1;4;1" dur="2.8s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+
+  <!-- ── OPEN POSITIONS ── -->
+  <section>
+    <div class="positions-header">
+      <h2>Open Positions</h2>
+      <p>University of Michigan · Ann Arbor, Michigan</p>
+    </div>
+
+    <div class="position-tabs">
+      <button class="pos-tab active" data-filter="all"><span class="pos-tab-num">01</span> All</button>
+      <button class="pos-tab" data-filter="laboratory"><span class="pos-tab-num">02</span> Laboratory</button>
+      <button class="pos-tab" data-filter="rotations"><span class="pos-tab-num">03</span> Student Rotations</button>
+    </div>
+
+    <!-- Laboratory Positions -->
+    <div class="position-group" data-category="laboratory">
+      <button class="pos-group-btn open" data-group="lab">
+        <div class="pos-group-label">
+          <span class="pos-group-num">02</span>
+          <span class="pos-group-title">Laboratory<span class="pos-group-count">4 positions</span></span>
+        </div>
+        <div class="pos-group-chevron"></div>
+      </button>
+      <div class="pos-group-body open" id="group-lab">
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Graduate Students</p>
+            <span class="pos-item-sub">U-M Biophysics &amp; PIBS · PhD Program</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Postdoctoral Researchers</p>
+            <span class="pos-item-sub">University of Michigan · Ann Arbor</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Undergraduate Students</p>
+            <span class="pos-item-sub">UROP &amp; Independent Study</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Community College Students</p>
+            <span class="pos-item-sub">Transfer Pipeline Program</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Rotations -->
+    <div class="position-group" data-category="rotations">
+      <button class="pos-group-btn open" data-group="rotations">
+        <div class="pos-group-label">
+          <span class="pos-group-num">03</span>
+          <span class="pos-group-title">Student Rotations<span class="pos-group-count">2 positions</span></span>
+        </div>
+        <div class="pos-group-chevron"></div>
+      </button>
+      <div class="pos-group-body open" id="group-rotations">
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Postdoctoral Researchers</p>
+            <span class="pos-item-sub">Rotation · Ann Arbor, Michigan</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+        <div class="position-item">
+          <div class="pos-item-info">
+            <p class="pos-item-title">Graduate Students</p>
+            <span class="pos-item-sub">Rotation · U-M Biophysics &amp; PIBS</span>
+          </div>
+          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-bg">
+    <img src="assets/img/footer-lights-darker.jpg" alt="" class="footer-bg-img">
+    <div class="footer-bg-overlay"></div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab" class="footer-logo-img">
+      <img src="assets/img/biophysics-logo.webp" alt="U-M LSA Biophysics" class="footer-umich-img">
+    </div>
+    <nav class="footer-nav">
+      <span class="footer-nav-label">Maurer Lab</span>
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="people.html">People</a>
+      <a href="join.html">Join Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-address">
+      <span class="footer-address-label">Ann Arbor, Michigan</span>
+      <p>Room 4217 &middot; 930 N. University Ave.</p>
+      <p>Ann Arbor, MI 48109-1055</p>
+      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Maurer Lab &middot; University of Michigan</span>
+  </div>
+</footer>
+
+<script>
+// Nav shrink
+(function() {
+  var nav = document.querySelector('nav');
+  function onScroll() { nav.classList.toggle('nav-scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+
+// Accordion toggle
+document.querySelectorAll('.pos-group-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var groupId = 'group-' + btn.dataset.group;
+    var body = document.getElementById(groupId);
+    var isOpen = btn.classList.contains('open');
+    btn.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  });
+});
+
+// Tab filter
+document.querySelectorAll('.pos-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.pos-tab').forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+    var filter = tab.dataset.filter;
+    document.querySelectorAll('.position-group').forEach(function(group) {
+      if (filter === 'all' || group.dataset.category === filter) {
+        group.style.display = '';
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

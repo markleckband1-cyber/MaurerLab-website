@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Maurer Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background: #fff; color: #18151f; font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.65; overflow-x: hidden; }
+    body > nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 4rem; background: #0a0612; border-bottom: 1px solid rgba(192,38,211,0.15); transition: padding 0.3s ease; }
+    body > nav.nav-scrolled { padding: 0.35rem 4rem; border-bottom-color: rgba(192,38,211,0.25); }
+    .nav-logo img { height: 82px; width: auto; display: block; transition: height 0.3s ease; }
+    .nav-scrolled .nav-logo img { height: 52px; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #e879f9; }
+    .nav-links a.active { color: rgba(255,255,255,0.9); font-weight: 500; }
+    .contact-hero { position: relative; overflow: hidden; min-height: 340px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 5.5rem 2rem 4.5rem; background: #0a0612; }
+    .contact-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: block; }
+    .contact-hero-inner { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; }
+    .contact-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,121,249,0.8); display: block; margin: 0 0 1rem; }
+    .contact-hero-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; color: #fff; line-height: 1.08; margin: 0 0 1rem; }
+    .contact-hero-h1 em { font-style: normal; background: linear-gradient(135deg, #e879f9, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .contact-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto; line-height: 1.75; }
+    main { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .contact-section { display: grid; grid-template-columns: 1fr 500px; gap: 4rem; align-items: start; }
+    .contact-info-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: #0891b2; display: block; margin: 0 0 1.5rem; }
+    .contact-pi-name { font-size: 2rem; font-weight: 600; color: #18151f; margin: 0 0 0.25rem; line-height: 1.1; }
+    .contact-pi-title { font-size: 0.95rem; color: #c026d3; margin: 0 0 1.5rem; display: block; }
+    .contact-block { margin: 0 0 1.75rem; }
+    .contact-block-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8a82a0; display: block; margin: 0 0 0.5rem; }
+    .contact-block p { font-size: 0.95rem; color: #4a4460; line-height: 1.75; margin: 0; }
+    .contact-block a { color: #0891b2; text-decoration: none; }
+    .contact-block a:hover { color: #c026d3; }
+    .contact-email-cta { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; color: #fff; text-decoration: none; background: linear-gradient(135deg, rgba(192,38,211,0.9), rgba(8,145,178,0.9)); border-radius: 4px; padding: 0.85rem 1.8rem; transition: opacity 0.2s, transform 0.2s; margin: 0 0 1.25rem; }
+    .contact-email-cta:hover { opacity: 0.88; transform: translateY(-2px); }
+    .contact-note { font-size: 0.88rem; color: #8a82a0; line-height: 1.75; border-left: 2px solid rgba(192,38,211,0.25); padding-left: 1rem; margin: 0 0 1.75rem; }
+    .contact-note strong { color: #4a4460; font-weight: 500; }
+    .contact-note a { color: #0891b2; text-decoration: none; }
+    .contact-note a:hover { color: #c026d3; }
+    .contact-hex-wrap { position: sticky; top: 120px; }
+    .contact-hex-svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .contact-divider { display: block; width: 100%; height: 60px; pointer-events: none; margin: 3rem 0; }
+    .contact-location { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border: 1px solid rgba(120,90,180,0.15); border-radius: 8px; overflow: hidden; }
+    .contact-location-info { padding: 2rem; }
+    .contact-location-info h3 { font-size: 1.1rem; font-weight: 500; color: #18151f; margin: 0 0 0.5rem; }
+    .contact-location-info p { font-size: 0.9rem; color: #4a4460; line-height: 1.75; margin: 0 0 1rem; }
+    .contact-location-info a { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #0891b2; text-decoration: none; border: 1px solid rgba(8,145,178,0.35); border-radius: 3px; padding: 0.45rem 1rem; }
+    .contact-map-embed { background: #f0edf8; min-height: 240px; display: flex; align-items: stretch; }
+    .contact-map-embed iframe { width: 100%; min-height: 240px; border: 0; display: block; }
+    .site-footer { position: relative; overflow: hidden; background: #04020e; }
+    .footer-bg { position: absolute; inset: 0; z-index: 0; }
+    .footer-bg-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; display: block; }
+    .footer-bg-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(4,2,16,0.55), rgba(8,4,28,0.45)); }
+    .footer-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 3rem 2rem; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; align-items: start; }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .footer-logo-img { height: 90px; width: auto; max-width: 320px; display: block; }
+    .footer-umich-img { height: 32px; width: auto; max-width: 220px; display: block; opacity: 0.9; }
+    .footer-nav { display: flex; flex-direction: column; gap: 0.55rem; background: transparent; border: none; padding: 0; }
+    .footer-nav-label, .footer-address-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #0891b2; margin: 0 0 0.4rem; display: block; }
+    .footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.55); text-decoration: none; display: block; }
+    .footer-nav a:hover { color: #e879f9; }
+    .footer-address { display: flex; flex-direction: column; gap: 0.3rem; }
+    .footer-address p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin: 0; }
+    .footer-address a { font-size: 0.85rem; color: #0891b2; text-decoration: none; display: block; }
+    .footer-bottom { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 1rem 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; color: rgba(255,255,255,0.22); font-family: 'Space Mono', monospace; }
+    @media (max-width: 860px) {
+      body > nav { padding: 0.8rem 1.5rem; }
+      body > nav.nav-scrolled { padding: 0.35rem 1.5rem; }
+      main { padding: 3rem 1.5rem 4rem; }
+      .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-hex-wrap { position: static; }
+      .contact-location { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) { .nav-links { display: none; } .footer-inner { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="people.html">People</a></li>
+    <li><a href="index.html#news-anchor">Lab News</a></li>
+    <li><a href="join.html">Join Us</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="contact-hero">
+  <canvas class="contact-hero-canvas" id="contactHeroCanvas"></canvas>
+  <div class="contact-hero-inner">
+    <span class="contact-eyebrow">Maurer Lab &middot; University of Michigan</span>
+    <h1 class="contact-hero-h1">Get in <em>Touch</em></h1>
+    <p class="contact-hero-sub">We&rsquo;d love to hear from you &mdash; about research, collaborations, or joining the lab.</p>
+  </div>
+</header>
+
+<main>
+  <div class="contact-section">
+    <div class="contact-left">
+      <span class="contact-info-label">Principal Investigator</span>
+      <p class="contact-pi-name">Anna Maurer, PhD</p>
+      <span class="contact-pi-title">Assistant Professor of Biophysics &middot; University of Michigan</span>
+      <div class="contact-block">
+        <span class="contact-block-label">Appointments &amp; Affiliations</span>
+        <p>
+          Assistant Professor, <a href="https://lsa.umich.edu/biophysics" target="_blank">Biophysics</a><br>
+          University of Michigan College of LSA<br>
+          Assistant Professor, Microbiology and Immunology<br>
+          <a href="https://research.umich.edu/m-pact/" target="_blank">M-PACT Scholar</a>
+        </p>
+      </div>
+      <div class="contact-block">
+        <span class="contact-block-label">Office</span>
+        <p>CHEM 3202</p>
+      </div>
+      <div class="contact-block">
+        <span class="contact-block-label">Lab Location</span>
+        <p>Room 4217 &middot; 930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
+      </div>
+      <a href="mailto:acmaurer@umich.edu" class="contact-email-cta">acmaurer@umich.edu &rarr;</a>
+      <p class="contact-note">
+        <strong>Please email to inquire about open positions.</strong> Note: you must already be accepted to the University of Michigan to apply for an undergraduate or graduate student position. See the <a href="join.html">Join Us</a> page for currently listed opportunities.
+      </p>
+    </div>
+
+    <div class="contact-hex-wrap">
+      <svg class="contact-hex-svg" viewBox="-46 -46 692 692" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="hex-clip">
+            <polygon points="636.0,300.0 468.0,591.0 132.0,591.0 -36.0,300.0 132.0,9.0 468.0,9.0"/>
+          </clipPath>
+        </defs>
+        <g clip-path="url(#hex-clip)">
+<polygon points="636.0,300.0 468.0,591.0 132.0,591.0 -36.0,300.0 132.0,9.0 468.0,9.0" fill="#0a0612" stroke="none"/>
+<radialGradient id="chbloom" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c026d3" stop-opacity="0.18"/><stop offset="60%" stop-color="#0891b2" stop-opacity="0.06"/><stop offset="100%" stop-color="#0891b2" stop-opacity="0"/></radialGradient>
+<ellipse cx="300" cy="300" rx="160" ry="160" fill="url(#chbloom)"/>
+<polygon points="620.0,300.0 460.0,577.1 140.0,577.1 -20.0,300.0 140.0,22.9 460.0,22.9" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.1"/>
+<polygon points="572.0,300.0 436.0,535.6 164.0,535.6 28.0,300.0 164.0,64.4 436.0,64.4" fill="none" stroke="#8b5cf6" stroke-width="0.6" opacity="0.14"/>
+<polygon points="524.0,300.0 412.0,494.0 188.0,494.0 76.0,300.0 188.0,106.0 412.0,106.0" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.19"/>
+<polygon points="476.0,300.0 388.0,452.4 212.0,452.4 124.0,300.0 212.0,147.6 388.0,147.6" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.24"/>
+<polygon points="436.0,300.0 368.0,417.8 232.0,417.8 164.0,300.0 232.0,182.2 368.0,182.2" fill="none" stroke="#8b5cf6" stroke-width="0.9" opacity="0.3"/>
+<polygon points="404.0,300.0 352.0,390.1 248.0,390.1 196.0,300.0 248.0,209.9 352.0,209.9" fill="none" stroke="#c026d3" stroke-width="1.0" opacity="0.38"/>
+<polygon points="380.0,300.0 340.0,369.3 260.0,369.3 220.0,300.0 260.0,230.7 340.0,230.7" fill="none" stroke="#0891b2" stroke-width="1.0" opacity="0.44"/>
+<polygon points="356.0,300.0 328.0,348.5 272.0,348.5 244.0,300.0 272.0,251.5 328.0,251.5" fill="none" stroke="#22d3ee" stroke-width="1.1" opacity="0.5"/>
+<polygon points="500.0,300.0 478.0,338.1 434.0,338.1 412.0,300.0 434.0,261.9 478.0,261.9" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.32"/>
+<polygon points="422.0,435.1 400.0,473.2 356.0,473.2 334.0,435.1 356.0,397.0 400.0,397.0" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.32"/>
+<polygon points="266.0,435.1 244.0,473.2 200.0,473.2 178.0,435.1 200.0,397.0 244.0,397.0" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.32"/>
+<polygon points="188.0,300.0 166.0,338.1 122.0,338.1 100.0,300.0 122.0,261.9 166.0,261.9" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.32"/>
+<polygon points="266.0,164.9 244.0,203.0 200.0,203.0 178.0,164.9 200.0,126.8 244.0,126.8" fill="none" stroke="#c026d3" stroke-width="0.8" opacity="0.32"/>
+<polygon points="422.0,164.9 400.0,203.0 356.0,203.0 334.0,164.9 356.0,126.8 400.0,126.8" fill="none" stroke="#0891b2" stroke-width="0.8" opacity="0.32"/>
+<polygon points="570.5,440.0 556.5,464.2 528.5,464.2 514.5,440.0 528.5,415.8 556.5,415.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="328.0,580.0 314.0,604.2 286.0,604.2 272.0,580.0 286.0,555.8 314.0,555.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="85.5,440.0 71.5,464.2 43.5,464.2 29.5,440.0 43.5,415.8 71.5,415.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="85.5,160.0 71.5,184.2 43.5,184.2 29.5,160.0 43.5,135.8 71.5,135.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="328.0,20.0 314.0,44.2 286.0,44.2 272.0,20.0 286.0,-4.2 314.0,-4.2" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="570.5,160.0 556.5,184.2 528.5,184.2 514.5,160.0 528.5,135.8 556.5,135.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.20"/>
+<polygon points="502.5,404.0 491.3,423.4 468.9,423.4 457.7,404.0 468.9,384.6 491.3,384.6" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.16"/>
+<polygon points="139.9,404.0 129.9,421.3 109.9,421.3 99.9,404.0 109.9,386.7 129.9,386.7" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.14"/>
+<polygon points="322.4,92.0 311.2,111.4 288.8,111.4 277.6,92.0 288.8,72.6 311.2,72.6" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.16"/>
+<polygon points="317.6,420.0 308.8,435.2 291.2,435.2 282.4,420.0 291.2,404.8 308.8,404.8" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.18"/>
+<polygon points="213.7,240.0 204.9,255.2 187.3,255.2 178.5,240.0 187.3,224.8 204.9,224.8" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.16"/>
+<polygon points="421.5,240.0 412.7,255.2 395.1,255.2 386.3,240.0 395.1,224.8 412.7,224.8" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.18"/>
+<polygon points="556.0,300.0 548.0,313.9 532.0,313.9 524.0,300.0 532.0,286.1 548.0,286.1" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.14"/>
+<polygon points="196.0,507.8 188.0,521.7 172.0,521.7 164.0,507.8 172.0,494.0 188.0,494.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.14"/>
+<polygon points="196.0,92.2 188.0,106.0 172.0,106.0 164.0,92.2 172.0,78.3 188.0,78.3" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.14"/>
+<!-- CENTER pulsing hex -->
+<polygon points="349.6,300.0 324.8,343.0 275.2,343.0 250.4,300.0 275.2,257.0 324.8,257.0" fill="rgba(192,38,211,0.08)" stroke="#e879f9" stroke-width="1.4" opacity="0.55">
+  <animate attributeName="fill" values="rgba(192,38,211,0.08);rgba(192,38,211,0.22);rgba(192,38,211,0.08)" dur="2.2s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.55;1.0;0.55" dur="2.2s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="1.4;2.4;1.4" dur="2.2s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="368.0,300.0 334.0,358.9 266.0,358.9 232.0,300.0 266.0,241.1 334.0,241.1" fill="none" stroke="#c026d3" stroke-width="0.9" opacity="0.3">
+  <animate attributeName="opacity" values="0.3;0.65;0.3" dur="2.2s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.9;1.6;0.9" dur="2.2s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="489.6,300.0 472.8,329.1 439.2,329.1 422.4,300.0 439.2,270.9 472.8,270.9" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.22;0.45;0.22" dur="3.1s" begin="0s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="3.1s" begin="0s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="255.6,435.1 238.8,464.2 205.2,464.2 188.4,435.1 205.2,406.0 238.8,406.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.18;0.38;0.18" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="255.6,164.9 238.8,194.0 205.2,194.0 188.4,164.9 205.2,135.8 238.8,135.8" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.20;0.40;0.20" dur="3.4s" begin="1.8s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="3.4s" begin="1.8s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="497.7,404.0 488.9,419.2 471.3,419.2 462.5,404.0 471.3,388.8 488.9,388.8" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.14;0.30;0.14" dur="4.2s" begin="0.4s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="4.2s" begin="0.4s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="317.6,92.0 308.8,107.2 291.2,107.2 282.4,92.0 291.2,76.8 308.8,76.8" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.14;0.28;0.14" dur="3.6s" begin="1.2s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="3.6s" begin="1.2s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="418.3,240.0 411.1,252.5 396.7,252.5 389.5,240.0 396.7,227.5 411.1,227.5" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.12;0.26;0.12" dur="4.8s" begin="2.1s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="4.8s" begin="2.1s" repeatCount="indefinite"/>
+</polygon>
+<polygon points="554.4,300.0 547.2,312.5 532.8,312.5 525.6,300.0 532.8,287.5 547.2,287.5" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.18">
+  <animate attributeName="opacity" values="0.10;0.22;0.10" dur="5.2s" begin="3.0s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-width" values="0.7;1.3;0.7" dur="5.2s" begin="3.0s" repeatCount="indefinite"/>
+</polygon>        </g>
+      </svg>
+    </div>
+  </div>
+
+  <svg class="contact-divider" viewBox="0 0 1100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cdv" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(192,38,211,0)"/>
+        <stop offset="20%" stop-color="rgba(192,38,211,0.7)"/>
+        <stop offset="50%" stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="80%" stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
+      </linearGradient>
+    </defs>
+    <line x1="0" y1="55" x2="220" y2="8" stroke="#c026d3" stroke-width="1" opacity="0.45"/>
+    <line x1="1100" y1="55" x2="880" y2="8" stroke="#0891b2" stroke-width="1" opacity="0.45"/>
+    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#cdv)" stroke-width="2"/>
+    <path d="M0 38 Q275 20 550 38 Q825 56 1100 38" fill="none" stroke="url(#cdv)" stroke-width="1.2" opacity="0.6"/>
+    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#cdv)" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1;4;1" dur="2.8s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+
+  <div class="contact-location">
+    <div class="contact-location-info">
+      <h3>Chemistry Building &middot; Central Campus</h3>
+      <p>Room 4217<br>930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
+      <a href="https://maps.studentlife.umich.edu/building/willard-h-dow-chemistry-laboratory" target="_blank">View on Campus Map &rarr;</a>
+    </div>
+    <div class="contact-map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2952.2!2d-83.7391814!3d42.2780546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883cae4140d50d3b%3A0xee39a0bda014fe51!2sWillard%20Henry%20Dow%20Laboratory!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-bg">
+    <img src="assets/img/footer-lights-darker.jpg" alt="" class="footer-bg-img">
+    <div class="footer-bg-overlay"></div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab" class="footer-logo-img">
+      <img src="assets/img/biophysics-logo.webp" alt="U-M LSA Biophysics" class="footer-umich-img">
+    </div>
+    <nav class="footer-nav">
+      <span class="footer-nav-label">Maurer Lab</span>
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="people.html">People</a>
+      <a href="join.html">Join Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-address">
+      <span class="footer-address-label">Ann Arbor, Michigan</span>
+      <p>Room 4217 &middot; 930 N. University Ave.</p>
+      <p>Ann Arbor, MI 48109-1055</p>
+      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Maurer Lab &middot; University of Michigan</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const canvas = document.getElementById('contactHeroCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, t = 0;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const TURNS=3.5, SEGMENTS=180, RUNG_EVERY=12, SPIN_SPEED=0.004, PULSE_SPEED=0.018;
+
+  function drawHelix(side) {
+    const textW = Math.min(W, 820), margin = (W - textW) / 2;
+    if (margin < 60) return;
+    const pulse  = 0.5 + 0.5 * Math.sin(t * PULSE_SPEED + (side==='right'?1.5:0));
+    const pulse2 = 0.5 + 0.5 * Math.sin(t * PULSE_SPEED * 0.7 + (side==='right'?2.7:1.2));
+    const angle0 = t * SPIN_SPEED + (side==='right'?Math.PI:0);
+    ctx.save();
+    ctx.beginPath();
+    if (side==='left') ctx.rect(0,0,margin+240,H);
+    else ctx.rect(W-margin-240,0,margin+240,H);
+    ctx.clip();
+    const radiusX = Math.min(Math.max(margin*0.65,65),115);
+    let ax0,ay0,ax1,ay1;
+    if (side==='left') { const sx=Math.max(margin*0.78,W*0.04); ax0=W*-0.02; ay0=H*1.25; ax1=sx; ay1=H*-0.15; }
+    else { const sx=W-Math.max(margin*0.78,W*0.04); ax0=W*1.02; ay0=H*1.25; ax1=sx; ay1=H*-0.15; }
+    const adx=ax1-ax0, ady=ay1-ay0, alen=Math.sqrt(adx*adx+ady*ady);
+    const sign=side==='left'?1:-1;
+    const pxU=-ady/alen*sign, pyU=adx/alen*sign;
+    function hp(u,theta){const bx=ax0+adx*u,by=ay0+ady*u,po=Math.sin(theta)*radiusX;return{x:bx+pxU*po,y:by+pyU*po,z:Math.cos(theta)};}
+    const sA=[],sB=[],rg=[];
+    for(let i=0;i<=SEGMENTS;i++){const u=i/SEGMENTS,th=angle0+u*Math.PI*2*TURNS;const a=hp(u,th);a.u=u;sA.push(a);const b=hp(u,th+Math.PI);b.u=u;sB.push(b);if(i%RUNG_EVERY===0)rg.push({ax:a.x,ay:a.y,bx:b.x,by:b.y,z:a.z,u});}
+    rg.forEach(rng=>{
+      const d=(rng.z+1)/2,al=0.12+d*0.55,rp=al*(0.7+0.3*Math.sin(rng.u*Math.PI*6+t*0.025));
+      const h=rng.u;let r,g,b;
+      if(h<0.33){const f=h/0.33;r=Math.round(192+(34-192)*f);g=Math.round(38+(211-38)*f);b=Math.round(211+(238-211)*f);}
+      else if(h<0.66){const f=(h-0.33)/0.33;r=Math.round(34+(232-34)*f);g=Math.round(211+(121-211)*f);b=Math.round(238+(249-238)*f);}
+      else{const f=(h-0.66)/0.34;r=Math.round(232+(8-232)*f);g=Math.round(121+(145-121)*f);b=Math.round(249+(178-249)*f);}
+      ctx.beginPath();ctx.moveTo(rng.ax,rng.ay);ctx.lineTo(rng.bx,rng.by);ctx.strokeStyle=`rgba(${r},${g},${b},${rp})`;ctx.lineWidth=d<0.5?0.7:1.4+d*0.8;ctx.stroke();
+      const dr=d<0.5?1.5:2.5+d*3.5;
+      if(d>0.65){const gr=dr*(3+pulse*2.5);[[rng.ax,rng.ay],[rng.bx,rng.by]].forEach(([px,py])=>{const grd=ctx.createRadialGradient(px,py,0,px,py,gr);grd.addColorStop(0,`rgba(${r},${g},${b},${0.18*pulse})`);grd.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.beginPath();ctx.arc(px,py,gr,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();});}
+      ctx.beginPath();ctx.arc(rng.ax,rng.ay,dr,0,Math.PI*2);ctx.fillStyle=`rgba(${r},${g},${b},${rp*1.1})`;ctx.fill();
+      ctx.beginPath();ctx.arc(rng.bx,rng.by,dr,0,Math.PI*2);ctx.fillStyle=`rgba(${r},${g},${b},${rp*1.1})`;ctx.fill();
+    });
+    function ds(pts,c1,c2,po){for(let i=1;i<pts.length;i++){const p=pts[i],pp=pts[i-1],d=(p.z+1)/2,al=0.12+d*0.78,lw=d<0.5?0.6+d*1.2:1.8+d*3.8,f=p.u<0.5?p.u*2:(1-p.u)*2;const r=Math.round(c1[0]+(c2[0]-c1[0])*f),g=Math.round(c1[1]+(c2[1]-c1[1])*f),b=Math.round(c1[2]+(c2[2]-c1[2])*f);ctx.beginPath();ctx.moveTo(pp.x,pp.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle=`rgba(${r},${g},${b},${al})`;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke();if(d>0.72){const ga=(d-0.72)*0.28*(0.6+0.4*Math.sin(t*PULSE_SPEED+po+p.u*8));ctx.strokeStyle=`rgba(${r},${g},${b},${ga})`;ctx.lineWidth=lw*5;ctx.stroke();}}}
+    if(side==='left'){ds(sA,[192,38,211],[34,211,238],0);ds(sB,[34,211,238],[232,121,249],Math.PI);}
+    else{ds(sA,[8,145,178],[232,121,249],0);ds(sB,[232,121,249],[192,38,211],Math.PI);}
+    const mx=ax0+adx*0.5,my=ay0+ady*0.5,aR=radiusX*(1.6+pulse*0.3);
+    const am=ctx.createRadialGradient(mx,my,0,mx,my,aR);
+    am.addColorStop(0,`rgba(192,38,211,${0.07*pulse2})`);am.addColorStop(0.5,`rgba(8,145,178,${0.04*pulse})`);am.addColorStop(1,`rgba(8,145,178,0)`);
+    ctx.beginPath();ctx.ellipse(mx,my,aR,aR*0.8,Math.atan2(ady,adx),0,Math.PI*2);ctx.fillStyle=am;ctx.fill();
+    ctx.restore();
+  }
+
+  function draw(){ctx.clearRect(0,0,W,H);drawHelix('left');drawHelix('right');t++;requestAnimationFrame(draw);}
+  draw();
+})();
+
+(function(){
+  var nav=document.querySelector('nav');
+  function s(){nav.classList.toggle('nav-scrolled',window.scrollY>40);}
+  window.addEventListener('scroll',s,{passive:true}); s();
+})();
+</script>
+</body>
+</html>
