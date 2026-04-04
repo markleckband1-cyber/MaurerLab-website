@@ -103,7 +103,7 @@
   height: 100%;
   overflow: hidden;
   position: relative;
-  animation: lab-scroll 36s linear infinite;
+  animation: lab-scroll 20s linear infinite;
   /* Each card animates independently for true loop without JS */
 }
 
@@ -114,7 +114,7 @@
 */
 .lab-ticker-track {
   width: calc(var(--card-w) * 8);
-  animation: lab-scroll 36s linear infinite;
+  animation: lab-scroll 20s linear infinite;
 }
 .ticker-card {
   animation: none; /* override — track animates, not cards */
