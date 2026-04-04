@@ -1,0 +1,227 @@
+/* ============================================================
+   people.css — Maurer Lab  
+   Written from scratch — no overflow:hidden on any card container
+   ============================================================ */
+
+:root {
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --border: rgba(120, 90, 180, 0.12);
+  --border-mid: rgba(120, 90, 180, 0.2);
+  --accent-m: #c026d3;
+  --accent-c: #0891b2;
+  --text-primary: #18151f;
+  --text-secondary: #4a4460;
+  --text-muted: #8a82a0;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto !important;
+  padding: 3rem 3rem 6rem;
+}
+
+/* ── HERO ── */
+.people-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 2rem 6rem;
+  background: #0a0612;
+}
+.people-hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  opacity: 0.55; pointer-events: none;
+}
+.people-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,2,20,0.55) 0%, rgba(6,2,20,0.30) 50%, rgba(6,2,20,0.65) 100%);
+  pointer-events: none;
+}
+.people-hero-inner { position: relative; z-index: 2; max-width: 740px; margin: 0 auto; }
+.people-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(232,121,249,0.85); display: block; margin-bottom: 1.2rem;
+}
+.people-hero-title {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 1.25rem;
+}
+.people-hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #e879f9, #22d3ee);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.people-hero-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.72);
+  max-width: 560px; margin: 0 auto; line-height: 1.75;
+}
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin: 4rem 0 1.8rem;
+}
+.section-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--accent-m); white-space: nowrap;
+}
+.section-tag.cyan { color: var(--accent-c); }
+.section-rule { flex: 1; height: 1px; background: var(--border); }
+
+/* ── SVG DECORATIONS ── */
+.hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.svg-rule { display: block; width: 100%; height: 70px; pointer-events: none; }
+.card-corner { position: absolute; top: 0; right: 0; width: 140px; height: 140px; pointer-events: none; z-index: 0; opacity: 0.65; }
+.card-corner-sm { position: absolute; top: 0; right: 0; width: 100px; height: 100px; pointer-events: none; z-index: 0; opacity: 0.6; }
+.card-corner-sm.left { right: auto; left: 0; }
+.card-corner-sm.bottom-left { top: auto; bottom: 0; right: auto; left: 0; }
+.card-corner-sm.bottom-right { top: auto; bottom: 0; left: auto; right: 0; }
+
+/* ── CARD GRIDS ── */
+.hcard-grid {
+  display: flex; flex-direction: column; gap: 1px;
+  border: 1px solid var(--border-mid); border-radius: 6px;
+  background: var(--border-mid);
+}
+
+/* ── PI CARD ── */
+.pi-card {
+  position: relative; display: grid; grid-template-columns: 300px 1fr;
+  background: #fff; align-items: start; transition: background 0.2s;
+}
+.pi-card:hover { background: #fdf8ff; }
+.pi-card::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--accent-m), var(--accent-c));
+  opacity: 0; transition: opacity 0.25s;
+}
+.pi-card:hover::before { opacity: 1; }
+.pi-wave-corner { position: absolute; top: 0; right: 0; width: 200px; height: 200px; pointer-events: none; z-index: 1; }
+.pi-img-wrap { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 1.5rem 1rem; gap: 1rem; min-width: 0; }
+.pi-img-circle { width: calc(100% - 2rem) !important; height: auto !important; aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-mid); transition: border-color 0.25s; }
+.pi-card:hover .pi-img-circle { border-color: var(--accent-m); }
+.pi-img-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; filter: saturate(0.82); transition: filter 0.3s; }
+.pi-card:hover .pi-img-circle img { filter: saturate(1); }
+.pi-content { padding: 1.6rem 2rem 1.6rem 1rem; position: relative; z-index: 2; min-width: 0; }
+.pi-role { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 400; color: var(--accent-m); margin-bottom: 1.4rem; }
+.pi-name { font-size: 2.4rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-primary); line-height: 1.1; margin-bottom: 0.4rem; }
+.pi-bio { font-size: 0.93rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1.4rem; }
+.pi-interests { font-size: 0.98rem; color: var(--text-muted); border-left: 2px solid rgba(8,145,178,0.28); padding-left: 0.85rem; font-style: italic; }
+
+/* ── HCARD ── */
+.hcard {
+  background: #fff; display: grid; grid-template-columns: 280px 1fr;
+  position: relative; transition: background 0.2s; align-items: start;
+}
+.hcard:hover { background: #fdf8ff; }
+.hcard::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--accent-m), var(--accent-c));
+  opacity: 0; transition: opacity 0.25s;
+}
+.hcard:hover::before { opacity: 1; }
+.hcard-photo-wrap { display: flex; justify-content: center; align-items: flex-start; padding: 1.5rem 1rem; }
+.hcard-photo-circle { width: calc(100% - 2rem) !important; height: auto !important; aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-mid); transition: border-color 0.25s; }
+.hcard:hover .hcard-photo-circle { border-color: var(--accent-m); }
+.hcard-photo { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; filter: saturate(0.82); transition: filter 0.3s; }
+.hcard:hover .hcard-photo { filter: saturate(1); }
+.hcard-body { padding: 1.6rem 2rem 1.6rem 1rem; position: relative; min-width: 0; }
+.hcard-name, .hcard-role, .hcard-bio { position: relative; z-index: 1; }
+.hcard-name { font-size: 1.25rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem; }
+.hcard-role { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-c); margin-bottom: 0.9rem; }
+.hcard-bio { font-size: 1rem; color: var(--text-secondary); line-height: 1.72; }
+
+/* ── VCARD GRID ── */
+.vcard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.vcard {
+  background: #fff;
+  position: relative;
+  border: 1px solid var(--border-mid);
+  border-radius: 6px;
+  align-self: start;
+  transition: background 0.2s;
+}
+.vcard:hover { background: #fdf8ff; }
+.vcard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent-m), var(--accent-c));
+  opacity: 0; transition: opacity 0.25s; border-radius: 6px 6px 0 0;
+}
+.vcard:hover::before { opacity: 1; }
+.vcard-photo-wrap { display: flex; justify-content: center; padding: 2rem 1.6rem 1rem; }
+.vcard-photo-circle { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-mid); transition: border-color 0.25s; }
+.vcard:hover .vcard-photo-circle { border-color: var(--accent-m); }
+.vcard-photo { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; filter: saturate(0.82); transition: filter 0.3s, transform 0.4s; }
+.vcard:hover .vcard-photo { filter: saturate(1); transform: scale(1.04); }
+.vcard-body { padding: 0.6rem 1.25rem 1.4rem; position: relative; text-align: center; }
+.vcard-name, .vcard-role, .vcard-bio, .bio-wrap, .bio-toggle { position: relative; z-index: 1; }
+.vcard-name { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.22rem; }
+.vcard-role { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-c); margin-bottom: 0.75rem; }
+.vcard-bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; text-align: left; }
+.vcard-grid .vcard:last-child:nth-child(odd) { grid-column: 1/-1; max-width: 50%; margin: 0 auto; }
+
+/* ── BIO EXPAND ── */
+.bio-more { display: none; }
+.bio-wrap.expanded .bio-more { display: inline; }
+.bio-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 0.55rem; background: none; border: none; cursor: pointer; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-m); padding: 0; transition: color 0.2s; width: 100%; }
+.bio-toggle:hover { color: var(--accent-c); }
+.bio-toggle.no-more { display: none; }
+.bio-chevron { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: transform 0.3s; flex-shrink: 0; }
+.bio-toggle.expanded .bio-chevron { transform: rotate(180deg); }
+
+/* ── ALUMNI ── */
+.alumni-grid { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border-mid); border-radius: 6px; background: var(--border-mid); }
+.alumni-card { background: #fff; display: grid; grid-template-columns: 140px 1fr; align-items: start; transition: background 0.2s; }
+.alumni-card:hover { background: #fdf8ff; }
+.alumni-photo-wrap { display: flex; justify-content: center; align-items: flex-start; padding: 1.2rem 0.5rem 1.2rem 1.2rem; position: relative; }
+.alumni-photo-circle { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-mid); filter: saturate(0.3); transition: filter 0.3s, border-color 0.25s; }
+.alumni-card:hover .alumni-photo-circle { filter: saturate(0.75); border-color: var(--accent-c); }
+.alumni-photo { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.alumni-body { padding: 1.2rem 1.5rem; }
+.alumni-name, .alumni-tenure, .alumni-bio { position: relative; z-index: 1; }
+.alumni-name { font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.2rem; }
+.alumni-tenure { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; }
+.alumni-bio { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
+
+/* ── PAST MEMBERS ── */
+.past-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+.past-chip { border: 1px solid var(--border-mid); border-radius: 3px; padding: 0.55rem 1.1rem; font-size: 1rem; color: var(--text-secondary); background: var(--surface); }
+.past-chip span { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--text-muted); opacity: 0.7; margin-left: 0.6rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  main { padding: 2rem 1rem 4rem; }
+  .pi-card { grid-template-columns: 1fr; }
+  .pi-img-wrap { flex-direction: row; padding: 1.5rem; align-items: center; }
+  .pi-img-circle { width: 140px !important; height: 140px !important; }
+  .pi-content { padding: 0.5rem 1.5rem 2rem; }
+  .hcard { grid-template-columns: 1fr; }
+  .hcard-photo-wrap { padding: 1.5rem 1.5rem 0.5rem; justify-content: center; }
+  .hcard-photo-circle { width: 140px !important; height: 140px !important; }
+  .alumni-card { grid-template-columns: 110px 1fr; }
+  .card-corner, .card-corner-sm, .pi-wave-corner { display: none; }
+  .section-tag { font-size: 1.1rem; }
+}
+@media (max-width: 600px) {
+  .vcard-grid { grid-template-columns: 1fr 1fr; }
+  .alumni-card { grid-template-columns: 1fr; }
+  .alumni-photo-wrap { padding: 1.5rem 1.5rem 0.5rem; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .vcard-grid { grid-template-columns: 1fr; }
+}

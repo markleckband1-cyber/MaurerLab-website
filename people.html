@@ -4,463 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>People — Maurer Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
   <style>
-:root {
-    --bg: #ffffff;
-    --surface: #fafafa;
-    --surface2: #f5f2fa;
-    --border: rgba(120, 90, 180, 0.12);
-    --border-mid: rgba(120, 90, 180, 0.2);
-    --accent-m: #c026d3;
-    --accent-c: #0891b2;
-    --accent-m-soft: rgba(192,38,211,0.07);
-    --accent-c-soft: rgba(8,145,178,0.07);
-    --text-primary: #18151f;
-    --text-secondary: #4a4460;
-    --text-muted: #8a82a0;
-  }
-
-  /* scoped reset — only affects our page content, not theme header/footer */
-  .maurer-page * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    line-height: 1.65;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 4rem;
-    background: rgba(255,255,255,0.93);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent-m); text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent-m); }
-  .nav-links a.active { color: var(--text-primary); font-weight: 500; }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative; overflow: hidden; text-align: center;
-    padding: 80px 2rem 6rem;
-    background: linear-gradient(180deg, #fdf8ff 0%, #ffffff 100%);
-    border-bottom: 1px solid var(--border);
-    margin-top: 0 !important;
-  }
-  /* Force Elementor section/column wrappers to have no top spacing */
-  .elementor-widget-html,
-  .elementor-widget-wrap,
-  .elementor-section,
-  .elementor-column,
-  .elementor-column-wrap { padding-top: 0 !important; margin-top: 0 !important; }
-  /* Marity theme page content wrapper override */
-  .qodef-page-content-inner,
-  .qodef-content-inner,
-  .qodef-page-content,
-  #qodef-page-content,
-  .qodef-content { padding-top: 0 !important; margin-top: 0 !important; }
-  /* Target the Elementor inner section that gets the gap */
-  .elementor-section-wrap > .elementor-section:first-child,
-  .elementor-section-wrap > .e-container:first-child { margin-top: 0 !important; padding-top: 0 !important; }
-  .hero-canvas {
-    position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
-  }
-  .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--accent-c); margin-bottom: 4.5rem; position: relative;
-    white-space: nowrap;
-  }
-  .hero h1 {
-    position: relative;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    font-weight: 600; letter-spacing: -0.03em; line-height: 1;
-    margin-top: 2.5rem; margin-bottom: 1.4rem; color: var(--text-primary);
-  }
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(100deg, var(--accent-m) 0%, var(--accent-c) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero p {
-    position: relative; max-width: 500px; margin: 0 auto;
-    color: var(--text-secondary); font-size: 1rem;
-  }
-
-  /* ── WAVE DIVIDER ── */
-  .wave-divider {
-    display: flex; align-items: center; gap: 1.2rem;
-    padding: 2.5rem 4rem 0;
-  }
-  .wave-divider-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--text-muted); white-space: nowrap;
-  }
-  .wave-divider-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, var(--accent-m) 0%, var(--accent-c) 100%);
-    opacity: 0.2;
-  }
-
-  /* ── MAIN ── */
-  main { max-width: 1200px; margin: 0 auto; padding: 0 3rem 6rem; overflow-x: hidden; }
-
-  /* ── SECTION HEADERS ── */
-  .section-header {
-    display: flex; align-items: center; gap: 1.5rem;
-    margin: 4rem 0 1.8rem;
-  }
-  .section-tag {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.6rem; font-weight: 600;
-    letter-spacing: -0.01em;
-    padding: 0; border-radius: 0;
-    background: none; border: none;
-    white-space: nowrap;
-    color: var(--accent-m);
-  }
-  .section-tag.cyan {
-    color: var(--accent-c);
-  }
-  .section-rule { flex: 1; height: 1px; background: var(--border); }
-
-  /* ── PI CARD (matches hcard style) ── */
-  .pi-card {
-    position: relative; display: grid; grid-template-columns: 420px 1fr;
-    border: 1px solid var(--border-mid); border-radius: 6px;
-    background: #fff; align-items: start; transition: background 0.2s;
-  }
-  .pi-card:hover { background: #fdf8ff; }
-  .pi-card::before {
-    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-    background: linear-gradient(180deg, var(--accent-m), var(--accent-c));
-    opacity: 0; transition: opacity 0.25s; z-index: 3;
-  }
-  .pi-card:hover::before { opacity: 1; }
-  .pi-wave-corner {
-    position: absolute; top: 0; right: 0;
-    width: 200px; height: 200px; pointer-events: none; z-index: 1;
-  }
-  .pi-img-wrap {
-    display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
-    padding: 1.5rem 1rem; gap: 1rem; min-width: 0;
-  }
-  .pi-img-circle {
-    width: calc(100% - 2rem) !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    overflow: hidden; flex-shrink: 0;
-    border: 2px solid var(--border-mid);
-    transition: border-color 0.25s;
-  }
-  .pi-card:hover .pi-img-circle { border-color: var(--accent-m); }
-  .pi-img-circle img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: top center; display: block;
-    filter: saturate(0.82); transition: filter 0.3s;
-  }
-  .pi-card:hover .pi-img-circle img { filter: saturate(1); }
-  .pi-content { padding: 1.6rem 2rem 1.6rem 1rem; position: relative; z-index: 2; overflow: hidden; min-width: 0; }
-  .pi-role {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1rem; font-weight: 400;
-    color: var(--accent-m); margin-bottom: 1.4rem;
-    letter-spacing: 0.01em;
-  }
-  .pi-name {
-    font-size: 2.4rem; font-weight: 600;
-    letter-spacing: -0.025em; color: var(--text-primary);
-    line-height: 1.1; margin-bottom: 0.4rem;
-  }
-  .pi-bio {
-    font-size: 0.93rem; color: var(--text-secondary);
-    line-height: 1.78; margin-bottom: 1.4rem;
-  }
-  .pi-interests {
-    font-size: 0.98rem; color: var(--text-muted);
-    border-left: 2px solid rgba(8,145,178,0.28);
-    padding-left: 0.85rem; font-style: italic;
-  }
-
-  /* ── HORIZONTAL PERSON CARD (photo left, bio right — for small sections) ── */
-  .hcard-grid {
-    display: flex; flex-direction: column; gap: 1px;
-    border: 1px solid var(--border-mid); border-radius: 6px;
-    background: var(--border-mid);
-  }
-  .hcard {
-    background: #fff; display: grid; grid-template-columns: 420px 1fr;
-    position: relative; transition: background 0.2s; align-items: start;
-  }
-  .hcard:hover { background: #fdf8ff; }
-  .hcard::before {
-    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-    background: linear-gradient(180deg, var(--accent-m), var(--accent-c));
-    opacity: 0; transition: opacity 0.25s;
-  }
-  .hcard:hover::before { opacity: 1; }
-  .hcard-photo-wrap {
-    display: flex; justify-content: center; align-items: flex-start;
-    padding: 1.5rem 1rem;
-  }
-  .hcard-photo-circle {
-    width: calc(100% - 2rem) !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    overflow: hidden; flex-shrink: 0;
-    border: 2px solid var(--border-mid);
-    transition: border-color 0.25s;
-  }
-  .hcard:hover .hcard-photo-circle { border-color: var(--accent-m); }
-  .hcard-photo {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: top center; display: block;
-    filter: saturate(0.82); transition: filter 0.3s;
-  }
-  .hcard:hover .hcard-photo { filter: saturate(1); }
-  .hcard-body { padding: 1.6rem 2rem 1.6rem 1rem; position: relative; overflow: hidden; min-width: 0; }
-  /* corner accent SVGs inside bio cards */
-  .card-corner {
-    position: absolute; top: 0; right: 0;
-    width: 140px; height: 140px; pointer-events: none; z-index: 0; opacity: 0.65;
-  }
-  .card-corner-sm {
-    position: absolute; top: 0; right: 0;
-    width: 100px; height: 100px; pointer-events: none; z-index: 0; opacity: 0.6;
-  }
-  .card-corner-sm.left  { right: auto; left: 0; }
-  .card-corner-sm.bottom-left  { top: auto; bottom: 0; right: auto; left: 0; }
-  .card-corner-sm.bottom-right { top: auto; bottom: 0; left: auto; right: 0; }
-  .hcard-name, .hcard-role, .hcard-bio { position: relative; z-index: 1; }
-  .hcard-name { font-size: 1.25rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem; }
-  .hcard-role {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-c); margin-bottom: 0.9rem;
-  }
-  .hcard-bio { font-size: 1rem; color: var(--text-secondary); line-height: 1.72; }
-
-  /* ── GRID PERSON CARD (photo top, bio bottom — for multi-person sections) ── */
-  .vcard-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    border: 1px solid var(--border-mid); border-radius: 6px;
-    overflow: hidden; background: var(--border-mid);
-  }
-  .vcard {
-    background: #fff; overflow: hidden; position: relative;
-    transition: background 0.2s;
-  }
-  .vcard:hover { background: #fdf8ff; }
-  .vcard::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--accent-m), var(--accent-c));
-    opacity: 0; transition: opacity 0.25s;
-  }
-  .vcard:hover::before { opacity: 1; }
-  .vcard-photo-wrap {
-    display: flex; justify-content: center;
-    padding: 2rem 1.6rem 1rem;
-  }
-  .vcard-photo-circle {
-    width: 180px; height: 180px; border-radius: 50%;
-    overflow: hidden; flex-shrink: 0;
-    border: 2px solid var(--border-mid);
-    transition: border-color 0.25s;
-  }
-  .vcard:hover .vcard-photo-circle {
-    border-color: var(--accent-m);
-  }
-  .vcard-photo {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: top center; display: block;
-    filter: saturate(0.82); transition: filter 0.3s, transform 0.4s;
-  }
-  .vcard:hover .vcard-photo { filter: saturate(1); transform: scale(1.04); }
-  .vcard-body { padding: 0.6rem 1.25rem 1.4rem; text-align: center; position: relative; overflow: hidden; }
-  .vcard-name, .vcard-role, .vcard-bio, .bio-wrap, .bio-toggle { position: relative; z-index: 1; }
-  .vcard-name { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.22rem; }
-  .vcard-role {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-c); margin-bottom: 0.75rem;
-  }
-  .vcard-bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; }
-
-  /* ── EXPANDABLE BIO SYSTEM ── */
-  .bio-more { display: none; }
-  .bio-wrap.expanded .bio-more { display: inline; }
-  .bio-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    margin-top: 0.55rem;
-    background: none; border: none; cursor: pointer;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent-m); padding: 0; transition: color 0.2s;
-    width: 100%;
-  }
-  .bio-toggle:hover { color: var(--accent-c); }
-  /* hide toggle on cards where bio has no .bio-more span */
-  .bio-toggle.no-more { display: none; }
-  .bio-chevron {
-    width: 0; height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid currentColor;
-    transition: transform 0.3s; flex-shrink: 0;
-  }
-  .bio-toggle.expanded .bio-chevron { transform: rotate(180deg); }
-
-  /* ── ALUMNI (horizontal, desaturated) ── */
-  .alumni-grid {
-    display: flex; flex-direction: column;
-    gap: 1px; border: 1px solid var(--border-mid); border-radius: 6px;
-    overflow: hidden; background: var(--border-mid);
-  }
-  .alumni-card {
-    background: #fff; display: grid; grid-template-columns: 140px 1fr;
-    overflow: hidden; transition: background 0.2s; align-items: stretch;
-  }
-  .alumni-card:hover { background: #fdf8ff; }
-  .alumni-photo-wrap {
-    display: flex; justify-content: center; align-items: flex-start;
-    padding: 1.2rem 0.5rem 1.2rem 1.2rem;
-    position: relative; overflow: hidden; min-height: 100%;
-  }
-  .alumni-photo-circle {
-    width: 100px; height: 100px; border-radius: 50%;
-    overflow: hidden; flex-shrink: 0;
-    border: 2px solid var(--border-mid);
-    transition: border-color 0.25s;
-  }
-  .alumni-card:hover .alumni-photo-circle { border-color: var(--accent-c); }
-  .alumni-photo {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: top; display: block;
-    filter: saturate(0.45) contrast(1.05); transition: filter 0.3s;
-  }
-  .alumni-card:hover .alumni-photo { filter: saturate(0.75); }
-  .alumni-body { padding: 1rem 1.2rem; position: relative; overflow: hidden; }
-  .alumni-name, .alumni-tenure, .alumni-bio { position: relative; z-index: 1; }
-  .alumni-name { font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.2rem; }
-  .alumni-tenure {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 0.6rem;
-  }
-  .alumni-bio { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
-
-  /* ── PAST MEMBERS ── */
-  .past-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
-  .past-chip {
-    border: 1px solid var(--border-mid); border-radius: 3px;
-    padding: 0.55rem 1.1rem; font-size: 1rem;
-    color: var(--text-secondary); background: var(--surface);
-  }
-  .past-chip span {
-    font-family: 'Space Mono', monospace; font-size: 0.68rem;
-    letter-spacing: 0.1em; color: var(--text-muted); opacity: 0.7; margin-left: 0.6rem;
-  }
-
-  /* ── SVG ACCENT HELPERS ── */
-  .svg-rule { display: block; overflow: hidden; pointer-events: none; }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; overflow: hidden;
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 0.78rem; color: var(--text-muted);
-    background: var(--surface);
-  }
-  .footer-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-m);
-  }
-  footer a { color: var(--accent-c); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 860px) {
-    nav { padding: 1rem 1.5rem; }
-    main { padding: 0 1rem 4rem; }
-    .wave-divider { padding: 2rem 1rem 0; }
-    /* PI card stacks vertically */
-    .pi-card { grid-template-columns: 1fr; overflow: hidden; max-width: 100%; }
-    .pi-img-wrap {
-      flex-direction: column; gap: 1rem;
-      padding: 1.5rem 1.5rem 1rem;
-      justify-content: center; align-items: center;
+    /* ── PEOPLE PAGE STYLES ── */
+    :root {
+      --m: #c026d3;
+      --c: #0891b2;
+      --border: rgba(120,90,180,0.18);
+      --t1: #18151f;
+      --t2: #4a4460;
+      --tm: #8a82a0;
     }
-    .pi-img-circle { width: 140px !important; height: 140px !important; }
-    .pi-content { padding: 0.5rem 1.5rem 2rem; }
-    /* hcard stacks */
-    .hcard { grid-template-columns: 1fr; overflow: hidden; max-width: 100%; }
-    .hcard-photo-wrap { padding: 1.5rem 1.5rem 0.5rem; justify-content: center; }
-    .hcard-body { padding: 0.5rem 1rem 1.5rem 1rem; }
-    .hcard-photo-circle { width: 140px !important; height: 140px !important; }
-    /* alumni always stacked on tablet and below */
-    .alumni-grid { grid-template-columns: 1fr; }
-    .alumni-card { grid-template-columns: 110px 1fr; max-width: 100%; overflow: hidden; }
-    /* hide corner SVGs and hero canvas on mobile */
-    .card-corner, .card-corner-sm, .pi-wave-corner, .hero-canvas { display: none; }
-    footer { flex-direction: column; gap: 0.8rem; padding: 2rem 1.5rem; text-align: center; }
-  }
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .hero-eyebrow { white-space: normal; font-size: 0.62rem; letter-spacing: 0.15em; }
-    .pi-img-circle { width: 120px !important; height: 120px !important; }
-    .hcard-photo-circle { width: 120px !important; height: 120px !important; }
-    /* undergrads: 2 col on small screens */
-    .vcard-grid { grid-template-columns: 1fr 1fr; }
-    /* alumni: stack fully */
-    .alumni-grid { grid-template-columns: 1fr; }
-    .alumni-card { grid-template-columns: 1fr; overflow: hidden; }
-    .alumni-photo-wrap { padding: 1.5rem 1.5rem 0.5rem; justify-content: center; min-height: unset; }
-    .alumni-body { padding: 0.5rem 1.2rem 1.2rem; }
-    /* section headers wrap gracefully */
-    .section-header { flex-wrap: wrap; gap: 0.5rem; }
-    .section-tag { font-size: 1.1rem; }
-    /* prevent any horizontal overflow */
-    .hcard-grid, .pi-card, .hcard, .vcard, .alumni-card { max-width: 100%; }
-    .hcard-bio, .pi-bio, .vcard-bio, .alumni-bio { word-break: break-word; }
-  }
-  @media (max-width: 400px) {
-    .vcard-grid { grid-template-columns: 1fr; }
-    .pi-img-circle { width: 100px !important; height: 100px !important; }
-    .hcard-photo-circle { width: 100px !important; height: 100px !important; }
-  }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 3rem 6rem; }
+
+    /* hero */
+    .p-hero {
+      position: relative; overflow: hidden;
+      min-height: 320px; display: flex;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 2rem 4rem;
+      background: #0a0612;
+    }
+    .p-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .p-hero-inner { position: relative; z-index: 2; }
+    .p-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,121,249,0.8); display: block; margin-bottom: 1rem; }
+    .p-hero-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+    .p-hero-h1 em { font-style: normal; background: linear-gradient(135deg, #e879f9, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .p-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    /* section header */
+    .sh { display: flex; align-items: center; gap: 1.2rem; margin: 4rem 0 1.5rem; }
+    .sh-label { font-size: 1.5rem; font-weight: 600; color: var(--m); white-space: nowrap; }
+    .sh-label.c { color: var(--c); }
+    .sh-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* divider */
+    .divider { display: block; width: 100%; height: 60px; pointer-events: none; margin: 2.5rem 0; }
+
+    /* ── PI CARD ── */
+    .pi-wrap { border: 1px solid var(--border); border-radius: 8px; }
+    .pi-card { display: grid; grid-template-columns: 280px 1fr; background: #fff; }
+    .pi-photos { display: flex; flex-direction: column; gap: 1rem; align-items: center; padding: 2rem 1.5rem; background: #fafafa; border-right: 1px solid var(--border); }
+    .pi-circle { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); flex-shrink: 0; }
+    .pi-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .pi-body { padding: 2rem 2rem 2rem 1.5rem; }
+    .pi-name { font-size: 2rem; font-weight: 600; color: var(--t1); line-height: 1.1; margin-bottom: 0.3rem; }
+    .pi-role { font-size: 0.95rem; color: var(--m); margin-bottom: 1.2rem; display: block; }
+    .pi-bio { font-size: 0.93rem; color: var(--t2); line-height: 1.8; margin-bottom: 1.2rem; }
+    .pi-interests { font-size: 0.92rem; color: var(--tm); border-left: 2px solid rgba(8,145,178,0.3); padding-left: 0.8rem; font-style: italic; line-height: 1.6; }
+
+    /* ── HCARD ── */
+    .hcard-group { border: 1px solid var(--border); border-radius: 8px; }
+    .hcard { display: grid; grid-template-columns: 220px 1fr; background: #fff; border-bottom: 1px solid var(--border); } .hcard:first-child { border-radius: 8px 8px 0 0; } .hcard:last-child { border-bottom: none; border-radius: 0 0 8px 8px; }
+    .hcard:last-child { border-bottom: none; }
+    .hcard-photo-col { display: flex; justify-content: center; align-items: flex-start; padding: 2rem 1rem; background: #fafafa; border-right: 1px solid var(--border); }
+    .hcard-circle { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); flex-shrink: 0; }
+    .hcard-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .hcard-body { padding: 2rem 2rem 2rem 1.5rem; }
+    .hcard-name { font-size: 1.2rem; font-weight: 500; color: var(--t1); margin-bottom: 0.3rem; }
+    .hcard-role { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); margin-bottom: 1rem; display: block; }
+    .hcard-bio { font-size: 0.95rem; color: var(--t2); line-height: 1.75; }
+
+    /* ── VCARD GRID ── */
+    .vcard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .vcard { border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+    .vcard-photo-area { display: flex; justify-content: center; padding: 2rem 1rem 1rem; }
+    .vcard-circle { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); flex-shrink: 0; }
+    .vcard-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .vcard-body { padding: 0.5rem 1.5rem 1.5rem; }
+    .vcard-name { font-size: 1.05rem; font-weight: 500; color: var(--t1); margin-bottom: 0.2rem; text-align: center; }
+    .vcard-role { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); margin-bottom: 0.85rem; display: block; text-align: center; }
+    .vcard-bio { font-size: 0.9rem; color: var(--t2); line-height: 1.65; }
+    .vcard-grid .vcard:last-child:nth-child(odd) { grid-column: 1/-1; max-width: 50%; margin: 0 auto; }
+
+    /* bio expand */
+    .bio-more { display: none; }
+    .bio-wrap.open .bio-more { display: inline; }
+    .bio-btn { display: flex; align-items: center; justify-content: center; gap: 0.3rem; margin-top: 0.6rem; background: none; border: none; cursor: pointer; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m); width: 100%; padding: 0.3rem 0; }
+    .bio-btn.hidden { display: none; }
+    .bio-arrow { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: transform 0.25s; }
+    .bio-btn.open .bio-arrow { transform: rotate(180deg); }
+
+    /* ── ALUMNI ── */
+    .alumni-group { border: 1px solid var(--border); border-radius: 8px; }
+    .alumni-card { display: grid; grid-template-columns: 130px 1fr; background: #fff; border-bottom: 1px solid var(--border); }
+    .alumni-card:last-child { border-bottom: none; border-radius: 0 0 8px 8px; }
+    .alumni-card:first-child { border-radius: 8px 8px 0 0; }
+    .alumni-photo-col { display: flex; justify-content: center; align-items: flex-start; padding: 1.5rem 0.5rem 1.5rem 1.5rem; background: #fafafa; border-right: 1px solid var(--border); }
+    .alumni-circle { width: 85px; height: 85px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); filter: saturate(0.4); }
+    .alumni-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .alumni-body { padding: 1.5rem 1.5rem 1.5rem 1rem; }
+    .alumni-name { font-size: 1rem; font-weight: 500; color: var(--t1); margin-bottom: 0.2rem; }
+    .alumni-tenure { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tm); margin-bottom: 0.6rem; display: block; }
+    .alumni-bio { font-size: 0.9rem; color: var(--t2); line-height: 1.65; }
+
+    /* past chips */
+    .past-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .past-chip { display: flex; flex-direction: column; gap: 0.2rem; border: 1px solid var(--border); border-radius: 4px; padding: 0.6rem 1rem; background: #fafafa; }
+    .past-chip-name { display: block; font-size: 0.95rem; color: var(--t2); font-family: 'Outfit', sans-serif; font-weight: 400; }
+    .past-chip-role { display: block; font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tm); }
+
+    @media (max-width: 800px) {
+      main { padding: 2rem 1.5rem 4rem; }
+      .pi-card { grid-template-columns: 1fr; }
+      .pi-photos { border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; padding: 1.5rem; }
+      .pi-circle { width: 120px; height: 120px; }
+      .hcard { grid-template-columns: 1fr; }
+      .hcard-photo-col { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
+      .hcard-circle { width: 120px; height: 120px; }
+      .alumni-card { grid-template-columns: 1fr; }
+      .alumni-photo-col { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 500px) {
+      .vcard-grid { grid-template-columns: 1fr; }
+      .vcard-grid .vcard:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
+    }
   </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/cropped-MaurerLabs-Logo_FinalFrame100crop2.png?fit=1338%2C739&ssl=1" alt="Maurer Lab" style="height:48px;width:auto;">
+    <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab">
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -472,662 +140,306 @@
 </nav>
 
 <!-- HERO -->
-<div class="maurer-page">
-<header class="hero">
-  <svg class="hero-canvas" viewBox="0 0 1440 340" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+<header class="p-hero">
+  <svg class="p-hero-canvas" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="hh" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#c026d3" stop-opacity="0"/>
-        <stop offset="25%" stop-color="#c026d3"/>
-        <stop offset="75%" stop-color="#0891b2"/>
-        <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="vl" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#c026d3" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#c026d3" stop-opacity="0.5"/>
-      </linearGradient>
-      <linearGradient id="vr" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0891b2" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#0891b2" stop-opacity="0.5"/>
-      </linearGradient>
-      <!-- warm sun core glow like the inspiration image -->
-      <radialGradient id="suncore" cx="50%" cy="52%" r="18%">
-        <stop offset="0%" stop-color="#f0a0ff" stop-opacity="0.22"/>
-        <stop offset="40%" stop-color="#c026d3" stop-opacity="0.12"/>
-        <stop offset="70%" stop-color="#0891b2" stop-opacity="0.06"/>
-        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      <radialGradient id="hg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e879f9" stop-opacity="0.15"/>
+        <stop offset="60%" stop-color="#0891b2" stop-opacity="0.06"/>
+        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
       </radialGradient>
-      <!-- diagonal streak gradient -->
-      <linearGradient id="streak1" x1="0" y1="0" x2="1" y2="0">
+      <linearGradient id="hl" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="#c026d3" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#c026d3" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="streak2" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#0891b2" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#0891b2" stop-opacity="0.5"/>
+        <stop offset="30%" stop-color="#c026d3"/>
+        <stop offset="70%" stop-color="#0891b2"/>
         <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="streak3" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#e879f9" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#e879f9" stop-opacity="0.35"/>
-        <stop offset="100%" stop-color="#e879f9" stop-opacity="0"/>
       </linearGradient>
     </defs>
-
-    <!-- background glow -->
-    <rect width="1440" height="340" fill="url(#suncore)"/>
-
-    <!-- scan lines — subtle horizontal bands like the sun in the inspiration -->
-    <g opacity="0.04">
-      <rect x="0" y="0" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="8" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="16" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="24" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="32" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="40" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="48" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="56" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="64" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="72" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="80" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="88" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="96" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="104" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="112" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="120" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="128" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="136" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="144" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="152" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="160" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="168" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="176" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="184" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="192" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="200" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="208" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="216" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="224" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="232" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="240" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="248" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="256" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="264" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="272" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="280" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="288" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="296" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="304" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="312" width="1440" height="1" fill="#8b5cf6"/>
-      <rect x="0" y="320" width="1440" height="2" fill="#8b5cf6"/>
-      <rect x="0" y="328" width="1440" height="1" fill="#8b5cf6"/>
-    </g>
-
-    <!-- diagonal streaks — like homepage footer -->
-    <g opacity="1">
-      <line x1="50"   y1="0" x2="350"  y2="340" stroke="url(#streak1)" stroke-width="0.8"/>
-      <line x1="120"  y1="0" x2="420"  y2="340" stroke="url(#streak2)" stroke-width="0.5"/>
-      <line x1="200"  y1="0" x2="500"  y2="340" stroke="url(#streak3)" stroke-width="1"/>
-      <line x1="280"  y1="0" x2="580"  y2="340" stroke="url(#streak1)" stroke-width="0.4"/>
-      <line x1="1100" y1="0" x2="800"  y2="340" stroke="url(#streak2)" stroke-width="0.8"/>
-      <line x1="1200" y1="0" x2="900"  y2="340" stroke="url(#streak1)" stroke-width="1"/>
-      <line x1="1300" y1="0" x2="1000" y2="340" stroke="url(#streak3)" stroke-width="0.5"/>
-      <line x1="1380" y1="0" x2="1080" y2="340" stroke="url(#streak2)" stroke-width="0.4"/>
-      <!-- a few shorter bright ones -->
-      <line x1="160"  y1="40"  x2="280"  y2="180" stroke="#e879f9" stroke-width="1.2" opacity="0.18"/>
-      <line x1="1260" y1="20"  x2="1140" y2="200" stroke="#22d3ee" stroke-width="1.2" opacity="0.18"/>
-      <line x1="90"   y1="100" x2="170"  y2="220" stroke="#0891b2" stroke-width="0.8" opacity="0.2"/>
-      <line x1="1350" y1="80"  x2="1270" y2="240" stroke="#c026d3" stroke-width="0.8" opacity="0.2"/>
-    </g>
-
-    <!-- horizon bands -->
-    <g opacity="0.25">
-      <line x1="0" y1="215" x2="1440" y2="215" stroke="url(#hh)" stroke-width="1.4"/>
-      <line x1="0" y1="232" x2="1440" y2="232" stroke="url(#hh)" stroke-width="1"/>
-      <line x1="0" y1="246" x2="1440" y2="246" stroke="url(#hh)" stroke-width="0.8"/>
-      <line x1="0" y1="258" x2="1440" y2="258" stroke="url(#hh)" stroke-width="0.6"/>
-      <line x1="0" y1="268" x2="1440" y2="268" stroke="url(#hh)" stroke-width="0.45"/>
-      <line x1="0" y1="276" x2="1440" y2="276" stroke="url(#hh)" stroke-width="0.35"/>
-      <line x1="0" y1="283" x2="1440" y2="283" stroke="url(#hh)" stroke-width="0.28"/>
-      <line x1="0" y1="289" x2="1440" y2="289" stroke="url(#hh)" stroke-width="0.22"/>
-    </g>
-
-    <!-- perspective lines -->
-    <g opacity="0.18">
-      <line x1="720" y1="180" x2="0"    y2="340" stroke="url(#vl)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="160"  y2="340" stroke="url(#vl)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="320"  y2="340" stroke="url(#vl)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="480"  y2="340" stroke="url(#vl)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="600"  y2="340" stroke="url(#vl)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="720"  y2="340" stroke="url(#hh)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="840"  y2="340" stroke="url(#vr)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="960"  y2="340" stroke="url(#vr)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="1120" y2="340" stroke="url(#vr)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="1280" y2="340" stroke="url(#vr)" stroke-width="0.9"/>
-      <line x1="720" y1="180" x2="1440" y2="340" stroke="url(#vr)" stroke-width="0.9"/>
-    </g>
-
-    <!-- sun rings — larger, with scan-line cutouts like the inspiration -->
-    <g opacity="0.32">
-      <circle cx="720" cy="180" r="110" fill="none" stroke="url(#hh)" stroke-width="1.4"/>
-      <circle cx="720" cy="180" r="88"  fill="none" stroke="url(#hh)" stroke-width="1.1"/>
-      <circle cx="720" cy="180" r="66"  fill="none" stroke="url(#hh)" stroke-width="0.9"/>
-      <circle cx="720" cy="180" r="44"  fill="none" stroke="url(#hh)" stroke-width="0.7"/>
-      <circle cx="720" cy="180" r="22"  fill="none" stroke="url(#hh)" stroke-width="0.5"/>
-    </g>
-    <!-- soft inner glow on sun -->
-    <circle cx="720" cy="180" r="80" fill="url(#suncore)" opacity="0.4"/>
+    <rect width="1440" height="320" fill="#0a0612"/>
+    <rect width="1440" height="320" fill="url(#hg)"/>
+    <circle cx="720" cy="160" r="260" stroke="url(#hl)" stroke-width="0.7" fill="none" opacity="0.3"/>
+    <circle cx="720" cy="160" r="180" stroke="url(#hl)" stroke-width="0.5" fill="none" opacity="0.2"/>
+    <line x1="0" y1="320" x2="380" y2="0" stroke="#c026d3" stroke-width="0.8" opacity="0.2"/>
+    <line x1="1440" y1="320" x2="1060" y2="0" stroke="#0891b2" stroke-width="0.8" opacity="0.2"/>
   </svg>
-  <p class="hero-eyebrow">The Maurer Lab · University of Michigan</p>
-  <h1 style="margin-top:2.5rem;">Our <em>Team</em></h1>
-  <p>The people behind the science — studying recombinant AAV vectors through the lens of host cell biology to advance gene therapy.</p>
+  <div class="p-hero-inner">
+    <span class="p-eyebrow">The Maurer Lab · University of Michigan</span>
+    <h1 class="p-hero-h1">Our <em>Team</em></h1>
+    <p class="p-hero-sub">The people behind the science — studying recombinant AAV vectors through the lens of host cell biology to advance gene therapy.</p>
+  </div>
 </header>
 
 <main>
 
-  <!-- ═══════════════════════════════════
-       PI
-  ═══════════════════════════════════ -->
-  <div class="hcard-grid">
-  <div class="pi-card">
-    <svg class="pi-wave-corner" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- diagonal streak fan from top-right — wider spread, shorter drop -->
-      <line x1="200" y1="0" x2="0"   y2="80"  stroke="#e879f9" stroke-width="2"   opacity="0.35"/>
-      <line x1="200" y1="0" x2="20"  y2="110" stroke="#c026d3" stroke-width="1.6" opacity="0.3"/>
-      <line x1="200" y1="0" x2="55"  y2="130" stroke="#c026d3" stroke-width="1.2" opacity="0.25"/>
-      <line x1="200" y1="0" x2="90"  y2="125" stroke="#0891b2" stroke-width="1"   opacity="0.22"/>
-      <line x1="200" y1="0" x2="125" y2="115" stroke="#0891b2" stroke-width="0.8" opacity="0.18"/>
-      <line x1="200" y1="0" x2="158" y2="100" stroke="#22d3ee" stroke-width="0.7" opacity="0.15"/>
-      <line x1="200" y1="0" x2="185" y2="80"  stroke="#22d3ee" stroke-width="0.6" opacity="0.12"/>
-      <!-- bright short accent streaks -->
-      <line x1="200" y1="0" x2="30"  y2="55"  stroke="#e879f9" stroke-width="2.2" opacity="0.28"/>
-      <line x1="200" y1="0" x2="100" y2="65"  stroke="#22d3ee" stroke-width="1.5" opacity="0.22"/>
-      <!-- diamond node at corner -->
-      <path d="M188 12 L200 0 L200 24 L188 12 Z" fill="#e879f9" opacity="0.38"/>
-      <path d="M188 12 L176 0 L200 0 L188 12 Z" fill="#22d3ee" opacity="0.28"/>
-    </svg>
-    <div class="pi-img-wrap">
-      <div class="pi-img-circle" style="width:300px!important;height:300px!important;flex-shrink:0;">
-        <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/AnnaCMaurerHS.png?fit=1024%2C906&ssl=1" alt="Anna Maurer, PhD">
+  <!-- ═══════ PRINCIPAL INVESTIGATOR ═══════ -->
+  <div class="sh"><span class="sh-label">Principal Investigator</span><div class="sh-line"></div></div>
+
+  <div class="pi-wrap">
+    <div class="pi-card">
+      <div class="pi-photos">
+        <div class="pi-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/AnnaCMaurerHS.png?fit=1024%2C906&ssl=1" alt="Anna Maurer, PhD">
+        </div>
+        <div class="pi-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/IMG_1466.jpg?fit=4032%2C3024&ssl=1" alt="Anna Maurer in the lab">
+        </div>
       </div>
-      <div class="pi-img-circle" style="margin-top:1rem;width:300px!important;height:300px!important;flex-shrink:0;">
-        <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/IMG_1466.jpg?fit=4032%2C3024&ssl=1" alt="Anna Maurer in the lab">
+      <div class="pi-body">
+        <p class="pi-name">Anna Maurer, PhD</p>
+        <span class="pi-role">Principal Investigator</span>
+        <p class="pi-bio">Anna is a Michigan native, first-generation college student who transferred from Macomb Community College to the University of Michigan and completed her Bachelors of Science in Cellular and Molecular Biology in 2012. She completed her graduate studies under Luk Vandenberghe on host and viral factors of adeno-associated viral (AAV) capsid assembly at Harvard Medical School in 2019. For her postdoctoral work, she studied cellular regulation of AAV-delivered DNA under Robert Tjian at UC Berkeley. In her independent research group, she will continue to study AAV vector biology through the lens of the host cell. Anna's passion for science is matched by her passion to increase diversity among biomedical researchers by raising awareness about research careers among community college students and mentoring them through transfer to a four-year institution to pursue STEM degrees.</p>
+        <p class="pi-interests">Outside of lab, Anna enjoys music, dancing, flow arts, hiking, running, shooting pool, yard games, eating all kinds of cuisine, beer snobbery, and college football.</p>
       </div>
     </div>
-    <div class="pi-content">
-      <p class="pi-name">Anna Maurer, PhD</p>
-      <p class="pi-role">Principal Investigator</p>
-      <p class="pi-bio">Anna is a Michigan native, first-generation college student who transferred from Macomb Community College to the University of Michigan and completed her Bachelors of Science in Cellular and Molecular Biology in 2012. She completed her graduate studies under Luk Vandenberghe on host and viral factors of adeno-associated viral (AAV) capsid assembly at Harvard Medical School in 2019. For her postdoctoral work, she studied cellular regulation of AAV-delivered DNA under Robert Tjian at UC Berkeley. In her independent research group, she will continue to study AAV vector biology through the lens of the host cell. Anna's passion for science is matched by her passion to increase diversity among biomedical researchers by raising awareness about research careers among community college students and mentoring them through transfer to a four-year institution to pursue STEM degrees.</p>
-      <p class="pi-interests" style="margin-top:1.2rem;">Outside of lab, Anna enjoys music, dancing, flow arts, hiking, running, shooting pool, yard games, eating all kinds of cuisine, beer snobbery, and college football.</p>
-    </div>
-  </div>
   </div>
 
-  <!-- streak accent divider -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:2.5rem 0 0;" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="sdiv1a" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#c026d3" stop-opacity="0"/>
-        <stop offset="25%" stop-color="#c026d3"/>
-        <stop offset="75%" stop-color="#0891b2"/>
-        <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="sdiv1b" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#e879f9" stop-opacity="0"/>
-        <stop offset="35%" stop-color="#e879f9"/>
-        <stop offset="65%" stop-color="#22d3ee"/>
-        <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <!-- diagonal streaks left side -->
-    <line x1="0"   y1="62" x2="220" y2="5"  stroke="#e879f9" stroke-width="1.2" opacity="0.5"/>
-    <line x1="0"   y1="70" x2="180" y2="20" stroke="#c026d3" stroke-width="0.8" opacity="0.35"/>
-    <line x1="0"   y1="55" x2="150" y2="8"  stroke="#22d3ee" stroke-width="0.6" opacity="0.28"/>
-    <line x1="20"  y1="70" x2="260" y2="15" stroke="#c026d3" stroke-width="0.5" opacity="0.22"/>
-    <!-- diagonal streaks right side -->
-    <line x1="1200" y1="62" x2="980" y2="5"  stroke="#22d3ee" stroke-width="1.2" opacity="0.5"/>
-    <line x1="1200" y1="70" x2="1020" y2="20" stroke="#0891b2" stroke-width="0.8" opacity="0.35"/>
-    <line x1="1200" y1="55" x2="1050" y2="8"  stroke="#e879f9" stroke-width="0.6" opacity="0.28"/>
-    <line x1="1180" y1="70" x2="940"  y2="15" stroke="#0891b2" stroke-width="0.5" opacity="0.22"/>
-    <!-- centre wave lines — multiple thicker -->
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#sdiv1a)" stroke-width="2"/>
-    <path d="M0 42 Q150 25 300 42 Q450 59 600 42 Q750 25 900 42 Q1050 59 1200 42" fill="none" stroke="url(#sdiv1b)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M0 28 Q150 11 300 28 Q450 45 600 28 Q750 11 900 28 Q1050 45 1200 28" fill="none" stroke="url(#sdiv1b)" stroke-width="1" opacity="0.5"/>
-    <path d="M0 49 Q150 32 300 49 Q450 66 600 49 Q750 32 900 49 Q1050 66 1200 49" fill="none" stroke="url(#sdiv1a)" stroke-width="0.7" opacity="0.35"/>
-    <!-- pulse animation on the brightest line -->
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#sdiv1b)" stroke-width="3" opacity="0">
-      <animate attributeName="opacity" values="0;0.4;0" dur="2.8s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;3.5;1" dur="2.8s" repeatCount="indefinite"/>
-    </path>
-  </svg>
+  <!-- ═══════ LAB MANAGER & SENIOR SCIENTIST ═══════ -->
+  <div class="sh" style="margin-top:4rem;"><span class="sh-label">Lab Manager &amp; Senior Scientist</span><div class="sh-line"></div></div>
 
-  <!-- ═══════════════════════════════════
-       LAB MANAGER + SENIOR SCIENTIST
-  ═══════════════════════════════════ -->
-  <div class="section-header">
-    <span class="section-tag cyan">Lab Manager &amp; Senior Scientist</span>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="hcard-grid">
+  <div class="hcard-group">
     <div class="hcard">
-      <div class="hcard-photo-wrap">
-        <div class="hcard-photo-circle" style="width:300px!important;height:300px!important;flex-shrink:0;">
-          <img class="hcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/04/IMG_2679.jpeg?fit=768%2C1024&ssl=1" alt="Ru Xiao">
+      <div class="hcard-photo-col">
+        <div class="hcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/04/IMG_2679.jpeg?fit=768%2C1024&ssl=1" alt="Ru Xiao">
         </div>
       </div>
       <div class="hcard-body">
-        <!-- concentric quarter-circle arcs, top-right -->
-        <svg class="card-corner" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="ru1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#c026d3"/><stop offset="100%" stop-color="#0891b2"/></linearGradient></defs>
-          <circle cx="140" cy="0" r="120" stroke="url(#ru1)" stroke-width="1" opacity="0.5"/>
-          <circle cx="140" cy="0" r="95"  stroke="url(#ru1)" stroke-width="0.8" opacity="0.4"/>
-          <circle cx="140" cy="0" r="70"  stroke="url(#ru1)" stroke-width="0.7" opacity="0.3"/>
-          <circle cx="140" cy="0" r="45"  stroke="url(#ru1)" stroke-width="0.6" opacity="0.22"/>
-          <circle cx="140" cy="0" r="20"  stroke="url(#ru1)" stroke-width="0.5" opacity="0.15"/>
-        </svg>
         <p class="hcard-name">Ru Xiao, M.D., M.S.</p>
-        <p class="hcard-role">Lab Manager · Senior Scientist</p>
+        <span class="hcard-role">Lab Manager · Senior Scientist</span>
         <p class="hcard-bio">Ru Xiao received her M.D. from Sun Yat-Sen University of Medical Sciences and an M.S. of Pharmacology from Sun Yat-Sen University, China. Dr. Xiao's Postdoctoral training (2007-2011) in Dr. James M Wilson's lab within the University of Pennsylvania's Gene Therapy Program developed novel AAV vectors to treat rare genetic disorders, particularly those of the eye. In 2012-2019, Dr. Xiao served as the Associate Director of the Gene Transfer Vector Core within Dr. Luk Vandenberghe's group at the Schepens Eye Research Institute at Mass Eye and Ear, mainly focusing on research grade AAV manufacturing. In 2019, she joined Akouos Inc. and in 2022 she joined Vibologics Inc. leading upstream process development for large scale AAV production in bioreactors. In 2023, Dr. Xiao transitioned to QLD as Director of AAV Platforms, establishing AAV production systems with adherent cells and suspension cells at multiple scales. We are fortunate to have Dr. Xiao return to academia in spring 2025 as the Maurer Lab Manager and Senior Scientist.</p>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════
-       POSTDOCTORAL RESEARCHERS
-  ═══════════════════════════════════ -->
-  <div class="section-header">
-    <span class="section-tag">Postdoctoral Researchers</span>
-    <div class="section-rule"></div>
-  </div>
+  <!-- ═══════ POSTDOCTORAL RESEARCHERS ═══════ -->
+  <div class="sh" style="margin-top:4rem;"><span class="sh-label">Postdoctoral Researchers</span><div class="sh-line"></div></div>
 
-  <div class="hcard-grid">
+  <div class="hcard-group">
     <div class="hcard">
-      <div class="hcard-photo-wrap">
-        <div class="hcard-photo-circle" style="width:300px!important;height:300px!important;flex-shrink:0;">
-          <img class="hcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/John_lab_photo_cropped.jpg?fit=750%2C839&ssl=1" alt="John Smolka">
+      <div class="hcard-photo-col">
+        <div class="hcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/John_lab_photo_cropped.jpg?fit=750%2C839&ssl=1" alt="John Smolka">
         </div>
       </div>
       <div class="hcard-body">
-        <!-- diagonal streak cluster, top-right -->
-        <svg class="card-corner" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="js1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0891b2" stop-opacity="0.8"/><stop offset="100%" stop-color="#0891b2" stop-opacity="0"/></linearGradient></defs>
-          <line x1="140" y1="0"  x2="60"  y2="140" stroke="url(#js1)" stroke-width="0.8"/>
-          <line x1="120" y1="0"  x2="40"  y2="140" stroke="url(#js1)" stroke-width="0.6"/>
-          <line x1="100" y1="0"  x2="20"  y2="140" stroke="url(#js1)" stroke-width="0.5"/>
-          <line x1="80"  y1="0"  x2="0"   y2="120" stroke="url(#js1)" stroke-width="0.4"/>
-          <line x1="130" y1="0"  x2="80"  y2="80"  stroke="#e879f9"    stroke-width="0.7" opacity="0.5"/>
-          <line x1="110" y1="0"  x2="55"  y2="90"  stroke="#e879f9"    stroke-width="0.4" opacity="0.3"/>
-        </svg>
         <p class="hcard-name">John Smolka, PhD</p>
-        <p class="hcard-role">Postdoctoral Researcher</p>
+        <span class="hcard-role">Postdoctoral Researcher</span>
         <p class="hcard-bio">John is from Kentucky and California. He loves chromosome biology, and is now working with Dr. Maurer to engineer rAAV vector genomes that behave more like human chromosomes.</p>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════
-       GRADUATE STUDENTS
-  ═══════════════════════════════════ -->
-  <div class="section-header">
-    <span class="section-tag cyan">Graduate Students</span>
-    <div class="section-rule"></div>
-  </div>
+  <!-- ═══════ GRADUATE STUDENTS ═══════ -->
+  <div class="sh" style="margin-top:4rem;"><span class="sh-label">Graduate Students</span><div class="sh-line"></div></div>
 
-  <div class="hcard-grid">
+  <div class="hcard-group">
     <div class="hcard">
-      <div class="hcard-photo-wrap">
-        <div class="hcard-photo-circle" style="width:300px!important;height:300px!important;flex-shrink:0;">
-          <img class="hcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/04/Uchenna_HS_left.jpg?fit=845%2C845&ssl=1" alt="Uchenna Nwaege" style="object-position: center 20%;">
+      <div class="hcard-photo-col">
+        <div class="hcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/04/Uchenna_HS_left.jpg?fit=845%2C845&ssl=1" alt="Uchenna Nwaege" style="object-position: center 20%;">
         </div>
       </div>
       <div class="hcard-body">
-        <!-- perspective grid corner, top-right -->
-        <svg class="card-corner" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- horizontal grid lines -->
-          <line x1="60"  y1="20"  x2="140" y2="20"  stroke="#c026d3" stroke-width="0.8" opacity="0.5"/>
-          <line x1="35"  y1="42"  x2="140" y2="42"  stroke="#c026d3" stroke-width="0.65" opacity="0.42"/>
-          <line x1="10"  y1="64"  x2="140" y2="64"  stroke="#c026d3" stroke-width="0.55" opacity="0.34"/>
-          <line x1="0"   y1="86"  x2="140" y2="86"  stroke="#c026d3" stroke-width="0.45" opacity="0.26"/>
-          <line x1="0"   y1="108" x2="140" y2="108" stroke="#c026d3" stroke-width="0.35" opacity="0.18"/>
-          <!-- vertical grid lines -->
-          <line x1="120" y1="0"   x2="120" y2="140" stroke="#c026d3" stroke-width="0.7" opacity="0.45"/>
-          <line x1="98"  y1="0"   x2="98"  y2="140" stroke="#c026d3" stroke-width="0.55" opacity="0.36"/>
-          <line x1="76"  y1="0"   x2="76"  y2="140" stroke="#c026d3" stroke-width="0.45" opacity="0.28"/>
-          <line x1="54"  y1="0"   x2="54"  y2="140" stroke="#c026d3" stroke-width="0.35" opacity="0.18"/>
-        </svg>
         <p class="hcard-name">Uchenna Nwaege, B.S.</p>
-        <p class="hcard-role">PhD Student</p>
+        <span class="hcard-role">PhD Student</span>
         <p class="hcard-bio">Uchenna is from Los Angeles, beginning his academic journey at Santa Monica College before joining a furniture startup as a Data Engineer. He later transferred to the University of California, Riverside, where he applied Bayesian inference to predict mutation rates in simulated bacterial populations and earned his Bachelor's degree in Physics in 2023. Now pursuing a PhD, Uchenna seeks to understand AAV capsid assembly. Outside of research, he enjoys biking, playing tennis, cooking international dishes, and traveling.</p>
       </div>
     </div>
   </div>
 
-  <!-- streak accent divider -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:3rem 0 0;" xmlns="http://www.w3.org/2000/svg">
+  <!-- divider -->
+  <svg class="divider" viewBox="0 0 1100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="sdiv3a" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#e879f9" stop-opacity="0"/>
-        <stop offset="25%" stop-color="#e879f9"/>
-        <stop offset="50%" stop-color="#c026d3"/>
-        <stop offset="75%" stop-color="#0891b2"/>
-        <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="sdiv3b" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#22d3ee" stop-opacity="0"/>
-        <stop offset="35%" stop-color="#22d3ee"/>
-        <stop offset="65%" stop-color="#c026d3"/>
-        <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
+      <linearGradient id="dv1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(192,38,211,0)"/>
+        <stop offset="25%" stop-color="rgba(192,38,211,0.7)"/>
+        <stop offset="75%" stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
       </linearGradient>
     </defs>
-    <!-- diagonal streaks left -->
-    <line x1="0"   y1="60" x2="230" y2="6"  stroke="#c026d3" stroke-width="1.2" opacity="0.5"/>
-    <line x1="0"   y1="70" x2="195" y2="18" stroke="#e879f9" stroke-width="0.8" opacity="0.35"/>
-    <line x1="0"   y1="52" x2="165" y2="8"  stroke="#0891b2" stroke-width="0.6" opacity="0.28"/>
-    <line x1="18"  y1="70" x2="270" y2="12" stroke="#e879f9" stroke-width="0.5" opacity="0.22"/>
-    <!-- diagonal streaks right -->
-    <line x1="1200" y1="60" x2="970"  y2="6"  stroke="#0891b2" stroke-width="1.2" opacity="0.5"/>
-    <line x1="1200" y1="70" x2="1005" y2="18" stroke="#22d3ee" stroke-width="0.8" opacity="0.35"/>
-    <line x1="1200" y1="52" x2="1035" y2="8"  stroke="#c026d3" stroke-width="0.6" opacity="0.28"/>
-    <line x1="1182" y1="70" x2="930"  y2="12" stroke="#22d3ee" stroke-width="0.5" opacity="0.22"/>
-    <!-- centre wave lines -->
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#sdiv3a)" stroke-width="2"/>
-    <path d="M0 42 Q150 25 300 42 Q450 59 600 42 Q750 25 900 42 Q1050 59 1200 42" fill="none" stroke="url(#sdiv3b)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M0 28 Q150 11 300 28 Q450 45 600 28 Q750 11 900 28 Q1050 45 1200 28" fill="none" stroke="url(#sdiv3b)" stroke-width="1" opacity="0.5"/>
-    <path d="M0 49 Q150 32 300 49 Q450 66 600 49 Q750 32 900 49 Q1050 66 1200 49" fill="none" stroke="url(#sdiv3a)" stroke-width="0.7" opacity="0.35"/>
-    <!-- pulse — offset by 0.7s from the other two -->
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#sdiv3b)" stroke-width="3" opacity="0">
-      <animate attributeName="opacity" values="0;0.4;0" dur="2.8s" begin="0.7s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;3.5;1" dur="2.8s" begin="0.7s" repeatCount="indefinite"/>
-    </path>
+    <line x1="0" y1="55" x2="220" y2="8" stroke="#c026d3" stroke-width="1" opacity="0.45"/>
+    <line x1="1100" y1="55" x2="880" y2="8" stroke="#0891b2" stroke-width="1" opacity="0.45"/>
+    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#dv1)" stroke-width="2"/>
+    <path d="M0 38 Q275 20 550 38 Q825 56 1100 38" fill="none" stroke="url(#dv1)" stroke-width="1.2" opacity="0.6"/>
   </svg>
 
-  <!-- ═══════════════════════════════════
-       UNDERGRADUATE RESEARCHERS
-  ═══════════════════════════════════ -->
-  <div class="section-header">
-    <span class="section-tag">Undergraduate Researchers</span>
-    <div class="section-rule"></div>
-  </div>
+  <!-- ═══════ UNDERGRADUATE RESEARCHERS ═══════ -->
+  <div class="sh"><span class="sh-label">Undergraduate Researchers</span><div class="sh-line"></div></div>
 
   <div class="vcard-grid">
-    <div class="vcard">
-      <div class="vcard-photo-wrap">
-          <div class="vcard-photo-circle">
-            <img class="vcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/JadeGriffin.jpeg?resize=450%2C600&ssl=1" alt="Jade Griffin">
-          </div>
-        </div>
-        <div class="vcard-body">
-          <!-- radiating lines from top-left corner -->
-          <svg class="card-corner-sm left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="0" x2="100" y2="100" stroke="#0891b2" stroke-width="0.8" opacity="0.5"/>
-            <line x1="0" y1="0" x2="80"  y2="100" stroke="#0891b2" stroke-width="0.6" opacity="0.42"/>
-            <line x1="0" y1="0" x2="55"  y2="100" stroke="#0891b2" stroke-width="0.5" opacity="0.35"/>
-            <line x1="0" y1="0" x2="30"  y2="100" stroke="#0891b2" stroke-width="0.4" opacity="0.25"/>
-            <line x1="0" y1="0" x2="100" y2="70"  stroke="#e879f9" stroke-width="0.5" opacity="0.4"/>
-            <line x1="0" y1="0" x2="100" y2="45"  stroke="#e879f9" stroke-width="0.3" opacity="0.25"/>
-            <line x1="0" y1="0" x2="100" y2="20"  stroke="#e879f9" stroke-width="0.25" opacity="0.18"/>
-          </svg>
-          <p class="vcard-name">Jade Griffin</p>
-          <p class="vcard-role">Undergraduate Researcher</p>
-          <div class="bio-wrap">
-            <p class="vcard-bio">Jade is from New York, double majoring in biochemistry and biophysics at U-M. She has a strong interest in virus research and hopes to explore other areas like cancer research. Jade hopes to pursue a PhD and run her own research lab one day. She is also an active member of the Women in Science and Engineering Residence Program.<span class="bio-more"> Outside of academics, Jade loves archery, reading, and musical theatre.</span></p>
-          </div>
-          <button class="bio-toggle" aria-expanded="false"><span class="btn-label">Read more</span> <span class="bio-chevron"></span></button>
-      </div>
-    </div>
-    <div class="vcard">
-      <div class="vcard-photo-wrap">
-          <div class="vcard-photo-circle">
-            <img class="vcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/BrittanyMollette.jpg?resize=450%2C600&ssl=1" alt="Brittany Mollette">
-          </div>
-        </div>
-        <div class="vcard-body">
-          <!-- nested chevrons from top-right, magenta -->
-          <svg class="card-corner-sm" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 0 L65 35 L100 70"  stroke="#c026d3" stroke-width="0.9" fill="none" opacity="0.55"/>
-            <path d="M100 0 L50 50 L100 100" stroke="#c026d3" stroke-width="0.7" fill="none" opacity="0.42"/>
-            <path d="M100 12 L60 52 L100 90" stroke="#c026d3" stroke-width="0.55" fill="none" opacity="0.32"/>
-            <path d="M100 28 L75 53 L100 78" stroke="#0891b2" stroke-width="0.5" fill="none" opacity="0.4"/>
-            <path d="M100 42 L82 60 L100 78" stroke="#0891b2" stroke-width="0.35" fill="none" opacity="0.28"/>
-          </svg>
-          <p class="vcard-name">Brittany Mollette</p>
-          <p class="vcard-role">Undergraduate Researcher</p>
-          <div class="bio-wrap">
-            <p class="vcard-bio">Brittany is a non-traditional transfer student from Ypsilanti, MI, now majoring in Human Origins, Biology, and Behavior at U-M. Her previous research experience in biological anthropology earned the UROP Blue Ribbon Award. She is currently gaining laboratory experience studying mammalian cell responses to viral vectors.<span class="bio-more"> Brittany is interested in exploring how molecular and microbial factors influence human health and hopes to continue developing her research skills in graduate school. Outside of the lab she enjoys live music, weightlifting, plant cultivation, and the art of collecting.</span></p>
-          </div>
-          <button class="bio-toggle" aria-expanded="false"><span class="btn-label">Read more</span> <span class="bio-chevron"></span></button>
-      </div>
-    </div>
-    <div class="vcard">
-      <div class="vcard-photo-wrap">
-          <div class="vcard-photo-circle">
-            <img class="vcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/AakarshVerma.jpg?resize=450%2C600&ssl=1" alt="Aakarsh Verma">
-          </div>
-        </div>
-        <div class="vcard-body">
-          <!-- sound wave bars from left — music minor nod -->
-          <svg class="card-corner-sm left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5"  y="0"  width="4" height="60" rx="2" fill="#8b5cf6" opacity="0.55"/>
-            <rect x="17" y="10" width="4" height="45" rx="2" fill="#8b5cf6" opacity="0.48"/>
-            <rect x="29" y="4"  width="4" height="55" rx="2" fill="#8b5cf6" opacity="0.42"/>
-            <rect x="41" y="18" width="4" height="35" rx="2" fill="#8b5cf6" opacity="0.35"/>
-            <rect x="53" y="10" width="4" height="42" rx="2" fill="#22d3ee" opacity="0.4"/>
-            <rect x="65" y="25" width="4" height="22" rx="2" fill="#22d3ee" opacity="0.3"/>
-            <rect x="77" y="30" width="4" height="14" rx="2" fill="#22d3ee" opacity="0.2"/>
-          </svg>
-          <p class="vcard-name">Aakarsh Verma</p>
-          <p class="vcard-role">Undergraduate Researcher</p>
-          <div class="bio-wrap">
-            <p class="vcard-bio">Aakarsh is an undergraduate at U-M pursuing a major in biophysics and a minor in music. His interests within the lab center on the localization of proteins involved in capsid assembly. By developing his bench science skills, he hopes to prepare himself for his goal of entering an MD-PhD program.<span class="bio-more"> Outside of the lab, he enjoys drumming with the Michigan Marching Band, baking lots of banana bread, and spending time with his cat, Sage.</span></p>
-          </div>
-          <button class="bio-toggle" aria-expanded="false"><span class="btn-label">Read more</span> <span class="bio-chevron"></span></button>
-      </div>
-    </div>
-    <div class="vcard">
-      <div class="vcard-photo-wrap">
-          <div class="vcard-photo-circle">
-            <img class="vcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/Hudson.jpeg?resize=450%2C600&ssl=1" alt="Hudson Mizgalski">
-          </div>
-        </div>
-        <div class="vcard-body">
-          <!-- speed lines from right edge -->
-          <svg class="card-corner-sm" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="15" y1="10" x2="100" y2="10" stroke="#0891b2" stroke-width="1.1"  opacity="0.55"/>
-            <line x1="5"  y1="22" x2="100" y2="22" stroke="#0891b2" stroke-width="0.8"  opacity="0.45"/>
-            <line x1="20" y1="34" x2="100" y2="34" stroke="#0891b2" stroke-width="0.65" opacity="0.38"/>
-            <line x1="10" y1="46" x2="100" y2="46" stroke="#0891b2" stroke-width="0.5"  opacity="0.3"/>
-            <line x1="25" y1="58" x2="100" y2="58" stroke="#c026d3" stroke-width="0.5"  opacity="0.38"/>
-            <line x1="15" y1="70" x2="100" y2="70" stroke="#c026d3" stroke-width="0.4"  opacity="0.28"/>
-            <line x1="30" y1="80" x2="100" y2="80" stroke="#c026d3" stroke-width="0.3"  opacity="0.2"/>
-          </svg>
-          <p class="vcard-name">Hudson Mizgalski</p>
-          <p class="vcard-role">Research Assistant</p>
-          <div class="bio-wrap">
-            <p class="vcard-bio">Hudson is from Detroit, Michigan and is a senior studying Molecular, Cellular, and Developmental Biology. He hopes to pursue a Master's degree and work in the Biotech industry with an emphasis on genetic engineering. Outside of academics, he enjoys playing soccer, going on hikes, listening to music, and meeting new people.</p>
-          </div>
-          <button class="bio-toggle" aria-expanded="false"><span class="btn-label">Read more</span> <span class="bio-chevron"></span></button>
-      </div>
-    </div>
-    <div class="vcard">
-      <div class="vcard-photo-wrap">
-          <div class="vcard-photo-circle">
-            <img class="vcard-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/SandraAlcini.jpeg?resize=450%2C600&ssl=1" alt="Sandra Alcini">
-          </div>
-        </div>
-        <div class="vcard-body">
-          <!-- organic branching curves from top-left -->
-          <svg class="card-corner-sm left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0 Q40 30 55 100" stroke="#7c3aed" stroke-width="0.9" fill="none" opacity="0.5"/>
-            <path d="M0 0 Q28 22 18 100" stroke="#7c3aed" stroke-width="0.65" fill="none" opacity="0.38"/>
-            <path d="M0 0 Q55 40 80 100" stroke="#7c3aed" stroke-width="0.5" fill="none" opacity="0.3"/>
-            <path d="M0 10 Q35 30 60 80" stroke="#059669" stroke-width="0.5" fill="none" opacity="0.38"/>
-            <path d="M0 22 Q30 40 48 80" stroke="#059669" stroke-width="0.4" fill="none" opacity="0.28"/>
-            <circle cx="40" cy="32" r="1.8" fill="#059669" opacity="0.45"/>
-            <circle cx="22" cy="58" r="1.5" fill="#7c3aed" opacity="0.38"/>
-          </svg>
-          <p class="vcard-name">Sandra Alcini</p>
-          <p class="vcard-role">UROP Researcher</p>
-          <div class="bio-wrap">
-            <p class="vcard-bio">Sandra is an undergraduate at U-M and a UROP researcher for Maurer Lab. She is majoring in biochemistry with minors in Italian and philosophy. Sandra plans to continue her research into graduate school and pursue pharmaceutical design. Outside of school, Sandra is a mom and has a hair salon in Ann Arbor.<span class="bio-more"> She loves hiking in northern Michigan and gardening in her backyard with her chickens.</span></p>
-          </div>
-          <button class="bio-toggle" aria-expanded="false"><span class="btn-label">Read more</span> <span class="bio-chevron"></span></button>
-      </div>
-    </div>
-  </div>
 
-  <!-- streak accent divider -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:3rem 0 0;" xmlns="http://www.w3.org/2000/svg">
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/JadeGriffin.jpeg?resize=450%2C600&ssl=1" alt="Jade Griffin">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Jade Griffin</p>
+        <span class="vcard-role">Undergraduate Researcher</span>
+        <div class="bio-wrap">
+          <p class="vcard-bio">Jade is from New York, double majoring in biochemistry and biophysics at U-M. She has a strong interest in virus research and hopes to explore other areas like cancer research. Jade hopes to pursue a PhD and run her own research lab one day. She is also an active member of the Women in Science and Engineering Residence Program.<span class="bio-more"> Outside of academics, Jade loves archery, reading, and musical theatre.</span></p>
+        </div>
+        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/BrittanyMollette.jpg?resize=450%2C600&ssl=1" alt="Brittany Mollette">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Brittany Mollette</p>
+        <span class="vcard-role">Undergraduate Researcher</span>
+        <div class="bio-wrap">
+          <p class="vcard-bio">Brittany is a non-traditional transfer student from Ypsilanti, MI, now majoring in Human Origins, Biology, and Behavior at U-M. Her previous research experience in biological anthropology earned the UROP Blue Ribbon Award. She is currently gaining laboratory experience studying mammalian cell responses to viral vectors.<span class="bio-more"> Brittany is interested in exploring how molecular and microbial factors influence human health and hopes to continue developing her research skills in graduate school. Outside of the lab she enjoys live music, weightlifting, plant cultivation, and the art of collecting.</span></p>
+        </div>
+        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/AakarshVerma.jpg?resize=450%2C600&ssl=1" alt="Aakarsh Verma">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Aakarsh Verma</p>
+        <span class="vcard-role">Undergraduate Researcher</span>
+        <div class="bio-wrap">
+          <p class="vcard-bio">Aakarsh is an undergraduate at U-M pursuing a major in biophysics and a minor in music. His interests within the lab center on the localization of proteins involved in capsid assembly. By developing his bench science skills, he hopes to prepare himself for his goal of entering an MD-PhD program.<span class="bio-more"> Outside of the lab, he enjoys drumming with the Michigan Marching Band, baking lots of banana bread, and spending time with his cat, Sage.</span></p>
+        </div>
+        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/Hudson.jpeg?resize=450%2C600&ssl=1" alt="Hudson Mizgalski">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Hudson Mizgalski</p>
+        <span class="vcard-role">Research Assistant</span>
+        <p class="vcard-bio">Hudson is from Detroit, Michigan and is a senior studying Molecular, Cellular, and Developmental Biology. He hopes to pursue a Master's degree and work in the Biotech industry with an emphasis on genetic engineering. Outside of academics, he enjoys playing soccer, going on hikes, listening to music, and meeting new people.</p>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2025/11/SandraAlcini.jpeg?resize=450%2C600&ssl=1" alt="Sandra Alcini">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Sandra Alcini</p>
+        <span class="vcard-role">UROP Researcher</span>
+        <div class="bio-wrap">
+          <p class="vcard-bio">Sandra is an undergraduate at U-M and a UROP researcher for Maurer Lab. She is majoring in biochemistry with minors in Italian and philosophy. Sandra plans to continue her research into graduate school and pursue pharmaceutical design. Outside of school, Sandra is a mom and has a hair salon in Ann Arbor.<span class="bio-more"> She loves hiking in northern Michigan and gardening in her backyard with her chickens.</span></p>
+        </div>
+        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+      </div>
+    </div>
+
+  </div><!-- /vcard-grid -->
+
+  <!-- divider -->
+  <svg class="divider" viewBox="0 0 1100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="sdiv2a" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#0891b2" stop-opacity="0"/>
-        <stop offset="25%" stop-color="#0891b2"/>
-        <stop offset="75%" stop-color="#c026d3"/>
-        <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="sdiv2b" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#22d3ee" stop-opacity="0"/>
-        <stop offset="35%" stop-color="#22d3ee"/>
-        <stop offset="65%" stop-color="#e879f9"/>
-        <stop offset="100%" stop-color="#e879f9" stop-opacity="0"/>
+      <linearGradient id="dv2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(8,145,178,0)"/>
+        <stop offset="25%" stop-color="rgba(8,145,178,0.7)"/>
+        <stop offset="75%" stop-color="rgba(192,38,211,0.7)"/>
+        <stop offset="100%" stop-color="rgba(192,38,211,0)"/>
       </linearGradient>
     </defs>
-    <!-- diagonal streaks left -->
-    <line x1="0"   y1="65" x2="240" y2="8"  stroke="#22d3ee" stroke-width="1.2" opacity="0.5"/>
-    <line x1="0"   y1="70" x2="200" y2="22" stroke="#0891b2" stroke-width="0.8" opacity="0.35"/>
-    <line x1="0"   y1="58" x2="170" y2="10" stroke="#e879f9" stroke-width="0.6" opacity="0.28"/>
-    <line x1="25"  y1="70" x2="280" y2="18" stroke="#0891b2" stroke-width="0.5" opacity="0.22"/>
-    <!-- diagonal streaks right -->
-    <line x1="1200" y1="65" x2="960"  y2="8"  stroke="#e879f9" stroke-width="1.2" opacity="0.5"/>
-    <line x1="1200" y1="70" x2="1000" y2="22" stroke="#c026d3" stroke-width="0.8" opacity="0.35"/>
-    <line x1="1200" y1="58" x2="1030" y2="10" stroke="#22d3ee" stroke-width="0.6" opacity="0.28"/>
-    <line x1="1175" y1="70" x2="920"  y2="18" stroke="#c026d3" stroke-width="0.5" opacity="0.22"/>
-    <!-- centre wave lines -->
-    <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35" fill="none" stroke="url(#sdiv2a)" stroke-width="2"/>
-    <path d="M0 42 C100 25,200 59,300 42 C400 25,500 59,600 42 C700 25,800 59,900 42 C1000 25,1100 59,1200 42" fill="none" stroke="url(#sdiv2b)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M0 28 C100 11,200 45,300 28 C400 11,500 45,600 28 C700 11,800 45,900 28 C1000 11,1100 45,1200 28" fill="none" stroke="url(#sdiv2b)" stroke-width="1" opacity="0.5"/>
-    <path d="M0 49 C100 32,200 66,300 49 C400 32,500 66,600 49 C700 32,800 66,900 49 C1000 32,1100 66,1200 49" fill="none" stroke="url(#sdiv2a)" stroke-width="0.7" opacity="0.35"/>
-    <!-- pulse animation — offset timing from first divider -->
-    <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35" fill="none" stroke="url(#sdiv2b)" stroke-width="3" opacity="0">
-      <animate attributeName="opacity" values="0;0.4;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;3.5;1" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
-    </path>
+    <line x1="0" y1="55" x2="220" y2="8" stroke="#0891b2" stroke-width="1" opacity="0.45"/>
+    <line x1="1100" y1="55" x2="880" y2="8" stroke="#c026d3" stroke-width="1" opacity="0.45"/>
+    <path d="M0 30 Q275 48 550 30 Q825 12 1100 30" fill="none" stroke="url(#dv2)" stroke-width="2"/>
+    <path d="M0 38 Q275 56 550 38 Q825 20 1100 38" fill="none" stroke="url(#dv2)" stroke-width="1.2" opacity="0.6"/>
   </svg>
 
-  <!-- ═══════════════════════════════════
-       FORMER TRAINEES
-  ═══════════════════════════════════ -->
-  <div class="section-header" style="margin-top:1.5rem;">
-    <span class="section-tag cyan">Former Trainees</span>
-    <div class="section-rule"></div>
-  </div>
+  <!-- ═══════ FORMER TRAINEES ═══════ -->
+  <div class="sh"><span class="sh-label c">Former Trainees</span><div class="sh-line"></div></div>
 
-  <div class="alumni-grid">
+  <div class="alumni-group">
+
     <div class="alumni-card">
-      <div class="alumni-photo-wrap">
-        <div class="alumni-photo-circle">
-          <img class="alumni-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/BB-headshot.jpeg?resize=450%2C600&ssl=1" alt="Brian Benyamini">
+      <div class="alumni-photo-col">
+        <div class="alumni-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/BB-headshot.jpeg?resize=450%2C600&ssl=1" alt="Brian Benyamini">
         </div>
-        <!-- dotted helix — bottom of photo column -->
-        <svg class="card-corner-sm bottom-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="18" cy="92" r="3"   fill="#0891b2" opacity="0.65"/>
-          <circle cx="30" cy="80" r="2.5" fill="#0891b2" opacity="0.55"/>
-          <circle cx="22" cy="68" r="3"   fill="#0891b2" opacity="0.45"/>
-          <circle cx="35" cy="55" r="2.5" fill="#0891b2" opacity="0.35"/>
-          <circle cx="26" cy="42" r="2"   fill="#c026d3" opacity="0.42"/>
-          <circle cx="38" cy="30" r="1.8" fill="#c026d3" opacity="0.3"/>
-          <path d="M18 92 Q30 80 22 68 Q35 55 26 42 Q38 30 32 18" stroke="#0891b2" stroke-width="0.7" fill="none" opacity="0.4"/>
-        </svg>
       </div>
       <div class="alumni-body">
         <p class="alumni-name">Brian Benyamini, B.S.</p>
-        <p class="alumni-tenure">UC Berkeley '22 · Jan 2022 – Jul 2023</p>
-        <p class="alumni-bio">Brian Benyamini (UC Berkeley Class of '22) trained with Anna from January 2022 - July 2023. Brian is a wizard at the bench - able to clone some of the most difficult constructs practically with his eyes closed, and he is most famous for making the highest titer vector preps Anna has ever seen. Wanting to expand into the clinical side of gene therapy research, he is currently an MD student at the Cleveland Clinic.</p>
+        <span class="alumni-tenure">UC Berkeley '22 · Jan 2022 – Jul 2023</span>
+        <p class="alumni-bio">Brian Benyamini (UC Berkeley Class of '22) trained with Anna from January 2022 - July 2023. Brian is a wizard at the bench — able to clone some of the most difficult constructs practically with his eyes closed, and he is most famous for making the highest titer vector preps Anna has ever seen. Wanting to expand into the clinical side of gene therapy research, he is currently an MD student at the Cleveland Clinic.</p>
       </div>
     </div>
+
     <div class="alumni-card">
-      <div class="alumni-photo-wrap">
-        <div class="alumni-photo-circle">
-          <img class="alumni-photo" src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/GUdT7IwXQAACt_T-1.jpeg?resize=450%2C600&ssl=1" alt="Ana Karla Cepeda Diaz">
+      <div class="alumni-photo-col">
+        <div class="alumni-circle">
+          <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/GUdT7IwXQAACt_T-1.jpeg?resize=450%2C600&ssl=1" alt="Ana Karla Cepeda Diaz">
         </div>
-        <!-- angular polygon — bottom of photo column -->
-        <svg class="card-corner-sm bottom-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 100 L35 78 L15 50 L50 28 L30 5"  stroke="#c026d3" stroke-width="0.9" fill="none" opacity="0.62"/>
-          <path d="M0 85  L30 68 L12 42 L45 22"         stroke="#c026d3" stroke-width="0.65" fill="none" opacity="0.45"/>
-          <path d="M0 70  L25 55 L18 35"                stroke="#d97706" stroke-width="0.5" fill="none" opacity="0.5"/>
-          <circle cx="35" cy="78" r="2"   fill="#c026d3" opacity="0.55"/>
-          <circle cx="15" cy="50" r="2"   fill="#c026d3" opacity="0.42"/>
-          <circle cx="50" cy="28" r="2"   fill="#d97706" opacity="0.5"/>
-        </svg>
       </div>
       <div class="alumni-body">
         <p class="alumni-name">Ana Karla Cepeda Diaz, PhD</p>
-        <p class="alumni-tenure">Harvard '19 · 2016 – 2019</p>
-        <p class="alumni-bio">Ana Karla Cepeda Diaz (Harvard Class of '19) trained with Anna from 2016 - 2019. A bold experimentalist, her honors thesis project was selected for an oral presentation at ASGCT in 2019. Ana Karla went on to earn her PhD in the Biological and Biomedical Sciences Program at Harvard Medical School in 2024, studying inner membrane complex biogenesis in <em>Plasmodium falciparum</em>.</p>
+        <span class="alumni-tenure">Harvard '19 · 2016 – 2019</span>
+        <p class="alumni-bio">Ana Karla Cepeda Diaz (Harvard Class of '19) trained with Anna from 2016–2019. A bold experimentalist, her honors thesis project was selected for an oral presentation at ASGCT in 2019. Ana Karla went on to earn her PhD in the Biological and Biomedical Sciences Program at Harvard Medical School in 2024, studying inner membrane complex biogenesis in <em>Plasmodium falciparum</em>.</p>
       </div>
     </div>
-  </div>
 
-  <!-- ═══════════════════════════════════
-       PAST MEMBERS
-  ═══════════════════════════════════ -->
-  <div class="section-header" style="margin-top:3.5rem;">
-    <span class="section-tag">Past Members</span>
-    <div class="section-rule"></div>
-  </div>
+  </div><!-- /alumni-group -->
+
+  <!-- ═══════ PAST MEMBERS ═══════ -->
+  <div class="sh" style="margin-top:4rem;"><span class="sh-label">Past Members</span><div class="sh-line"></div></div>
 
   <div class="past-list">
-    <div class="past-chip">Richard Stewart, PhD <span>Former postdoc · industry</span></div>
-    <div class="past-chip">Caroline Hastings, B.S. <span>Former undergraduate · industry</span></div>
+    <div class="past-chip"><span class="past-chip-name">Richard Stewart, PhD</span><span class="past-chip-role">Former postdoc · industry</span></div>
+    <div class="past-chip"><span class="past-chip-name">Caroline Hastings, B.S.</span><span class="past-chip-role">Former undergraduate · industry</span></div>
   </div>
 
-  <!-- bottom perspective grid -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:4rem 0 0;opacity:0.13;" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bvl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c026d3" stop-opacity="0"/><stop offset="100%" stop-color="#c026d3" stop-opacity="0.9"/></linearGradient>
-      <linearGradient id="bvr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0891b2" stop-opacity="0"/><stop offset="100%" stop-color="#0891b2" stop-opacity="0.9"/></linearGradient>
-      <linearGradient id="bh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c026d3" stop-opacity="0"/><stop offset="30%" stop-color="#c026d3"/><stop offset="70%" stop-color="#0891b2"/><stop offset="100%" stop-color="#0891b2" stop-opacity="0"/></linearGradient>
-    </defs>
-    <line x1="600" y1="0" x2="0"    y2="70" stroke="url(#bvl)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="150"  y2="70" stroke="url(#bvl)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="300"  y2="70" stroke="url(#bvl)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="450"  y2="70" stroke="url(#bvl)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="600"  y2="70" stroke="url(#bh)"  stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="750"  y2="70" stroke="url(#bvr)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="900"  y2="70" stroke="url(#bvr)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="1050" y2="70" stroke="url(#bvr)" stroke-width="0.8"/>
-    <line x1="600" y1="0" x2="1200" y2="70" stroke="url(#bvr)" stroke-width="0.8"/>
-    <line x1="0" y1="26" x2="1200" y2="26" stroke="url(#bh)" stroke-width="0.7"/>
-    <line x1="0" y1="44" x2="1200" y2="44" stroke="url(#bh)" stroke-width="0.5"/>
-    <line x1="0" y1="58" x2="1200" y2="58" stroke="url(#bh)" stroke-width="0.35"/>
-  </svg>
-
 </main>
-</div><!-- /.maurer-page -->
 
-<footer style="background:#fff;border-top:1px solid rgba(120,90,180,0.15);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;font-size:0.78rem;color:#8a82a0;font-family:'Outfit',sans-serif;">
-  <span style="font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#c026d3;">Maurer Lab</span>
-  <span>University of Michigan · Ann Arbor, MI</span>
-  <a href="mailto:acmaurer@umich.edu" style="color:#0891b2;text-decoration:none;">acmaurer@umich.edu</a>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-bg">
+    <img src="assets/img/footer-lights-darker.jpg" alt="" class="footer-bg-img">
+    <div class="footer-bg-overlay"></div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab" class="footer-logo-img">
+      <img src="assets/img/biophysics-logo.webp" alt="U-M LSA Biophysics" class="footer-umich-img">
+    </div>
+    <nav class="footer-nav">
+      <span class="footer-nav-label">Maurer Lab</span>
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="people.html">People</a>
+      <a href="join.html">Join Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-address">
+      <span class="footer-address-label">Ann Arbor, Michigan</span>
+      <p>Room 4217 &middot; 930 N. University Ave.</p>
+      <p>Ann Arbor, MI 48109-1055</p>
+      <a href="/cdn-cgi/l/email-protection#1071737d716562756250657d7973783e757465"><span class="__cf_email__" data-cfemail="f49597999581869186b481999d979cda919081">[email&#160;protected]</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Maurer Lab &middot; University of Michigan</span>
+  </div>
 </footer>
 
-<script>
-(function() {
-  document.querySelectorAll('.bio-toggle').forEach(function(btn) {
-    var wrap = btn.previousElementSibling;
-    if (!wrap || !wrap.classList.contains('bio-wrap')) return;
-    var hasMore = wrap.querySelector('.bio-more');
-    if (!hasMore) { btn.classList.add('no-more'); return; }
-    btn.addEventListener('click', function() {
-      var expanded = wrap.classList.contains('expanded');
-      wrap.classList.toggle('expanded', !expanded);
-      btn.classList.toggle('expanded', !expanded);
-      btn.setAttribute('aria-expanded', String(!expanded));
-      btn.querySelector('.btn-label').textContent = expanded ? 'Read more' : 'Read less';
-    });
-  });
-})();
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.bio-btn').forEach(function(btn) {
+  var wrap = btn.previousElementSibling;
+  if (!wrap || !wrap.classList.contains('bio-wrap')) { btn.classList.add('hidden'); return; }
+  if (!wrap.querySelector('.bio-more')) { btn.classList.add('hidden'); return; }
+  btn.addEv

@@ -6,302 +6,16 @@
   <title>Maurer Lab — University of Michigan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #ffffff;
-      --surface: #fafafa;
-      --surface2: #f5f2fa;
-      --border: rgba(120, 90, 180, 0.12);
-      --border-mid: rgba(120, 90, 180, 0.2);
-      --accent-m: #c026d3;
-      --accent-c: #0891b2;
-      --accent-m-soft: rgba(192,38,211,0.07);
-      --accent-c-soft: rgba(8,145,178,0.07);
-      --text-primary: #18151f;
-      --text-secondary: #4a4460;
-      --text-muted: #8a82a0;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 300;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 4rem;
-      background: rgba(10,6,18,0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(192,38,211,0.15);
-    }
-    .nav-links a {
-      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #e879f9; }
-    .nav-links a.active { color: rgba(255,255,255,0.9); font-weight: 500; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative; overflow: hidden; text-align: center;
-      padding: 90px 2rem 7rem;
-      background: #0a0612;
-      border-bottom: 1px solid rgba(192,38,211,0.2);
-    }
-    .hero-bg-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(8,4,16,0.88) 0%, rgba(8,4,16,0.55) 55%, rgba(8,4,16,0.75) 100%);
-      pointer-events: none;
-    }
-    .hero-canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; pointer-events: none; opacity: 0.4;
-    }
-    .hero-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
-    .hero-text-box {
-      display: inline-block;
-      background: rgba(6,3,14,0.45);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(192,38,211,0.15);
-      border-radius: 4px;
-      padding: 0.6rem 1.4rem;
-      margin-bottom: 1.2rem;
-    }
-    .hero-text-box .hero-sub { margin-bottom: 0; }
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(232,121,249,0.8); margin-bottom: 0; display: block;
-    }
-    .hero-title {
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
-      color: #fff; margin-bottom: 1.5rem;
-    }
-    .hero-title em {
-      font-style: italic; font-weight: 300;
-      background: linear-gradient(135deg, #e879f9, #22d3ee);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-sub {
-      font-size: 1.08rem; color: rgba(255,255,255,0.72);
-      max-width: 580px; margin: 0 auto; line-height: 1.75;
-    }
-    .hero-cta {
-      display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-    }
-    .btn {
-      display: inline-block; padding: 0.75rem 2rem;
-      font-family: 'Space Mono', monospace; font-size: 0.72rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      text-decoration: none; border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #c026d3, #0891b2);
-      color: #fff; border: none;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .nav-logo img { height: 44px; width: auto; display: block; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .btn-outline {
-      background: transparent; color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.28);
-    }
-    .btn-outline:hover { border-color: #e879f9; color: #e879f9; }
-
-    /* ── MAIN ── */
-    main { max-width: 1200px; margin: 0 auto; padding: 0 3rem 6rem; }
-
-    /* ── SECTION HEADERS ── */
-    .section-header {
-      display: flex; align-items: center; gap: 1.2rem;
-      margin: 4rem 0 2rem;
-    }
-    .section-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
-      color: var(--accent-m);
-    }
-    .section-tag.cyan { color: var(--accent-c); }
-    .section-rule {
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, var(--border-mid), transparent);
-    }
-
-    /* ── NEWS CARD ── */
-    .news-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .news-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1.8rem; position: relative;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .news-card:hover { background: #fdf8ff; border-color: var(--border-mid); }
-    .news-date {
-      font-family: 'Space Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 0.6rem; display: block;
-    }
-    .news-title {
-      font-size: 1.05rem; font-weight: 500; color: var(--text-primary);
-      margin-bottom: 0.6rem; line-height: 1.4;
-    }
-    .news-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
-    .news-link {
-      display: inline-block; margin-top: 1rem;
-      font-family: 'Space Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent-c); text-decoration: none;
-    }
-    .news-link:hover { color: var(--accent-m); }
-
-    /* ── RESEARCH PILLARS ── */
-    .pillar-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    }
-    .pillar {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 2rem; position: relative; overflow: hidden;
-      transition: background 0.2s;
-    }
-    .pillar:hover { background: #fdf8ff; }
-    .pillar-icon {
-      font-family: 'Space Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent-m); margin-bottom: 0.8rem; display: block;
-    }
-    .pillar-title {
-      font-size: 1.1rem; font-weight: 500; color: var(--text-primary);
-      margin-bottom: 0.75rem;
-    }
-    .pillar-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
-
-    /* ── LAB SHOWCASE ── */
-    .lab-showcase {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      margin: 3.5rem 0;
-      position: relative;
-    }
-    .lab-showcase-text { position: relative; z-index: 2; }
-    .lab-showcase-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--accent-m); display: block; margin-bottom: 1rem;
-    }
-    .lab-showcase-heading {
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      font-weight: 300; line-height: 1.2;
-      color: var(--text-primary); margin-bottom: 1.25rem;
-    }
-    .lab-showcase-body {
-      font-size: 1rem; color: var(--text-secondary);
-      line-height: 1.75; margin-bottom: 1.75rem;
-    }
-    /* gradient blob */
-    .lab-showcase-blob {
-      position: absolute;
-      width: 520px; height: 420px;
-      top: 50%; left: -60px;
-      transform: translateY(-50%);
-      background: radial-gradient(ellipse at 30% 40%, rgba(0,210,220,0.18) 0%, rgba(160,40,220,0.14) 45%, transparent 75%),
-                  radial-gradient(ellipse at 70% 65%, rgba(0,180,255,0.12) 0%, rgba(200,30,210,0.1) 50%, transparent 72%);
-      filter: blur(38px);
-      pointer-events: none; z-index: 1;
-    }
-    /* photo collage */
-    .lab-photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 0.75rem;
-    }
-    .lab-photo-grid img {
-      width: 100%; height: 100%;
-      object-fit: cover; border-radius: 8px;
-      display: block;
-      border: 1px solid var(--border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .lab-photo-grid img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 32px rgba(0,180,220,0.15), 0 2px 8px rgba(160,40,220,0.12);
-    }
-    .lab-photo-grid .photo-tall {
-      grid-row: span 2;
-      height: 100%;
-      min-height: 300px;
-    }
-    .lab-photo-grid .photo-wide {
-      height: 180px;
-    }
-    @media (max-width: 860px) {
-      .lab-showcase { grid-template-columns: 1fr; gap: 2rem; }
-      .lab-showcase-blob { display: none; }
-      .lab-photo-grid .photo-tall { min-height: 200px; }
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.78rem; color: var(--text-muted);
-      background: var(--surface);
-    }
-    .footer-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent-m);
-    }
-    footer a { color: var(--accent-c); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ── DIVIDER ── */
-    .svg-rule { display: block; overflow: hidden; pointer-events: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      nav { padding: 1rem 1.5rem; }
-      main { padding: 0 1.5rem 4rem; }
-      .pillar-grid { grid-template-columns: 1fr; }
-      .stat-bar { flex-direction: column; }
-      .stat { border-right: none; border-bottom: 1px solid var(--border-mid); }
-      .stat:last-child { border-bottom: none; }
-      footer { flex-direction: column; gap: 0.8rem; padding: 2rem 1.5rem; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .news-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.4rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/ticker.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="https://i0.wp.com/maurerlab.org/wp-content/uploads/2024/08/cropped-MaurerLabs-Logo_FinalFrame100crop2.png?fit=1338%2C739&ssl=1" alt="Maurer Lab">
+    <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab">
   </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
@@ -312,55 +26,34 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <header class="hero">
   <img src="assets/img/Home-page-bkgd.jpg" alt="" class="hero-bg-img">
   <div class="hero-overlay"></div>
+
+  <!-- Subtle radial glow only — no circles or lines -->
   <svg class="hero-canvas" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="hglow" cx="50%" cy="45%" r="55%">
-        <stop offset="0%" stop-color="#e879f9" stop-opacity="0.13"/>
-        <stop offset="50%" stop-color="#0891b2" stop-opacity="0.06"/>
-        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="0%"   stop-color="#e879f9" stop-opacity="0.08"/>
+        <stop offset="50%"  stop-color="#0891b2" stop-opacity="0.04"/>
+        <stop offset="100%" stop-color="#ffffff"  stop-opacity="0"/>
       </radialGradient>
-      <linearGradient id="hring" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#c026d3" stop-opacity="0.25"/>
-        <stop offset="100%" stop-color="#0891b2" stop-opacity="0.12"/>
-      </linearGradient>
-      <linearGradient id="hstreak1" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#e879f9" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#e879f9" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="hstreak2" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-      </linearGradient>
     </defs>
     <rect width="1440" height="520" fill="url(#hglow)"/>
-    <!-- concentric rings -->
-    <circle cx="720" cy="240" r="320" stroke="url(#hring)" stroke-width="1" fill="none" opacity="0.5"/>
-    <circle cx="720" cy="240" r="250" stroke="url(#hring)" stroke-width="0.8" fill="none" opacity="0.4"/>
-    <circle cx="720" cy="240" r="180" stroke="url(#hring)" stroke-width="0.6" fill="none" opacity="0.3"/>
-    <circle cx="720" cy="240" r="110" stroke="url(#hring)" stroke-width="0.5" fill="none" opacity="0.2"/>
-    <!-- diagonal streaks left -->
-    <line x1="0"   y1="400" x2="300" y2="0"   stroke="url(#hstreak1)" stroke-width="1.2" opacity="0.35"/>
-    <line x1="0"   y1="480" x2="240" y2="0"   stroke="url(#hstreak1)" stroke-width="0.7" opacity="0.22"/>
-    <line x1="60"  y1="520" x2="340" y2="0"   stroke="url(#hstreak2)" stroke-width="0.5" opacity="0.18"/>
-    <!-- diagonal streaks right -->
-    <line x1="1440" y1="400" x2="1140" y2="0"  stroke="url(#hstreak2)" stroke-width="1.2" opacity="0.35"/>
-    <line x1="1440" y1="480" x2="1200" y2="0"  stroke="url(#hstreak1)" stroke-width="0.7" opacity="0.22"/>
-    <line x1="1380" y1="520" x2="1100" y2="0"  stroke="url(#hstreak1)" stroke-width="0.5" opacity="0.18"/>
-    <!-- scan lines -->
-    <line x1="0" y1="180" x2="1440" y2="180" stroke="#c026d3" stroke-width="0.4" opacity="0.08"/>
-    <line x1="0" y1="220" x2="1440" y2="220" stroke="#0891b2" stroke-width="0.4" opacity="0.07"/>
-    <line x1="0" y1="260" x2="1440" y2="260" stroke="#c026d3" stroke-width="0.3" opacity="0.06"/>
-    <line x1="0" y1="300" x2="1440" y2="300" stroke="#0891b2" stroke-width="0.3" opacity="0.05"/>
   </svg>
+
+  <!-- Dynamic synthwave canvas — sweeps lower-left to upper-right -->
+  <canvas class="hero-synth-canvas" id="heroSynth"></canvas>
+
   <div class="hero-inner">
     <div class="hero-text-box">
       <span class="hero-eyebrow">The Maurer Lab · University of Michigan</span>
     </div>
-    <h1 class="hero-title">Understanding <em>Biology</em><br>to Improve Gene Therapy</h1>
+    <h1 class="hero-title">
+      <span class="line1">Understanding <em>Biology</em></span>
+      <span class="line2">to Improve Gene Therapy</span>
+    </h1>
     <div class="hero-text-box">
       <p class="hero-sub">We research recombinant AAV vectors through the lens of their host cells to identify targets for improving the safety and efficacy of gene delivery.</p>
     </div>
@@ -371,115 +64,406 @@
   </div>
 </header>
 
+<script>
+// ── HERO SYNTHWAVE — sweeps lower-left → upper-right, stays clear of text ──
+(function() {
+  const canvas = document.getElementById('heroSynth');
+  const ctx    = canvas.getContext('2d');
+  let W, H, t = 0;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ── HERO SYNTHWAVE — fills left blank space, axis stays left of title ──
+  // Title starts at ~(W-820)/2 from left edge. Keep axis well left of that.
+  // Diagonal: bottom-left corner → upper-left area, sweeping vertically.
+  // High amplitudes fan the waves to fill the full left column.
+  function diagonalPoint(u, v) {
+    const margin = (W - Math.min(W, 820)) / 2; // where title starts
+    const safeX  = Math.max(margin * 0.82, W * 0.04); // axis stays 18% inside margin
+    const x0 = W * -0.02, y0 = H * 1.3;   // below bottom-left
+    const x1 = safeX,     y1 = H * -0.1;  // upper-left, within margin
+    const dx = x1 - x0, dy = y1 - y0;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const px  = -dy / len; // perpendicular: points rightward (into blank space)
+    const py  =  dx / len;
+    return {
+      x: x0 + dx * u + px * v,
+      y: y0 + dy * u + py * v,
+    };
+  }
+
+  const waves = [
+    { freq: 1.1, amp: 90,  speed: 0.00080, phase: 0,   weight: 2.8 },
+    { freq: 2.0, amp: 55,  speed: 0.00110, phase: 1.2, weight: 1.6 },
+    { freq: 0.6, amp: 120, speed: 0.00050, phase: 2.6, weight: 1.2 },
+    { freq: 3.2, amp: 35,  speed: 0.00140, phase: 0.5, weight: 0.7 },
+    { freq: 0.3, amp: 160, speed: 0.00030, phase: 3.8, weight: 0.5 },
+  ];
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    const steps  = 300;
+    // Clip strictly to left margin so no wave pixel enters the title zone
+    const margin = (W - Math.min(W, 820)) / 2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, margin + 20, H); // +20px soft bleed so edge doesn't hard-cut
+    ctx.clip();
+
+    // Draw each wave as a path along the diagonal
+    waves.forEach((wv, wi) => {
+      // Build points
+      const pts = [];
+      for (let i = 0; i <= steps; i++) {
+        const u  = i / steps;
+        const v  = Math.sin(u * Math.PI * 2 * wv.freq + t * wv.speed * 60 + wv.phase) * wv.amp;
+        const pt = diagonalPoint(u, v);
+        pts.push(pt);
+      }
+
+      // Color: cycle from cyan to magenta along u
+      // Use gradient along the path's bounding box
+      const p0 = diagonalPoint(0, 0);
+      const p1 = diagonalPoint(1, 0);
+      const grad = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+      const alpha = [0.85, 0.55, 0.38, 0.22, 0.14][wi];
+      grad.addColorStop(0,    `rgba(0,210,220,0)`);
+      grad.addColorStop(0.08, `rgba(0,210,220,${alpha})`);
+      grad.addColorStop(0.35, `rgba(192,38,211,${alpha})`);
+      grad.addColorStop(0.65, `rgba(8,145,178,${alpha})`);
+      grad.addColorStop(0.92, `rgba(232,121,249,${alpha})`);
+      grad.addColorStop(1,    `rgba(232,121,249,0)`);
+
+      ctx.beginPath();
+      pts.forEach((pt, i) => {
+        if (i === 0) ctx.moveTo(pt.x, pt.y);
+        else         ctx.lineTo(pt.x, pt.y);
+      });
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = wv.weight;
+      ctx.stroke();
+
+      // Glow pass on primary wave
+      if (wi === 0) {
+        const glowA = 0.10 + 0.07 * Math.sin(t * 0.003);
+        const glow  = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+        glow.addColorStop(0,    `rgba(0,210,220,0)`);
+        glow.addColorStop(0.08, `rgba(0,210,220,${glowA})`);
+        glow.addColorStop(0.4,  `rgba(192,38,211,${glowA})`);
+        glow.addColorStop(0.92, `rgba(232,121,249,${glowA})`);
+        glow.addColorStop(1,    `rgba(232,121,249,0)`);
+        ctx.strokeStyle = glow;
+        ctx.lineWidth   = 18;
+        ctx.stroke();
+      }
+
+      // Radial bloom dots scattered along the wave
+      if (wi <= 1) {
+        const glowPulse = 0.18 + 0.09 * Math.sin(t * 0.003 + wi);
+        for (let s = 20; s < steps; s += 30) {
+          const pt = pts[s];
+          const cs = Math.abs(Math.sin((s / steps) * Math.PI + t * 0.002));
+          const r  = Math.round(cs * 192);
+          const g  = Math.round(160 - cs * 130);
+          const b  = Math.round(220 - cs * 9);
+          const rad = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, 55);
+          rad.addColorStop(0,   `rgba(${r},${g},${b},${glowPulse})`);
+          rad.addColorStop(0.5, `rgba(${r},${g},${b},${glowPulse * 0.35})`);
+          rad.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 55, 0, Math.PI * 2);
+          ctx.fillStyle = rad;
+          ctx.fill();
+        }
+      }
+    });
+
+    ctx.restore(); // remove clip
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
 <main>
 
-  <!-- LAB SHOWCASE -->
+  <!-- ── LAB SHOWCASE + TICKER ── -->
   <div class="lab-showcase">
     <div class="lab-showcase-blob"></div>
+
     <div class="lab-showcase-text">
       <span class="lab-showcase-eyebrow">Envisioning the Future</span>
       <h2 class="lab-showcase-heading">The Maurer Lab moved to its newly renovated space!</h2>
       <p class="lab-showcase-body">With eight 11-foot benches, a dedicated tissue culture suite, a microscope room, and a private office, we have plenty of space for discovery in a fun and inclusive environment.</p>
       <a href="join.html" class="btn btn-primary">Join Our Team →</a>
     </div>
-    <div class="lab-photo-grid">
-      <img src="assets/img/Image_20260127_084918_031.jpeg" alt="Tissue culture suite" class="photo-tall">
-      <img src="assets/img/micro-1.jpg" alt="Researcher at microscope" class="photo-wide">
-      <img src="assets/img/unnamed.webp" alt="Lab benches" class="photo-wide">
+
+    <div class="lab-right-col">
+      <div class="lab-ticker-wrap">
+        <div class="lab-ticker-track">
+          <div class="ticker-card"><img src="assets/img/Image_20260127_084917_810.jpeg" alt="Lab overview"></div>
+          <div class="ticker-card no-crop"><img src="assets/img/micro-1.jpg" alt="Researcher at Nikon microscope"></div>
+          <div class="ticker-card"><img src="assets/img/unnamed.webp" alt="Lab benches"></div>
+          <div class="ticker-card"><img src="assets/img/Image_20260127_084918_031.jpeg" alt="Tissue culture suite"></div>
+          <!-- duplicated set for seamless CSS loop -->
+          <div class="ticker-card"><img src="assets/img/Image_20260127_084917_810.jpeg" alt="Lab overview"></div>
+          <div class="ticker-card no-crop"><img src="assets/img/micro-1.jpg" alt="Researcher at Nikon microscope"></div>
+          <div class="ticker-card"><img src="assets/img/unnamed.webp" alt="Lab benches"></div>
+          <div class="ticker-card"><img src="assets/img/Image_20260127_084918_031.jpeg" alt="Tissue culture suite"></div>
+        </div>
+      </div>
+
+      <div class="ticker-dots">
+        <div class="ticker-dot active"></div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-dot"></div>
+      </div>
     </div>
   </div>
 
-  <!-- DIVIDER -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:3rem 0 0;" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="div1a" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c026d3" stop-opacity="0"/><stop offset="25%" stop-color="#c026d3"/><stop offset="75%" stop-color="#0891b2"/><stop offset="100%" stop-color="#0891b2" stop-opacity="0"/></linearGradient>
-      <linearGradient id="div1b" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e879f9" stop-opacity="0"/><stop offset="35%" stop-color="#e879f9"/><stop offset="65%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
-    </defs>
-    <line x1="0"   y1="62" x2="230" y2="6"  stroke="#c026d3" stroke-width="1.2" opacity="0.5"/>
-    <line x1="0"   y1="70" x2="195" y2="18" stroke="#e879f9" stroke-width="0.8" opacity="0.35"/>
-    <line x1="1200" y1="62" x2="970" y2="6"  stroke="#0891b2" stroke-width="1.2" opacity="0.5"/>
-    <line x1="1200" y1="70" x2="1005" y2="18" stroke="#22d3ee" stroke-width="0.8" opacity="0.35"/>
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#div1a)" stroke-width="2"/>
-    <path d="M0 42 Q150 25 300 42 Q450 59 600 42 Q750 25 900 42 Q1050 59 1200 42" fill="none" stroke="url(#div1b)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M0 28 Q150 11 300 28 Q450 45 600 28 Q750 11 900 28 Q1050 45 1200 28" fill="none" stroke="url(#div1b)" stroke-width="1" opacity="0.5"/>
-    <path d="M0 35 Q150 18 300 35 Q450 52 600 35 Q750 18 900 35 Q1050 52 1200 35" fill="none" stroke="url(#div1b)" stroke-width="3" opacity="0">
-      <animate attributeName="opacity" values="0;0.4;0" dur="2.8s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;3.5;1" dur="2.8s" repeatCount="indefinite"/>
-    </path>
-  </svg>
+  <div class="periodic-grid">
 
-  <!-- RESEARCH PILLARS -->
-  <div class="section-header">
-    <span class="section-tag">Research Focus</span>
-    <div class="section-rule"></div>
+    <a href="research.html" class="periodic-card periodic-card--accent-m">
+      <div class="pc-number">01</div>
+      <div class="pc-arrow">↗</div>
+      <div class="pc-symbol">Re</div>
+      <div class="pc-name">Research</div>
+      <div class="pc-desc">AAV vector biology &amp; gene therapy mechanisms</div>
+    </a>
+
+    <a href="people.html" class="periodic-card periodic-card--accent-c">
+      <div class="pc-number">02</div>
+      <div class="pc-arrow">↗</div>
+      <div class="pc-symbol">P</div>
+      <div class="pc-name">People</div>
+      <div class="pc-desc">Current &amp; former lab members</div>
+    </a>
+
+    <a href="join.html" class="periodic-card periodic-card--accent-m">
+      <div class="pc-number">03</div>
+      <div class="pc-arrow">↗</div>
+      <div class="pc-symbol">C</div>
+      <div class="pc-name">Careers</div>
+      <div class="pc-desc">Open positions in the Maurer Lab</div>
+    </a>
+
+    <a href="contact.html" class="periodic-card periodic-card--accent-c">
+      <div class="pc-number">04</div>
+      <div class="pc-arrow">↗</div>
+      <div class="pc-symbol">Co</div>
+      <div class="pc-name">Contact</div>
+      <div class="pc-desc">Connect with us at U-M</div>
+    </a>
+
   </div>
 
-  <div class="pillar-grid">
-    <div class="pillar">
-      <span class="pillar-icon">Production</span>
-      <h3 class="pillar-title">Capsid Assembly</h3>
-      <p class="pillar-body">We use light and electron microscopy under genetic and pharmacological perturbations to understand the vector-host interactions critical for capsid assembly — the keys to producing enough rAAV to meet patient need.</p>
-    </div>
-    <div class="pillar">
-      <span class="pillar-icon" style="color:var(--accent-c);">Persistence</span>
-      <h3 class="pillar-title">Gene Silencing</h3>
-      <p class="pillar-body">We use microscopy and proteomic approaches to understand how the host cell processes and regulates virally delivered genes — the keys to ensuring therapeutic transgenes are not silenced or eliminated over time.</p>
-    </div>
-    <div class="pillar">
-      <span class="pillar-icon">Payload</span>
-      <h3 class="pillar-title">DNA Concatenation</h3>
-      <p class="pillar-body">As part of the FNIH Bespoke Gene Therapy Consortium, we use genetic and pharmacological screens to identify host factors of concatenation — enabling much larger genes to be reconstituted in target tissues.</p>
-    </div>
-  </div>
-
-  <!-- DIVIDER 2 -->
-  <svg class="svg-rule" width="100%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="margin:3rem 0 0;" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="div2a" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0891b2" stop-opacity="0"/><stop offset="25%" stop-color="#0891b2"/><stop offset="75%" stop-color="#c026d3"/><stop offset="100%" stop-color="#c026d3" stop-opacity="0"/></linearGradient>
-      <linearGradient id="div2b" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee" stop-opacity="0"/><stop offset="35%" stop-color="#22d3ee"/><stop offset="65%" stop-color="#e879f9"/><stop offset="100%" stop-color="#e879f9" stop-opacity="0"/></linearGradient>
-    </defs>
-    <line x1="0"    y1="65" x2="240" y2="8"  stroke="#22d3ee" stroke-width="1.2" opacity="0.5"/>
-    <line x1="0"    y1="70" x2="200" y2="22" stroke="#0891b2" stroke-width="0.8" opacity="0.35"/>
-    <line x1="1200" y1="65" x2="960" y2="8"  stroke="#e879f9" stroke-width="1.2" opacity="0.5"/>
-    <line x1="1200" y1="70" x2="1000" y2="22" stroke="#c026d3" stroke-width="0.8" opacity="0.35"/>
-    <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35" fill="none" stroke="url(#div2a)" stroke-width="2"/>
-    <path d="M0 42 C100 25,200 59,300 42 C400 25,500 59,600 42 C700 25,800 59,900 42 C1000 25,1100 59,1200 42" fill="none" stroke="url(#div2b)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M0 28 C100 11,200 45,300 28 C400 11,500 45,600 28 C700 11,800 45,900 28 C1000 11,1100 45,1200 28" fill="none" stroke="url(#div2b)" stroke-width="1" opacity="0.5"/>
-    <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35" fill="none" stroke="url(#div2b)" stroke-width="3" opacity="0">
-      <animate attributeName="opacity" values="0;0.4;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;3.5;1" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
-    </path>
-  </svg>
-
-  <!-- NEWS -->
-  <div class="section-header">
-    <span class="section-tag cyan">Lab News</span>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="news-grid">
-    <div class="news-card">
-      <span class="news-date">January 2026</span>
-      <h3 class="news-title">The Maurer Lab moved to its newly renovated space!</h3>
-      <p class="news-body">With eight 11-foot benches, a dedicated tissue culture suite, a microscope room, and a private office, we have plenty of space for discovery in a fun and inclusive environment.</p>
-    </div>
-    <div class="news-card">
-      <span class="news-date">2025</span>
-      <h3 class="news-title">Featured Article in Nature Communications</h3>
-      <p class="news-body">Double-Strand Break Repair Pathways Differentially Affect Processing and Transduction by Dual AAV Vectors.</p>
-      <a href="https://www.nature.com/articles/s41467-025-56738-5" target="_blank" class="news-link">Read the paper →</a>
-    </div>
-    <div class="news-card">
-      <span class="news-date">2025</span>
-      <h3 class="news-title">Welcome to our new lab members!</h3>
-      <p class="news-body">We're excited to welcome Ru Xiao as Lab Manager and Senior Scientist, and John Smolka as our new Postdoctoral Researcher.</p>
-      <a href="people.html" class="news-link">Meet the team →</a>
-    </div>
+  <!-- ── SYNTHWAVE SECTION DIVIDER ── -->
+  <div class="synthwave-divider" style="margin-bottom: 2.5rem;">
+  <div class="synthwave-divider">
+    <svg viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sw2a" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stop-color="rgba(8,145,178,0)"/>
+          <stop offset="20%"  stop-color="rgba(8,145,178,0.9)"/>
+          <stop offset="50%"  stop-color="rgba(192,38,211,0.9)"/>
+          <stop offset="80%"  stop-color="rgba(192,38,211,0.9)"/>
+          <stop offset="100%" stop-color="rgba(192,38,211,0)"/>
+        </linearGradient>
+        <linearGradient id="sw2b" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stop-color="rgba(34,211,238,0)"/>
+          <stop offset="20%"  stop-color="rgba(34,211,238,0.7)"/>
+          <stop offset="50%"  stop-color="rgba(232,121,249,0.7)"/>
+          <stop offset="80%"  stop-color="rgba(232,121,249,0.7)"/>
+          <stop offset="100%" stop-color="rgba(232,121,249,0)"/>
+        </linearGradient>
+      </defs>
+      <line x1="0"    y1="65" x2="240"  y2="8"  stroke="#22d3ee" stroke-width="1.2" opacity="0.5"/>
+      <line x1="0"    y1="70" x2="200"  y2="22" stroke="#0891b2" stroke-width="0.8" opacity="0.35"/>
+      <line x1="1200" y1="65" x2="960"  y2="8"  stroke="#e879f9" stroke-width="1.2" opacity="0.5"/>
+      <line x1="1200" y1="70" x2="1000" y2="22" stroke="#c026d3" stroke-width="0.8" opacity="0.35"/>
+      <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35"
+            fill="none" stroke="url(#sw2a)" stroke-width="2.2"/>
+      <path d="M0 42 C100 25,200 59,300 42 C400 25,500 59,600 42 C700 25,800 59,900 42 C1000 25,1100 59,1200 42"
+            fill="none" stroke="url(#sw2b)" stroke-width="1.4" opacity="0.7"/>
+      <path d="M0 28 C100 11,200 45,300 28 C400 11,500 45,600 28 C700 11,800 45,900 28 C1000 11,1100 45,1200 28"
+            fill="none" stroke="url(#sw2b)" stroke-width="1" opacity="0.5"/>
+      <path d="M0 35 C100 18,200 52,300 35 C400 18,500 52,600 35 C700 18,800 52,900 35 C1000 18,1100 52,1200 35"
+            fill="none" stroke="url(#sw2b)" stroke-width="1" opacity="0">
+        <animate attributeName="opacity"      values="0;0.6;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="1;5;1"   dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+      </path>
+    </svg>
   </div>
 
 </main>
 
-<footer>
-  <span class="footer-logo">Maurer Lab</span>
-  <span>Room 4217 · 930 N. University Ave. · Ann Arbor, MI 48109</span>
-  <a href="/cdn-cgi/l/email-protection#b9d8dad4d8cccbdccbf9ccd4d0dad197dcddcc"><span cla
+<!-- ── LAB NEWS ── -->
+<section class="news-section">
+  <div class="news-inner">
+    <div class="news-section-header">
+      <div>
+        <span class="news-section-eyebrow">Latest Updates</span>
+        <h2 class="news-section-title">Lab News</h2>
+      </div>
+      <span class="news-item-count">7 updates</span>
+    </div>
+
+    <div class="news-feed" id="newsFeed">
+
+      <a href="#" class="news-item news-item--featured">
+        <div class="news-item-date">
+          <span class="news-item-month">Jan</span>
+          <span class="news-item-day">15</span>
+          <span class="news-item-year">2026</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Happy birthday to the Maurer Lab! Celebrating one year of discovery and collaboration.</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item">
+        <div class="news-item-date">
+          <span class="news-item-month">Jan</span>
+          <span class="news-item-day">05</span>
+          <span class="news-item-year">2026</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Hudson graduates with his BS in MCDB and joins the Maurer Lab as a Research Assistant! Man, can that kid clone!</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item">
+        <div class="news-item-date">
+          <span class="news-item-month">Jan</span>
+          <span class="news-item-day">01</span>
+          <span class="news-item-year">2026</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Welcome Winter 2026 Rotation Students Brooke Jewell (Biophysics) and Sarah Syed (MSTP)!</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item">
+        <div class="news-item-date">
+          <span class="news-item-month">Dec</span>
+          <span class="news-item-day">17</span>
+          <span class="news-item-year">2025</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Moved into the new space! The lab has officially settled into our new home.</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item news-collapsed">
+        <div class="news-item-date">
+          <span class="news-item-month">Nov</span>
+          <span class="news-item-day">14</span>
+          <span class="news-item-year">2025</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Uchenna clears Checkpoint 2! Congratulations on this important milestone.</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item news-collapsed">
+        <div class="news-item-date">
+          <span class="news-item-month">Nov</span>
+          <span class="news-item-day">01</span>
+          <span class="news-item-year">2025</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">John Smolka, PhD joins the Maurer Lab! Welcome to the team.</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+      <a href="#" class="news-item news-collapsed">
+        <div class="news-item-date">
+          <span class="news-item-month">Aug</span>
+          <span class="news-item-day">01</span>
+          <span class="news-item-year">2025</span>
+        </div>
+        <div class="news-item-body">
+          <p class="news-item-text">Uchenna Nwaege was awarded the MiMoB training grant! Congratulations on this prestigious achievement.</p>
+        </div>
+        <div class="news-item-chevron">&#8594;</div>
+      </a>
+
+    </div>
+
+    <div class="news-expand-row">
+      <button class="news-expand-btn" id="newsExpandBtn">
+        <span class="btn-label">Show More</span>
+        <span class="btn-arrow">&#8594;</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bg">
+    <img src="assets/img/footer-lights-darker.jpg" alt="" class="footer-bg-img">
+    <div class="footer-bg-overlay"></div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab" class="footer-logo-img">
+      <img src="assets/img/biophysics-logo.webp" alt="U-M LSA Biophysics" class="footer-umich-img">
+    </div>
+    <nav class="footer-nav">
+      <span class="footer-nav-label">Maurer Lab</span>
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="people.html">People</a>
+      <a href="join.html">Join Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-address">
+      <span class="footer-address-label">Ann Arbor, Michigan</span>
+      <p>Room 4217 &middot; 930 N. University Ave.</p>
+      <p>Ann Arbor, MI 48109-1055</p>
+      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Maurer Lab &middot; University of Michigan</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var btn = document.getElementById('newsExpandBtn');
+  var items = document.querySelectorAll('.news-collapsed');
+  var expanded = false;
+
+  // Hide collapsed items on load
+  items.forEach(function(el) { el.style.display = 'none'; });
+
+  btn.addEventListener('click', function() {
+    expanded = !expanded;
+    items.forEach(function(el) {
+      el.style.display = expanded ? 'flex' : 'none';
+    });
+    btn.querySelector('.btn-label').textContent = expanded ? 'Show Less' : 'Show More';
+    btn.querySelector('.btn-arrow').style.transform = expanded ? 'rotate(90deg)' : '';
+    if (!expanded) {
+      document.querySelector('.news-section').scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  });
+})();
+</script>
+</body>
+</html>
