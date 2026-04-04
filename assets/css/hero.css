@@ -95,3 +95,7 @@
   .hero-title .line1 { font-size: 2.6rem; }
   .hero-title .line2 { font-size: 1.9rem; }
 }
+
+@media (max-width: 768px) {
+  .hero-bg-img { opacity: 0.07; }
+}

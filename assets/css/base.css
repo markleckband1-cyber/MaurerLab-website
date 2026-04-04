@@ -204,7 +204,6 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
   .footer-bottom { padding: 1rem 1.5rem 1.5rem; }
 }
 @media (max-width: 600px) {
-  .nav-links { display: none; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-brand { flex-direction: column; align-items: flex-start; }
 }
