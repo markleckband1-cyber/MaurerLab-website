@@ -25,6 +25,7 @@
     <li><a href="join.html">Join Us</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -507,6 +508,26 @@
   onScroll();
 })();
 </script>
+
+
+// Mobile nav hamburger
+(function() {
+  var btn = document.getElementById('navHamburger');
+  var links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+  btn.addEventListener('click', function() {
+    var open = btn.classList.toggle('open');
+    links.classList.toggle('mobile-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      links.classList.remove('mobile-open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 
 </body>
 </html>

@@ -76,6 +76,63 @@
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 500px) { .nav-links { display: none; } .footer-inner { grid-template-columns: 1fr; } }
+
+/* ── MOBILE NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block; height: 2px; width: 100%;
+  background: rgba(255,255,255,0.8);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  header > nav, body > nav { padding: 0.6rem 1.5rem; }
+  header > nav.nav-scrolled, body > nav.nav-scrolled { padding: 0.35rem 1.5rem; }
+  .nav-logo img { height: 58px; }
+  .nav-scrolled .nav-logo img { height: 42px; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,4,18,0.97);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .nav-links.mobile-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-links li { list-style: none; }
+  .nav-links a {
+    font-size: 1.2rem !important;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.7) !important;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: #e879f9 !important;
+  }
+}
   </style>
 </head>
 <body>
@@ -124,7 +181,7 @@
         <span class="contact-block-label">Lab Location</span>
         <p>Room 4217 &middot; 930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
       </div>
-      <a href="mailto:acmaurer@umich.edu" class="contact-email-cta">acmaurer@umich.edu &rarr;</a>
+      <a href="/cdn-cgi/l/email-protection#28494b45495d5a4d5a685d45414b40064d4c5d" class="contact-email-cta"><span class="__cf_email__" data-cfemail="3352505e524641564173465e5a505b1d565746">[email&#160;protected]</span> &rarr;</a>
       <p class="contact-note">
         <strong>Please email to inquire about open positions.</strong> Note: you must already be accepted to the University of Michigan to apply for an undergraduate or graduate student position. See the <a href="join.html">Join Us</a> page for currently listed opportunities.
       </p>
@@ -266,7 +323,7 @@
       <span class="footer-address-label">Ann Arbor, Michigan</span>
       <p>Room 4217 &middot; 930 N. University Ave.</p>
       <p>Ann Arbor, MI 48109-1055</p>
-      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
+      <a href="/cdn-cgi/l/email-protection#d7b6b4bab6a2a5b2a597a2babeb4bff9b2b3a2"><span class="__cf_email__" data-cfemail="84e5e7e9e5f1f6e1f6c4f1e9ede7ecaae1e0f1">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -274,7 +331,27 @@
   </div>
 </footer>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
+// Mobile nav hamburger
+(function() {
+  var btn = document.getElementById('navHamburger');
+  var links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+  btn.addEventListener('click', function() {
+    var open = btn.classList.toggle('open');
+    links.classList.toggle('mobile-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      links.classList.remove('mobile-open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script><script>
 (function() {
   const canvas = document.getElementById('contactHeroCanvas');
   const ctx    = canvas.getContext('2d');
@@ -322,19 +399,4 @@
     const mx=ax0+adx*0.5,my=ay0+ady*0.5,aR=radiusX*(1.6+pulse*0.3);
     const am=ctx.createRadialGradient(mx,my,0,mx,my,aR);
     am.addColorStop(0,`rgba(192,38,211,${0.07*pulse2})`);am.addColorStop(0.5,`rgba(8,145,178,${0.04*pulse})`);am.addColorStop(1,`rgba(8,145,178,0)`);
-    ctx.beginPath();ctx.ellipse(mx,my,aR,aR*0.8,Math.atan2(ady,adx),0,Math.PI*2);ctx.fillStyle=am;ctx.fill();
-    ctx.restore();
-  }
-
-  function draw(){ctx.clearRect(0,0,W,H);drawHelix('left');drawHelix('right');t++;requestAnimationFrame(draw);}
-  draw();
-})();
-
-(function(){
-  var nav=document.querySelector('nav');
-  function s(){nav.classList.toggle('nav-scrolled',window.scrollY>40);}
-  window.addEventListener('scroll',s,{passive:true}); s();
-})();
-</script>
-</body>
-</html>
+    ctx.beginPath();ctx.ellipse(mx,my,aR,aR*0.8,Math.atan2(ady,adx),0,Math.PI*2);ctx.fillStyle=am;ctx.fill

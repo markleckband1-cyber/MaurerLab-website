@@ -122,6 +122,63 @@
       .nav-links { display: none; }
       .footer-inner { grid-template-columns: 1fr; }
     }
+
+/* ── MOBILE NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block; height: 2px; width: 100%;
+  background: rgba(255,255,255,0.8);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  header > nav, body > nav { padding: 0.6rem 1.5rem; }
+  header > nav.nav-scrolled, body > nav.nav-scrolled { padding: 0.35rem 1.5rem; }
+  .nav-logo img { height: 58px; }
+  .nav-scrolled .nav-logo img { height: 42px; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,4,18,0.97);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .nav-links.mobile-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-links li { list-style: none; }
+  .nav-links a {
+    font-size: 1.2rem !important;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.7) !important;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: #e879f9 !important;
+  }
+}
   </style>
 </head>
 <body>
@@ -256,8 +313,8 @@
       <h2>Come do science <em>with us</em></h2>
       <p>The skills Anna mastered waiting tables and bartending for 14 years are the same skills that have made her a successful scientist. Anna provides intentional mentorship in a fun and inclusive environment, welcoming trainees at all levels of experience.</p>
       <p>We are committed to increasing diversity among biomedical researchers by raising awareness about research careers among community college students and mentoring them through transfer to a four-year institution to pursue STEM degrees.</p>
-      <a href="mailto:acmaurer@umich.edu" class="join-cta-email">
-        acmaurer@umich.edu → Inquire about opportunities
+      <a href="/cdn-cgi/l/email-protection#6d0c0e000c181f081f2d1800040e0543080918" class="join-cta-email">
+        <span class="__cf_email__" data-cfemail="2243414f435750475062574f4b414a0c474657">[email&#160;protected]</span> → Inquire about opportunities
       </a>
     </div>
     <div class="join-photo-wrap">
@@ -314,28 +371,28 @@
             <p class="pos-item-title">Graduate Students</p>
             <span class="pos-item-sub">U-M Biophysics &amp; PIBS · PhD Program</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#e687858b8793948394a6938b8f858ec8838293" class="pos-apply-btn">Apply →</a>
         </div>
         <div class="position-item">
           <div class="pos-item-info">
             <p class="pos-item-title">Postdoctoral Researchers</p>
             <span class="pos-item-sub">University of Michigan · Ann Arbor</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#2140424c405453445361544c4842490f444554" class="pos-apply-btn">Apply →</a>
         </div>
         <div class="position-item">
           <div class="pos-item-info">
             <p class="pos-item-title">Undergraduate Students</p>
             <span class="pos-item-sub">UROP &amp; Independent Study</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#c7a6a4aaa6b2b5a2b587b2aaaea4afe9a2a3b2" class="pos-apply-btn">Apply →</a>
         </div>
         <div class="position-item">
           <div class="pos-item-info">
             <p class="pos-item-title">Community College Students</p>
             <span class="pos-item-sub">Transfer Pipeline Program</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#98f9fbf5f9edeafdead8edf5f1fbf0b6fdfced" class="pos-apply-btn">Apply →</a>
         </div>
       </div>
     </div>
@@ -355,14 +412,14 @@
             <p class="pos-item-title">Postdoctoral Researchers</p>
             <span class="pos-item-sub">Rotation · Ann Arbor, Michigan</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#6203010f031710071022170f0b010a4c070617" class="pos-apply-btn">Apply →</a>
         </div>
         <div class="position-item">
           <div class="pos-item-info">
             <p class="pos-item-title">Graduate Students</p>
             <span class="pos-item-sub">Rotation · U-M Biophysics &amp; PIBS</span>
           </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+          <a href="/cdn-cgi/l/email-protection#09686a64687c7b6c7b497c64606a61276c6d7c" class="pos-apply-btn">Apply →</a>
         </div>
       </div>
     </div>
@@ -393,7 +450,7 @@
       <span class="footer-address-label">Ann Arbor, Michigan</span>
       <p>Room 4217 &middot; 930 N. University Ave.</p>
       <p>Ann Arbor, MI 48109-1055</p>
-      <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
+      <a href="/cdn-cgi/l/email-protection#accdcfc1cdd9dec9deecd9c1c5cfc482c9c8d9"><span class="__cf_email__" data-cfemail="c0a1a3ada1b5b2a5b280b5ada9a3a8eea5a4b5">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -401,7 +458,27 @@
   </div>
 </footer>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
+// Mobile nav hamburger
+(function() {
+  var btn = document.getElementById('navHamburger');
+  var links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+  btn.addEventListener('click', function() {
+    var open = btn.classList.toggle('open');
+    links.classList.toggle('mobile-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      links.classList.remove('mobile-open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script><script>
 // Nav shrink
 (function() {
   var nav = document.querySelector('nav');
@@ -417,26 +494,4 @@ document.querySelectorAll('.pos-group-btn').forEach(function(btn) {
     var body = document.getElementById(groupId);
     var isOpen = btn.classList.contains('open');
     btn.classList.toggle('open', !isOpen);
-    body.classList.toggle('open', !isOpen);
-  });
-});
-
-// Tab filter
-document.querySelectorAll('.pos-tab').forEach(function(tab) {
-  tab.addEventListener('click', function() {
-    document.querySelectorAll('.pos-tab').forEach(function(t) { t.classList.remove('active'); });
-    tab.classList.add('active');
-    var filter = tab.dataset.filter;
-    document.querySelectorAll('.position-group').forEach(function(group) {
-      if (filter === 'all' || group.dataset.category === filter) {
-        group.style.display = '';
-      } else {
-        group.style.display = 'none';
-      }
-    });
-  });
-});
-</script>
-
-</body>
-</html>
+    bo
