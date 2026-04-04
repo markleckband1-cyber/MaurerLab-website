@@ -389,17 +389,9 @@
     <rect width="50" height="320" fill="url(#fade-l)"/>
     <rect x="1390" width="50" height="320" fill="url(#fade-r)"/>
 
-    <circle cx="720" cy="160" r="175" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.12"/>
-    <circle cx="720" cy="160" r="120" fill="none" stroke="#8b5cf6" stroke-width="0.4" opacity="0.09"/>
-    <circle cx="720" cy="160" r="65"  fill="none" stroke="#0891b2" stroke-width="0.4" opacity="0.09"/>
-    <circle cx="720" cy="160" r="65" fill="none" stroke="#e879f9" stroke-width="0.7" opacity="0">
-      <animate attributeName="r"       values="65;170" dur="4s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.28;0" dur="4s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="720" cy="160" r="65" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0">
-      <animate attributeName="r"       values="65;170" dur="4s" begin="2s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.28;0" dur="4s" begin="2s" repeatCount="indefinite"/>
-    </circle>
+    <circle cx="720" cy="160" r="175" fill="none" stroke="#c026d3" stroke-width="0.4" opacity="0.06"/>
+    <circle cx="720" cy="160" r="120" fill="none" stroke="#8b5cf6" stroke-width="0.3" opacity="0.05"/>
+    <circle cx="720" cy="160" r="65"  fill="none" stroke="#0891b2" stroke-width="0.3" opacity="0.05"/>
   </svg>
   <div class="p-hero-inner">
     <span class="p-eyebrow">The Maurer Lab · University of Michigan</span>
@@ -696,6 +688,24 @@ document.querySelectorAll('.bio-btn').forEach(function(btn) {
 </script>
 
 
+<script>
+(function() {
+  var nav = document.querySelector('nav');
+  function onScroll() { nav.classList.toggle('nav-scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+document.querySelectorAll('.bio-btn').forEach(function(btn) {
+  var wrap = btn.previousElementSibling;
+  if (!wrap || !wrap.classList.contains('bio-wrap')) { btn.classList.add('hidden'); return; }
+  if (!wrap.querySelector('.bio-more')) { btn.classList.add('hidden'); return; }
+  btn.addEventListener('click', function() {
+    var open = wrap.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('.btn-label').textContent = open ? 'Show less' : 'Read more';
+  });
+});
+</script>
 <script>
 (function() {
   var btn = document.getElementById('navHamburger');
