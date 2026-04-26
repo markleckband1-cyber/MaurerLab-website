@@ -204,66 +204,128 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
 /* ── RESEARCH PILLARS ── */
 .research-pillars {
   max-width: 1100px; margin: 0 auto; padding: 0 3rem 4rem;
+  background: linear-gradient(180deg, rgba(10,6,18,0) 0%, rgba(10,6,18,0.04) 100%);
 }
 .research-pillars-header {
-  text-align: center; margin-bottom: 3rem;
+  text-align: left; margin-bottom: 2rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.research-pillars-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #8b5cf6; display: block;
 }
 .research-pillars-title {
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  font-weight: 300; color: #18151f; margin: 0;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 300; letter-spacing: -0.01em; margin: 0;
+  color: #fff;
+  background: linear-gradient(135deg, #e879f9 0%, #8b5cf6 40%, #22d3ee 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .pillar-cards {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
 }
 .pillar-card {
   position: relative;
-  background: #0a0612;
-  padding: 2.5rem 2rem 2.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(139,92,246,0.18);
+  background: linear-gradient(160deg, #0f0820 0%, #0a0612 60%, #060412 100%);
+  padding: 2.5rem 2rem 2.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(139,92,246,0.16);
   overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: default;
+  transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
 }
+/* card 1 — magenta */
+.pillar-card:nth-child(1) { --c1: #c026d3; --c2: #8b5cf6; --cr: 192,38,211; --cg: 139,92,246; }
+/* card 2 — violet */
+.pillar-card:nth-child(2) { --c1: #8b5cf6; --c2: #0891b2; --cr: 139,92,246; --cg: 8,145,178; }
+/* card 3 — cyan */
+.pillar-card:nth-child(3) { --c1: #0891b2; --c2: #22d3ee; --cr: 8,145,178; --cg: 34,211,238; }
+
 .pillar-card:hover {
-  border-color: rgba(192,38,211,0.45);
-  box-shadow: 0 0 32px rgba(192,38,211,0.10), inset 0 0 40px rgba(139,92,246,0.05);
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(var(--cr), 0.5);
+  box-shadow:
+    0 20px 60px rgba(var(--cr), 0.15),
+    0 8px 24px rgba(var(--cr), 0.10),
+    0 0 0 1px rgba(var(--cr), 0.12),
+    inset 0 1px 0 rgba(var(--cr), 0.15);
 }
-.pillar-card:nth-child(2):hover {
-  border-color: rgba(139,92,246,0.5);
-  box-shadow: 0 0 32px rgba(139,92,246,0.12), inset 0 0 40px rgba(8,145,178,0.05);
-}
-.pillar-card:nth-child(3):hover {
-  border-color: rgba(8,145,178,0.5);
-  box-shadow: 0 0 32px rgba(8,145,178,0.12), inset 0 0 40px rgba(34,211,238,0.05);
-}
-/* gradient accent line at top */
+
+/* gradient line top */
 .pillar-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  transition: opacity 0.3s; opacity: 0.5;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  opacity: 0.45; transition: opacity 0.35s ease, height 0.35s ease;
 }
-.pillar-card:hover::before { opacity: 1; }
-.pillar-card:nth-child(1)::before { background: linear-gradient(90deg, #c026d3, #8b5cf6); }
-.pillar-card:nth-child(2)::before { background: linear-gradient(90deg, #8b5cf6, #0891b2); }
-.pillar-card:nth-child(3)::before { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+.pillar-card:hover::before { opacity: 1; height: 2px; }
+
+/* ambient glow blob behind icon */
+.pillar-card::after {
+  content: ''; position: absolute;
+  top: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(var(--cr), 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0; transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.pillar-card:hover::after { opacity: 1; }
+
+/* shimmer scan line on hover */
+.pillar-card .pillar-shimmer {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(var(--cr), 0.04) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.pillar-card:hover .pillar-shimmer { transform: translateX(100%); }
+
 .pillar-icon {
-  width: 44px; height: 44px; margin-bottom: 1.5rem;
-  display: block; opacity: 0.75;
-  transition: opacity 0.3s;
+  width: 46px; height: 46px; margin-bottom: 1.6rem;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(var(--cr), 0));
+  transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.34,1.4,0.64,1);
 }
-.pillar-card:hover .pillar-icon { opacity: 1; }
+.pillar-card:hover .pillar-icon {
+  filter: drop-shadow(0 0 10px rgba(var(--cr), 0.6));
+  transform: scale(1.12) translateY(-2px);
+}
+
 .pillar-title {
-  font-size: 1.25rem; font-weight: 400; letter-spacing: 0.1em;
-  text-transform: uppercase; margin: 0 0 1.1rem; line-height: 1.1;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; margin: 0 0 1rem; line-height: 1;
+  color: var(--c1);
+  transition: color 0.3s;
 }
-.pillar-card:nth-child(1) .pillar-title { color: #e879f9; }
-.pillar-card:nth-child(2) .pillar-title { color: #a78bfa; }
-.pillar-card:nth-child(3) .pillar-title { color: #22d3ee; }
+.pillar-card:hover .pillar-title { color: var(--c2); }
+
 .pillar-body {
-  font-size: 0.875rem; color: rgba(255,255,255,0.52);
-  line-height: 1.85; margin: 0;
+  font-size: 0.875rem; color: rgba(255,255,255,0.45);
+  line-height: 1.88; margin: 0;
+  transition: color 0.35s ease;
 }
-.pillar-card:hover .pillar-body { color: rgba(255,255,255,0.70); }
+.pillar-card:hover .pillar-body { color: rgba(255,255,255,0.72); }
+
+/* subtle grid lines inside card */
+.pillar-card .pillar-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(var(--cr), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--cr), 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.pillar-card:hover .pillar-grid { opacity: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
@@ -850,11 +912,14 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
   <!-- ── THREE AREAS OF FOCUS ── -->
   <section class="research-pillars">
     <div class="research-pillars-header">
+      <span class="research-pillars-eyebrow">Research Areas</span>
       <h2 class="research-pillars-title">Three Areas of Focus</h2>
     </div>
     <div class="pillar-cards">
 
       <div class="pillar-card">
+        <div class="pillar-grid"></div>
+        <div class="pillar-shimmer"></div>
         <!-- Icon: capsid shell / production — hexagonal protein cage -->
         <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="22,4 36,12 36,28 22,36 8,28 8,12" stroke="#c026d3" stroke-width="1.4" fill="rgba(192,38,211,0.06)"/>
@@ -873,6 +938,8 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
       </div>
 
       <div class="pillar-card">
+        <div class="pillar-grid"></div>
+        <div class="pillar-shimmer"></div>
         <!-- Icon: persistence — DNA double helix -->
         <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14,4 C20,10 24,10 30,4" stroke="#8b5cf6" stroke-width="1.3" fill="none"/>
@@ -896,6 +963,8 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
       </div>
 
       <div class="pillar-card">
+        <div class="pillar-grid"></div>
+        <div class="pillar-shimmer"></div>
         <!-- Icon: payload — DNA strands joining / concatenation -->
         <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="4"  y="18" width="14" height="8" rx="4" stroke="#22d3ee" stroke-width="1.3" fill="rgba(8,145,178,0.07)"/>
