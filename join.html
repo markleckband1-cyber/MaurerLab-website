@@ -303,8 +303,13 @@
       <p>The skills Anna mastered waiting tables and bartending for 14 years are the same skills that have made her a successful scientist. Anna provides intentional mentorship in a fun and inclusive environment, welcoming trainees at all levels of experience.</p>
       <a href="mailto:acmaurer@umich.edu" class="join-cta-email">acmaurer@umich.edu → Inquire about opportunities</a>
     </div>
-    <div class="join-photo-wrap">
+    <div class="join-photo-wrap" onclick="document.getElementById('photo-lightbox').style.display='flex'" style="cursor:zoom-in;">
       <img src="assets/img/Group1__1_of_1_-sharpen-face-lighting.jpg" alt="Maurer Lab team in the lab" class="join-photo">
+    </div>
+
+    <!-- Lightbox -->
+    <div id="photo-lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;">
+      <img src="assets/img/Group1__1_of_1_-sharpen-face-lighting.jpg" style="max-width:92vw;max-height:92vh;border-radius:6px;box-shadow:0 0 60px rgba(0,0,0,0.8);">
     </div>
   </section>
 
