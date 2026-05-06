@@ -415,9 +415,10 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
 }
 
 /* ── INTRO ── */
+.research-intro-graphic { display: flex; align-items: center; justify-content: center; }
 .research-intro {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
   margin: 4rem 0;
@@ -465,11 +466,8 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
   align-items: center;
   margin: 2rem 0 4rem;
 }
-.research-imaging-media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
+.research-imaging-media { display: block; }
+.research-imaging-media .gif-wrap { max-width: 480px; margin: 0 auto; }
 .gif-wrap {
   display: flex; flex-direction: column; gap: 0;
   border-radius: 8px; overflow: hidden;
@@ -603,7 +601,8 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .research-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .research-intro-graphic { display: flex; align-items: center; justify-content: center; }
+.research-intro { grid-template-columns: 1fr; gap: 2rem; }
   .research-imaging { grid-template-columns: 1fr; gap: 2.5rem; }
   .pillar-cards { grid-template-columns: 1fr; gap: 0; }
   .pillar-card:first-child { border-radius: 8px 8px 0 0; border-right: 1px solid rgba(192,38,211,0.2); border-bottom: none; }
@@ -611,7 +610,7 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
   .pub-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .research-imaging-media { grid-template-columns: 1fr; }
+  .research-imaging-media { display: block; }
 }
 
 /* ── RESEARCH OVERVIEW FIGURE ── */
@@ -777,23 +776,92 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
       <span class="research-section-eyebrow">Background</span>
       <h2 class="research-intro-title">What is Gene Therapy?</h2>
       <p>Some genetic diseases can be cured by replacing a mutated gene with a corrected piece of DNA. In a laboratory setting, natural viruses can be re-engineered into vectors that deliver these corrected genes. Adeno-associated viral (AAV) vectors are the most popular method of in-vivo gene delivery, but success is currently limited to a few diseases.</p>
-      <p>By understanding the biological principles of vector assembly and gene delivery, we hope to enable the safe use of AAV vectors for a broad set of disease applications — keeping these therapies accessible to all patients.</p>
+      <p>By understanding the biological principles of vector assembly and gene delivery, we hope to enable the safe use of AAV vectors for a broad set of disease applications.</p>
     </div>
-    <div class="research-intro-visual">
-      <div class="research-intro-card">
-        <div class="research-intro-stat">
-          <span class="stat-num">AAV</span>
-          <span class="stat-label">Vector Focus</span>
-        </div>
-        <div class="research-intro-stat">
-          <span class="stat-num">3</span>
-          <span class="stat-label">Research Areas</span>
-        </div>
-        <div class="research-intro-stat">
-          <span class="stat-num">FNIH</span>
-          <span class="stat-label">Bespoke Consortium</span>
-        </div>
-      </div>
+    <div class="research-intro-graphic">
+      <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+<defs>
+  <linearGradient id="dna-s1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#e879f9" stop-opacity="0.9"/>
+    <stop offset="40%" stop-color="#c026d3" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="dna-s2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.9"/>
+    <stop offset="40%" stop-color="#0891b2" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="dna-bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#c026d3" stop-opacity="0.04"/>
+    <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.07"/>
+    <stop offset="100%" stop-color="#0891b2" stop-opacity="0.04"/>
+  </linearGradient>
+  <filter id="dna-glow">
+    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="dna-softglow">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="340" height="360" fill="url(#dna-bg)" rx="12"/>
+<path d="M 170.0,18.0 L 176.0,19.6 L 187.7,22.9 L 199.0,26.1 L 209.3,29.3 L 218.4,32.6 L 226.0,35.8 L 231.9,39.1 L 235.9,42.3 L 237.8,45.5 L 237.7,48.8 L 235.4,52.0 L 231.2,55.3 L 225.0,58.5 L 217.2,61.7 L 207.9,65.0 L 197.4,68.2 L 186.1,71.5 L 174.3,74.7 L 162.3,77.9 L 150.6,81.2 L 139.5,84.4 L 129.3,87.7 L 120.4,90.9 L 113.0,94.1 L 107.4,97.4 L 103.7,100.6 L 102.1,103.9 L 102.5,107.1 L 105.1,110.3 L 109.6,113.6 L 116.0,116.8 L 124.1,120.1 L 133.6,123.3 L 144.2,126.5 L 155.6,129.8 L 167.4,133.0 L 179.4,136.3 L 191.0,139.5 L 202.0,142.7 L 212.0,146.0 L 220.7,149.2 L 227.9,152.5 L 233.2,155.7 L 236.6,158.9 L 238.0,162.2 L 237.2,165.4 L 234.4,168.7 L 229.6,171.9 L 222.9,175.1 L 214.6,178.4 L 205.0,181.6 L 194.2,184.9 L 182.7,188.1 L 170.9,191.3 L 158.9,194.6 L 147.4,197.8 L 136.5,201.1 L 126.7,204.3 L 118.2,207.5 L 111.3,210.8 L 106.2,214.0 L 103.0,217.3 L 102.0,220.5 L 103.0,223.7 L 106.2,227.0 L 111.3,230.2 L 118.2,233.5 L 126.7,236.7 L 136.5,239.9 L 147.4,243.2 L 158.9,246.4 L 170.9,249.7 L 182.7,252.9 L 194.2,256.1 L 205.0,259.4 L 214.6,262.6 L 222.9,265.9 L 229.6,269.1 L 234.4,272.3 L 237.2,275.6 L 238.0,278.8 L 236.6,282.1 L 233.2,285.3 L 227.9,288.5 L 220.7,291.8 L 212.0,295.0 L 202.0,298.3 L 191.0,301.5 L 179.4,304.7 L 167.4,308.0 L 155.6,311.2 L 144.2,314.5 L 133.6,317.7 L 124.1,320.9 L 116.0,324.2 L 109.6,327.4 L 105.1,330.7 L 102.5,333.9 L 102.1,337.1 L 103.7,340.4" fill="none" stroke="#c026d3" stroke-width="8" opacity="0.08"/>
+<path d="M 170.0,18.0 L 164.0,19.6 L 152.3,22.9 L 141.0,26.1 L 130.7,29.3 L 121.6,32.6 L 114.0,35.8 L 108.1,39.1 L 104.1,42.3 L 102.2,45.5 L 102.3,48.8 L 104.6,52.0 L 108.8,55.3 L 115.0,58.5 L 122.8,61.7 L 132.1,65.0 L 142.6,68.2 L 153.9,71.5 L 165.7,74.7 L 177.7,77.9 L 189.4,81.2 L 200.5,84.4 L 210.7,87.7 L 219.6,90.9 L 227.0,94.1 L 232.6,97.4 L 236.3,100.6 L 237.9,103.9 L 237.5,107.1 L 234.9,110.3 L 230.4,113.6 L 224.0,116.8 L 215.9,120.1 L 206.4,123.3 L 195.8,126.5 L 184.4,129.8 L 172.6,133.0 L 160.6,136.3 L 149.0,139.5 L 138.0,142.7 L 128.0,146.0 L 119.3,149.2 L 112.1,152.5 L 106.8,155.7 L 103.4,158.9 L 102.0,162.2 L 102.8,165.4 L 105.6,168.7 L 110.4,171.9 L 117.1,175.1 L 125.4,178.4 L 135.0,181.6 L 145.8,184.9 L 157.3,188.1 L 169.1,191.3 L 181.1,194.6 L 192.6,197.8 L 203.5,201.1 L 213.3,204.3 L 221.8,207.5 L 228.7,210.8 L 233.8,214.0 L 237.0,217.3 L 238.0,220.5 L 237.0,223.7 L 233.8,227.0 L 228.7,230.2 L 221.8,233.5 L 213.3,236.7 L 203.5,239.9 L 192.6,243.2 L 181.1,246.4 L 169.1,249.7 L 157.3,252.9 L 145.8,256.1 L 135.0,259.4 L 125.4,262.6 L 117.1,265.9 L 110.4,269.1 L 105.6,272.3 L 102.8,275.6 L 102.0,278.8 L 103.4,282.1 L 106.8,285.3 L 112.1,288.5 L 119.3,291.8 L 128.0,295.0 L 138.0,298.3 L 149.0,301.5 L 160.6,304.7 L 172.6,308.0 L 184.4,311.2 L 195.8,314.5 L 206.4,317.7 L 215.9,320.9 L 224.0,324.2 L 230.4,327.4 L 234.9,330.7 L 237.5,333.9 L 237.9,337.1 L 236.3,340.4" fill="none" stroke="#0891b2" stroke-width="8" opacity="0.08"/>
+<line x1="212.6" y1="30.5" x2="127.4" y2="30.5" stroke="rgb(192,38,211)" stroke-width="1.2" opacity="0.44"/>
+<circle cx="212.6" cy="30.5" r="2.8" fill="rgb(192,38,211)" opacity="0.54"/>
+<circle cx="127.4" cy="30.5" r="2.8" fill="rgb(192,38,211)" opacity="0.54"/>
+<line x1="231.0" y1="55.4" x2="109.0" y2="55.4" stroke="rgb(192,38,211)" stroke-width="1.2" opacity="0.48"/>
+<circle cx="231.0" cy="55.4" r="2.8" fill="rgb(192,38,211)" opacity="0.58"/>
+<circle cx="109.0" cy="55.4" r="2.8" fill="rgb(192,38,211)" opacity="0.58"/>
+<line x1="153.7" y1="80.3" x2="186.3" y2="80.3" stroke="rgb(192,38,211)" stroke-width="1.2" opacity="0.39"/>
+<circle cx="153.7" cy="80.3" r="2.8" fill="rgb(192,38,211)" opacity="0.49"/>
+<circle cx="186.3" cy="80.3" r="2.8" fill="rgb(192,38,211)" opacity="0.49"/>
+<line x1="102.0" y1="105.2" x2="238.0" y2="105.2" stroke="rgb(192,38,211)" stroke-width="1.2" opacity="0.50"/>
+<circle cx="102.0" cy="105.2" r="2.8" fill="rgb(192,38,211)" opacity="0.60"/>
+<circle cx="238.0" cy="105.2" r="2.8" fill="rgb(192,38,211)" opacity="0.60"/>
+<line x1="156.9" y1="130.2" x2="183.1" y2="130.2" stroke="rgb(139,92,246)" stroke-width="1.2" opacity="0.38"/>
+<circle cx="156.9" cy="130.2" r="2.8" fill="rgb(139,92,246)" opacity="0.48"/>
+<circle cx="183.1" cy="130.2" r="2.8" fill="rgb(139,92,246)" opacity="0.48"/>
+<line x1="232.3" y1="155.1" x2="107.7" y2="155.1" stroke="rgb(139,92,246)" stroke-width="1.2" opacity="0.49"/>
+<circle cx="232.3" cy="155.1" r="2.8" fill="rgb(139,92,246)" opacity="0.59"/>
+<circle cx="107.7" cy="155.1" r="2.8" fill="rgb(139,92,246)" opacity="0.59"/>
+<line x1="210.0" y1="180.0" x2="130.0" y2="180.0" stroke="rgb(139,92,246)" stroke-width="1.2" opacity="0.44"/>
+<circle cx="210.0" cy="180.0" r="2.8" fill="rgb(139,92,246)" opacity="0.54"/>
+<circle cx="130.0" cy="180.0" r="2.8" fill="rgb(139,92,246)" opacity="0.54"/>
+<line x1="124.9" y1="204.9" x2="215.1" y2="204.9" stroke="rgb(139,92,246)" stroke-width="1.2" opacity="0.45"/>
+<circle cx="124.9" cy="204.9" r="2.8" fill="rgb(139,92,246)" opacity="0.55"/>
+<circle cx="215.1" cy="204.9" r="2.8" fill="rgb(139,92,246)" opacity="0.55"/>
+<line x1="110.6" y1="229.8" x2="229.4" y2="229.8" stroke="rgb(139,92,246)" stroke-width="1.2" opacity="0.48"/>
+<circle cx="110.6" cy="229.8" r="2.8" fill="rgb(139,92,246)" opacity="0.58"/>
+<circle cx="229.4" cy="229.8" r="2.8" fill="rgb(139,92,246)" opacity="0.58"/>
+<line x1="189.4" y1="254.8" x2="150.6" y2="254.8" stroke="rgb(8,145,178)" stroke-width="1.2" opacity="0.39"/>
+<circle cx="189.4" cy="254.8" r="2.8" fill="rgb(8,145,178)" opacity="0.49"/>
+<circle cx="150.6" cy="254.8" r="2.8" fill="rgb(8,145,178)" opacity="0.49"/>
+<line x1="237.8" y1="279.7" x2="102.2" y2="279.7" stroke="rgb(8,145,178)" stroke-width="1.2" opacity="0.50"/>
+<circle cx="237.8" cy="279.7" r="2.8" fill="rgb(8,145,178)" opacity="0.60"/>
+<circle cx="102.2" cy="279.7" r="2.8" fill="rgb(8,145,178)" opacity="0.60"/>
+<line x1="179.8" y1="304.6" x2="160.2" y2="304.6" stroke="rgb(8,145,178)" stroke-width="1.2" opacity="0.37"/>
+<circle cx="179.8" cy="304.6" r="2.8" fill="rgb(8,145,178)" opacity="0.47"/>
+<circle cx="160.2" cy="304.6" r="2.8" fill="rgb(8,145,178)" opacity="0.47"/>
+<line x1="106.4" y1="329.5" x2="233.6" y2="329.5" stroke="rgb(8,145,178)" stroke-width="1.2" opacity="0.49"/>
+<circle cx="106.4" cy="329.5" r="2.8" fill="rgb(8,145,178)" opacity="0.59"/>
+<circle cx="233.6" cy="329.5" r="2.8" fill="rgb(8,145,178)" opacity="0.59"/>
+<path d="M 170.0,18.0 L 176.0,19.6 L 187.7,22.9 L 199.0,26.1 L 209.3,29.3 L 218.4,32.6 L 226.0,35.8 L 231.9,39.1 L 235.9,42.3 L 237.8,45.5 L 237.7,48.8 L 235.4,52.0 L 231.2,55.3 L 225.0,58.5 L 217.2,61.7 L 207.9,65.0 L 197.4,68.2 L 186.1,71.5 L 174.3,74.7 L 162.3,77.9 L 150.6,81.2 L 139.5,84.4 L 129.3,87.7 L 120.4,90.9 L 113.0,94.1 L 107.4,97.4 L 103.7,100.6 L 102.1,103.9 L 102.5,107.1 L 105.1,110.3 L 109.6,113.6 L 116.0,116.8 L 124.1,120.1 L 133.6,123.3 L 144.2,126.5 L 155.6,129.8 L 167.4,133.0 L 179.4,136.3 L 191.0,139.5 L 202.0,142.7 L 212.0,146.0 L 220.7,149.2 L 227.9,152.5 L 233.2,155.7 L 236.6,158.9 L 238.0,162.2 L 237.2,165.4 L 234.4,168.7 L 229.6,171.9 L 222.9,175.1 L 214.6,178.4 L 205.0,181.6 L 194.2,184.9 L 182.7,188.1 L 170.9,191.3 L 158.9,194.6 L 147.4,197.8 L 136.5,201.1 L 126.7,204.3 L 118.2,207.5 L 111.3,210.8 L 106.2,214.0 L 103.0,217.3 L 102.0,220.5 L 103.0,223.7 L 106.2,227.0 L 111.3,230.2 L 118.2,233.5 L 126.7,236.7 L 136.5,239.9 L 147.4,243.2 L 158.9,246.4 L 170.9,249.7 L 182.7,252.9 L 194.2,256.1 L 205.0,259.4 L 214.6,262.6 L 222.9,265.9 L 229.6,269.1 L 234.4,272.3 L 237.2,275.6 L 238.0,278.8 L 236.6,282.1 L 233.2,285.3 L 227.9,288.5 L 220.7,291.8 L 212.0,295.0 L 202.0,298.3 L 191.0,301.5 L 179.4,304.7 L 167.4,308.0 L 155.6,311.2 L 144.2,314.5 L 133.6,317.7 L 124.1,320.9 L 116.0,324.2 L 109.6,327.4 L 105.1,330.7 L 102.5,333.9 L 102.1,337.1 L 103.7,340.4" fill="none" stroke="url(#dna-s1)" stroke-width="2.2" stroke-linecap="round" filter="url(#dna-glow)"/>
+<path d="M 170.0,18.0 L 164.0,19.6 L 152.3,22.9 L 141.0,26.1 L 130.7,29.3 L 121.6,32.6 L 114.0,35.8 L 108.1,39.1 L 104.1,42.3 L 102.2,45.5 L 102.3,48.8 L 104.6,52.0 L 108.8,55.3 L 115.0,58.5 L 122.8,61.7 L 132.1,65.0 L 142.6,68.2 L 153.9,71.5 L 165.7,74.7 L 177.7,77.9 L 189.4,81.2 L 200.5,84.4 L 210.7,87.7 L 219.6,90.9 L 227.0,94.1 L 232.6,97.4 L 236.3,100.6 L 237.9,103.9 L 237.5,107.1 L 234.9,110.3 L 230.4,113.6 L 224.0,116.8 L 215.9,120.1 L 206.4,123.3 L 195.8,126.5 L 184.4,129.8 L 172.6,133.0 L 160.6,136.3 L 149.0,139.5 L 138.0,142.7 L 128.0,146.0 L 119.3,149.2 L 112.1,152.5 L 106.8,155.7 L 103.4,158.9 L 102.0,162.2 L 102.8,165.4 L 105.6,168.7 L 110.4,171.9 L 117.1,175.1 L 125.4,178.4 L 135.0,181.6 L 145.8,184.9 L 157.3,188.1 L 169.1,191.3 L 181.1,194.6 L 192.6,197.8 L 203.5,201.1 L 213.3,204.3 L 221.8,207.5 L 228.7,210.8 L 233.8,214.0 L 237.0,217.3 L 238.0,220.5 L 237.0,223.7 L 233.8,227.0 L 228.7,230.2 L 221.8,233.5 L 213.3,236.7 L 203.5,239.9 L 192.6,243.2 L 181.1,246.4 L 169.1,249.7 L 157.3,252.9 L 145.8,256.1 L 135.0,259.4 L 125.4,262.6 L 117.1,265.9 L 110.4,269.1 L 105.6,272.3 L 102.8,275.6 L 102.0,278.8 L 103.4,282.1 L 106.8,285.3 L 112.1,288.5 L 119.3,291.8 L 128.0,295.0 L 138.0,298.3 L 149.0,301.5 L 160.6,304.7 L 172.6,308.0 L 184.4,311.2 L 195.8,314.5 L 206.4,317.7 L 215.9,320.9 L 224.0,324.2 L 230.4,327.4 L 234.9,330.7 L 237.5,333.9 L 237.9,337.1 L 236.3,340.4" fill="none" stroke="url(#dna-s2)" stroke-width="2.2" stroke-linecap="round" filter="url(#dna-glow)"/>
+<text x="256.0" y="34.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">A</text>
+<text x="256.0" y="61.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">T</text>
+<text x="84.0" y="88.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">G</text>
+<text x="84.0" y="115.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">C</text>
+<text x="256.0" y="142.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">T</text>
+<text x="256.0" y="169.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">A</text>
+<text x="84.0" y="196.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">C</text>
+<text x="84.0" y="223.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">G</text>
+<text x="84.0" y="250.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">G</text>
+<text x="256.0" y="277.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">C</text>
+<text x="256.0" y="304.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">A</text>
+<text x="84.0" y="331.5" font-family="Space Mono, monospace" font-size="7" fill="#8b5cf6" opacity="0.28" text-anchor="middle">T</text>
+</svg>
     </div>
   </section>
 
@@ -808,10 +876,6 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
       <div class="gif-wrap">
         <img src="assets/img/Supplementary-Movie-3gif.gif" alt="Live cell imaging showing AAV DNA concatenation" class="research-gif">
         <div class="gif-label">Live Cell Imaging &middot; AAV DNA Concatenation</div>
-      </div>
-      <div class="gif-wrap gif-wrap--secondary">
-        <img src="assets/img/Movie-1-trim-2.gif" alt="Live cell imaging of vector DNA molecules" class="research-gif">
-        <div class="gif-label">Live Cell Imaging &middot; Vector DNA Dynamics</div>
       </div>
     </div>
     <div class="research-imaging-text">
@@ -831,25 +895,15 @@ header > nav.nav-scrolled, body > nav.nav-scrolled {
     <div class="research-divider-line"></div>
   </div>
 
-  <!-- ── TUNING HOST FACTORS ── -->
-  <section class="research-figure">
-    <div class="research-figure-text">
-      <span class="research-section-eyebrow">Technologies Developed</span>
-      <h2 class="research-figure-title">Tuning Host Factors</h2>
-      <p class="research-figure-body">We develop genetic tools to systematically tune the expression of host cell factors that AAV depends on. By turning these factors up or down, we identify which host proteins promote or restrict each step of the AAV life cycle.</p>
-      <p class="research-figure-body">This approach lets us map the host&ndash;virus interaction network at resolution not previously possible, pointing toward novel targets for improving vector yields and tropism.</p>
-    </div>
-    <div class="research-figure-img-wrap">
-      <img src="assets/img/AnnafigureArtboard-1_4x.png"
-           alt="Tuning host factors figure"
-           class="research-figure-img">
-    </div>
-  </section>
+  <!-- ── FIGURE ── -->
+  <div style="max-width:440px; margin:1rem auto 3rem; text-align:center;">
+    <img src="assets/img/AnnafigureArtboard-1_4x.png" alt="Host factors figure" style="width:100%;height:auto;display:block;mix-blend-mode:multiply;opacity:0.9;">
+  </div>
 
   <!-- ── THREE AREAS OF FOCUS ── -->
   <section class="research-pillars">
     <div class="research-pillars-header">
-      <span class="research-pillars-eyebrow">Research Areas</span>
+      
       <h2 class="research-pillars-title">Three Areas of Focus</h2>
     </div>
     <div class="pillar-cards">
