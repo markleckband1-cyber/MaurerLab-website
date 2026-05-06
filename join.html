@@ -157,6 +157,23 @@
   .nav-links a { font-size: 1.2rem !important; letter-spacing: 0.14em; color: rgba(255,255,255,0.7) !important; }
   .nav-links a:hover, .nav-links a.active { color: #e879f9 !important; }
 }
+
+/* ── POSITIONS SECTION ── */
+.positions-section { max-width: 700px; }
+.positions-header { margin-bottom: 2rem; }
+.positions-header h2 { font-size: 1.9rem; font-weight: 300; color: #18151f; margin: 0 0 0.4rem; }
+.positions-sub { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8a82a0; margin: 0; }
+.position-list { border: 1px solid rgba(120,90,180,0.15); border-radius: 8px; overflow: hidden; margin-bottom: 2.5rem; }
+.position-item { padding: 1.25rem 1.75rem; border-bottom: 1px solid rgba(120,90,180,0.10); }
+.position-item:last-child { border-bottom: none; }
+.pos-item-title { font-size: 1.05rem; font-weight: 500; color: #18151f; margin: 0 0 0.2rem; }
+.pos-item-sub { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8a82a0; }
+.positions-notes { border-left: 2px solid rgba(192,38,211,0.3); padding-left: 1.25rem; }
+.positions-notes p { font-size: 0.95rem; color: #4a4460; line-height: 1.75; margin: 0 0 0.85rem; }
+.positions-notes p:last-of-type { margin-bottom: 1.25rem; }
+.positions-disclaimer { font-size: 0.85rem; color: #6b6880; font-style: italic; margin-top: 0.5rem; }
+    .pos-email-btn { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: #0891b2; text-decoration: none; border: 1px solid rgba(8,145,178,0.4); border-radius: 3px; padding: 0.6rem 1.25rem; transition: background 0.2s; }
+.pos-email-btn:hover { background: rgba(8,145,178,0.07); }
   </style>
 </head>
 <body>
@@ -192,14 +209,8 @@
         <stop offset="0%"   stop-color="#0a0612" stop-opacity="1"/>
         <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
       </linearGradient>
-      <linearGradient id="jfade_cl" x1="1" y1="0" x2="0" y2="0">
-        <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="jfade_cr" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
-      </linearGradient>
+      
+      
     </defs>
 
     <rect width="1440" height="360" fill="#0a0612"/>
@@ -237,7 +248,7 @@
       <animate attributeName="opacity" values="0.55;0.9;0.55" dur="2.5s" repeatCount="indefinite"/>
       <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.5s" repeatCount="indefinite"/>
     </polygon>
-    <rect width="100" height="360" fill="url(#jfade_l)"/>
+    <rect width="420" height="360" fill="url(#jfade_l)"/>
     <polygon points="1234.0,163.0 1234.0,197.0 1204.6,214.0 1175.2,197.0 1175.2,163.0 1204.6,146.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.28"/>
     <polygon points="1201.7,218.9 1201.7,252.9 1172.3,269.9 1142.9,252.9 1142.9,218.9 1172.3,201.9" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.24"/>
     <polygon points="1137.1,218.9 1137.1,252.9 1107.7,269.9 1078.3,252.9 1078.3,218.9 1107.7,201.9" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.28"/>
@@ -270,17 +281,16 @@
       <animate attributeName="opacity" values="0.55;0.9;0.55" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
       <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.5s" begin="1.25s" repeatCount="indefinite"/>
     </polygon>
-    <rect x="1340" width="100" height="360" fill="url(#jfade_r)"/>
+    <rect x="1020" width="420" height="360" fill="url(#jfade_r)"/>
 
     <!-- Soft fade toward center text zone -->
-    <rect x="380" width="120" height="360" fill="url(#jfade_cl)"/>
-    <rect x="940" width="120" height="360" fill="url(#jfade_cr)"/>
+    <rect x="380" width="120" height="360" 
   </svg>
 
   <div class="join-hero-inner">
     <span class="join-eyebrow">Maurer Lab · University of Michigan</span>
     <h1 class="join-hero-h1">Join the <em>Team</em></h1>
-    <p class="join-hero-sub">Email <a href="mailto:acmaurer@umich.edu" style="color:#22d3ee;">acmaurer@umich.edu</a> to inquire about opportunities.</p>
+    
   </div>
 </header>
 
@@ -294,114 +304,53 @@
       <a href="mailto:acmaurer@umich.edu" class="join-cta-email">acmaurer@umich.edu → Inquire about opportunities</a>
     </div>
     <div class="join-photo-wrap">
-      <img src="assets/img/annasquadlab-e1724189463377.jpg" alt="Maurer Lab team in the lab" class="join-photo">
+      <img src="assets/img/Group1__1_of_1_-sharpen-face-lighting.jpg" alt="Maurer Lab team in the lab" class="join-photo">
     </div>
   </section>
 
   <!-- ── DIVIDER ── -->
-  <svg class="join-divider" viewBox="0 0 1100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="jdv" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%"   stop-color="rgba(192,38,211,0)"/>
-        <stop offset="20%"  stop-color="rgba(192,38,211,0.7)"/>
-        <stop offset="50%"  stop-color="rgba(8,145,178,0.7)"/>
-        <stop offset="80%"  stop-color="rgba(8,145,178,0.7)"/>
-        <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
-      </linearGradient>
-    </defs>
-    <line x1="0" y1="55" x2="220" y2="8" stroke="#c026d3" stroke-width="1" opacity="0.45"/>
-    <line x1="1100" y1="55" x2="880" y2="8" stroke="#0891b2" stroke-width="1" opacity="0.45"/>
-    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#jdv)" stroke-width="2"/>
-    <path d="M0 38 Q275 20 550 38 Q825 56 1100 38" fill="none" stroke="url(#jdv)" stroke-width="1.2" opacity="0.6"/>
-    <path d="M0 30 Q275 12 550 30 Q825 48 1100 30" fill="none" stroke="url(#jdv)" stroke-width="1" opacity="0">
-      <animate attributeName="opacity" values="0;0.5;0" dur="2.8s" repeatCount="indefinite"/>
-      <animate attributeName="stroke-width" values="1;4;1" dur="2.8s" repeatCount="indefinite"/>
-    </path>
-  </svg>
+  <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(192,38,211,0.4) 20%,rgba(139,92,246,0.55) 40%,rgba(8,145,178,0.55) 60%,rgba(34,211,238,0.4) 80%,transparent 100%);margin:2.5rem 3rem;"></div>
 
   <!-- ── OPEN POSITIONS ── -->
-  <section>
+  <section class="positions-section">
     <div class="positions-header">
       <h2>Open Positions</h2>
-      <p>University of Michigan · Ann Arbor, Michigan</p>
+      <p class="positions-sub">University of Michigan &middot; Ann Arbor, Michigan</p>
     </div>
 
-    <div class="position-tabs">
-      <button class="pos-tab active" data-filter="all"><span class="pos-tab-num">01</span> All</button>
-      <button class="pos-tab" data-filter="laboratory"><span class="pos-tab-num">02</span> Laboratory</button>
-      <button class="pos-tab" data-filter="rotations"><span class="pos-tab-num">03</span> Student Rotations</button>
-    </div>
+    <div class="position-list">
 
-    <!-- Laboratory Positions -->
-    <div class="position-group" data-category="laboratory">
-      <button class="pos-group-btn open" data-group="lab">
-        <div class="pos-group-label">
-          <span class="pos-group-num">02</span>
-          <span class="pos-group-title">Laboratory<span class="pos-group-count">4 positions</span></span>
-        </div>
-        <div class="pos-group-chevron"></div>
-      </button>
-      <div class="pos-group-body open" id="group-lab">
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Graduate Students</p>
-            <span class="pos-item-sub">U-M Biophysics &amp; PIBS · PhD Program</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
-        </div>
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Postdoctoral Researchers</p>
-            <span class="pos-item-sub">University of Michigan · Ann Arbor</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
-        </div>
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Undergraduate Students</p>
-            <span class="pos-item-sub">UROP &amp; Independent Study</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
-        </div>
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Community College Students</p>
-            <span class="pos-item-sub">Transfer Pipeline Program</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+      <div class="position-item">
+        <div class="pos-item-info">
+          <p class="pos-item-title">Graduate Students</p>
+          <span class="pos-item-sub">U-M Biophysics &amp; all PhD Programs</span>
         </div>
       </div>
-    </div>
 
-    <!-- Student Rotations -->
-    <div class="position-group" data-category="rotations">
-      <button class="pos-group-btn open" data-group="rotations">
-        <div class="pos-group-label">
-          <span class="pos-group-num">03</span>
-          <span class="pos-group-title">Student Rotations<span class="pos-group-count">2 positions</span></span>
-        </div>
-        <div class="pos-group-chevron"></div>
-      </button>
-      <div class="pos-group-body open" id="group-rotations">
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Postdoctoral Researchers</p>
-            <span class="pos-item-sub">Rotation · Ann Arbor, Michigan</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
-        </div>
-        <div class="position-item">
-          <div class="pos-item-info">
-            <p class="pos-item-title">Graduate Students</p>
-            <span class="pos-item-sub">Rotation · U-M Biophysics &amp; PIBS</span>
-          </div>
-          <a href="mailto:acmaurer@umich.edu" class="pos-apply-btn">Apply →</a>
+      <div class="position-item">
+        <div class="pos-item-info">
+          <p class="pos-item-title">Undergraduate Students</p>
+          <span class="pos-item-sub">UROP &amp; Independent Study</span>
         </div>
       </div>
+
+      <div class="position-item">
+        <div class="pos-item-info">
+          <p class="pos-item-title">Postdoctoral Researchers</p>
+          <span class="pos-item-sub">Accepting applications for 2027 start dates</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="positions-notes">
+      <p>The Maurer Lab is taking rotation students from all PhD programs for the 2026&ndash;27 academic year. Contact Anna directly to set up a rotation.</p>
+      <p>Interested undergraduate students should reach out to Anna directly to inquire about open positions.</p>
+      <p class="positions-disclaimer"><strong>Note:</strong> You must already be accepted to the University of Michigan to apply for an Undergraduate or Graduate student position.</p>
+      <a href="mailto:acmaurer@umich.edu" class="pos-email-btn">acmaurer@umich.edu &rarr;</a>
     </div>
 
   </section>
-
 </main>
 
 <footer class="site-footer">
