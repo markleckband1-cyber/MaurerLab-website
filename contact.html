@@ -41,51 +41,27 @@
     .contact-note a { color: #0891b2; text-decoration: none; }
     .contact-note a:hover { color: #c026d3; }
 
-    /* ── CONTACT LOGO BOX ── */
+    /* ── CONTACT LOGO HEX ── */
     .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; }
-    .contact-logo-box {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
-      aspect-ratio: 1;
+    .contact-logo-hex-outer { position: relative; width: 100%; max-width: 440px; aspect-ratio: 1; }
+    .contact-hex-border-svg { position: absolute; inset: -10px; width: calc(100% + 20px); height: calc(100% + 20px); pointer-events: none; z-index: 3; }
+    .contact-logo-hex-inner {
+      position: absolute; inset: 0;
+      clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+      display: flex; align-items: center; justify-content: center;
       background: #0a0612;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
     }
-    .contact-hex-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+    .contact-hex-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .contact-logo-img {
-      position: relative;
-      z-index: 2;
-      width: 82%;
-      height: auto;
-      display: block;
+      position: relative; z-index: 2;
+      width: 80%; height: auto; display: block;
       animation: logo-glow-pulse 3.2s ease-in-out infinite;
     }
     @keyframes logo-glow-pulse {
-      0%, 100% {
-        filter: drop-shadow(0 0 10px rgba(192,38,211,0.5))
-                drop-shadow(0 0 24px rgba(139,92,246,0.25));
-        transform: scale(1);
-      }
-      50% {
-        filter: drop-shadow(0 0 22px rgba(139,92,246,0.8))
-                drop-shadow(0 0 45px rgba(8,145,178,0.4))
-                drop-shadow(0 0 8px rgba(232,121,249,0.6));
-        transform: scale(1.025);
-      }
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(192,38,211,0.5)) drop-shadow(0 0 22px rgba(139,92,246,0.25)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 20px rgba(139,92,246,0.85)) drop-shadow(0 0 40px rgba(8,145,178,0.4)) drop-shadow(0 0 8px rgba(232,121,249,0.6)); transform: scale(1.03); }
     }
-    @media (max-width: 900px) {
-      .contact-logo-wrap { position: static; }
-      .contact-logo-box { max-width: 320px; margin: 0 auto; }
-    }
+    @media (max-width: 900px) { .contact-logo-wrap { position: static; } .contact-logo-hex-outer { max-width: 320px; margin: 0 auto; } }
   </style>
 </head>
 <body>
@@ -142,67 +118,76 @@
     </div>
 
     <div class="contact-logo-wrap">
-      <div class="contact-logo-box">
+      <div class="contact-logo-hex-outer">
+        <!-- Hex border glow ring -->
+        <svg class="contact-hex-border-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hex-border-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#c026d3" stop-opacity="0.9"/>
+              <stop offset="33%"  stop-color="#8b5cf6" stop-opacity="0.8"/>
+              <stop offset="66%"  stop-color="#0891b2" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.9"/>
+            </linearGradient>
+            <filter id="border-glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- Outer glow hex -->
+          <polygon points="460.4,128.5 460.4,371.5 250.0,493.0 39.6,371.5 39.6,128.5 250.0,7.0" fill="none" stroke="url(#hex-border-grad)" stroke-width="2.5" opacity="0.7" filter="url(#border-glow)">
+            <animate attributeName="opacity" values="0.45;0.9;0.45" dur="3.2s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-width" values="2.5;4;2.5" dur="3.2s" repeatCount="indefinite"/>
+          </polygon>
+          <!-- Inner border hex -->
+          <polygon points="455.2,131.5 455.2,368.5 250.0,487.0 44.8,368.5 44.8,131.5 250.0,13.0" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.4">
+            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
+          </polygon>
+        </svg>
 
-        <!-- Hex cluster background -->
-        <svg class="contact-hex-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="cg-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#8b5cf6" stop-opacity="0.35"/>
-      <stop offset="60%" stop-color="#c026d3" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="cg-glow2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#22d3ee" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="cg-glow-f"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="cg-logo-f"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="cg-circle">
-      <circle cx="250" cy="250" r="230"/>
-    </clipPath>
-  </defs>
-  <rect width="500" height="500" fill="#0a0612" rx="0"/>
-  <ellipse cx="250" cy="250" rx="180" ry="160" fill="url(#cg-glow)" opacity="0.8"><animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite"/><animate attributeName="rx" values="160;195;160" dur="3.2s" repeatCount="indefinite"/></ellipse>
-  <ellipse cx="250" cy="250" rx="130" ry="120" fill="url(#cg-glow2)" opacity="0.6"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.2s" begin="1.6s" repeatCount="indefinite"/></ellipse>
-  <polygon points="345.3,195.0 345.3,305.0 250.0,360.0 154.7,305.0 154.7,195.0 250.0,140.0" fill="rgba(139,92,246,0.06)" stroke="#8b5cf6" stroke-width="2.0" opacity="0.9" filter="url(#cg-glow-f)"><animate attributeName="opacity" values="0.41;0.90;0.41" dur="3.2s" begin="0s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.0;4.0;2.0" dur="3.2s" begin="0s" repeatCount="indefinite"/></polygon>
-  <polygon points="323.6,207.5 323.6,292.5 250.0,335.0 176.4,292.5 176.4,207.5 250.0,165.0" fill="none" stroke="#c026d3" stroke-width="1.2" opacity="0.55"/>
-  <polygon points="182.0,220.0 182.0,280.0 130.0,310.0 78.0,280.0 78.0,220.0 130.0,190.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.6"/>
-  <polygon points="422.0,220.0 422.0,280.0 370.0,310.0 318.0,280.0 318.0,220.0 370.0,190.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.58"/>
-  <polygon points="242.0,116.0 242.0,176.0 190.0,206.0 138.0,176.0 138.0,116.0 190.0,86.0" fill="rgba(139,92,246,0.04)" stroke="#8b5cf6" stroke-width="0.9" opacity="0.62"/>
-  <polygon points="362.0,116.0 362.0,176.0 310.0,206.0 258.0,176.0 258.0,116.0 310.0,86.0" fill="rgba(8,145,178,0.04)" stroke="#0891b2" stroke-width="0.9" opacity="0.58"/>
-  <polygon points="242.0,324.0 242.0,384.0 190.0,414.0 138.0,384.0 138.0,324.0 190.0,294.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.58"/>
-  <polygon points="362.0,324.0 362.0,384.0 310.0,414.0 258.0,384.0 258.0,324.0 310.0,294.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.6"/>
-  <polygon points="97.9,176.0 97.9,214.0 65.0,233.0 32.1,214.0 32.1,176.0 65.0,157.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.42"/>
-  <polygon points="467.9,176.0 467.9,214.0 435.0,233.0 402.1,214.0 402.1,176.0 435.0,157.0" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.4"/>
-  <polygon points="97.9,286.0 97.9,324.0 65.0,343.0 32.1,324.0 32.1,286.0 65.0,267.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.38"/>
-  <polygon points="467.9,286.0 467.9,324.0 435.0,343.0 402.1,324.0 402.1,286.0 435.0,267.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.38"/>
-  <polygon points="282.9,36.0 282.9,74.0 250.0,93.0 217.1,74.0 217.1,36.0 250.0,17.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.4"/>
-  <polygon points="282.9,426.0 282.9,464.0 250.0,483.0 217.1,464.0 217.1,426.0 250.0,407.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.38"/>
-  <polygon points="39.1,239.0 39.1,261.0 20.0,272.0 0.9,261.0 0.9,239.0 20.0,228.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.28"/>
-  <polygon points="499.1,239.0 499.1,261.0 480.0,272.0 460.9,261.0 460.9,239.0 480.0,228.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.28"/>
-  <polygon points="110.6,56.0 110.6,74.0 95.0,83.0 79.4,74.0 79.4,56.0 95.0,47.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.25"/>
-  <polygon points="420.6,56.0 420.6,74.0 405.0,83.0 389.4,74.0 389.4,56.0 405.0,47.0" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.25"/>
-  <polygon points="110.6,426.0 110.6,444.0 95.0,453.0 79.4,444.0 79.4,426.0 95.0,417.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.24"/>
-  <polygon points="420.6,426.0 420.6,444.0 405.0,453.0 389.4,444.0 389.4,426.0 405.0,417.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.24"/>
-  <polygon points="192.1,13.0 192.1,27.0 180.0,34.0 167.9,27.0 167.9,13.0 180.0,6.0" fill="none" stroke="#8b5cf6" stroke-width="0.4" opacity="0.22"/>
-  <polygon points="332.1,13.0 332.1,27.0 320.0,34.0 307.9,27.0 307.9,13.0 320.0,6.0" fill="none" stroke="#c026d3" stroke-width="0.4" opacity="0.22"/>
-  <polygon points="192.1,473.0 192.1,487.0 180.0,494.0 167.9,487.0 167.9,473.0 180.0,466.0" fill="none" stroke="#22d3ee" stroke-width="0.4" opacity="0.2"/>
-  <polygon points="332.1,473.0 332.1,487.0 320.0,494.0 307.9,487.0 307.9,473.0 320.0,466.0" fill="none" stroke="#0891b2" stroke-width="0.4" opacity="0.2"/>
-</svg>
+        <!-- Hex clipped inner box -->
+        <div class="contact-logo-hex-inner">
+          <!-- Hex cluster SVG background -->
+          <svg class="contact-hex-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="cg-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#8b5cf6" stop-opacity="0.4"/>
+                <stop offset="55%" stop-color="#c026d3" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="cg-glow-f"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <rect width="500" height="500" fill="#0a0612"/>
+            <!-- Ambient glow -->
+            <ellipse cx="250" cy="250" rx="170" ry="155" fill="url(#cg-glow)">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite"/>
+              <animate attributeName="rx" values="155;185;155" dur="3.2s" repeatCount="indefinite"/>
+            </ellipse>
+            <polygon points="340.9,197.5 340.9,302.5 250.0,355.0 159.1,302.5 159.1,197.5 250.0,145.0" fill="rgba(139,92,246,0.07)" stroke="#8b5cf6" stroke-width="2.0" opacity="0.9" filter="url(#cg-glow-f)"><animate attributeName="opacity" values="0.41;0.90;0.41" dur="3.2s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.0;4.0;2.0" dur="3.2s" repeatCount="indefinite"/></polygon>
+            <polygon points="319.3,210.0 319.3,290.0 250.0,330.0 180.7,290.0 180.7,210.0 250.0,170.0" fill="none" stroke="#c026d3" stroke-width="1.1" opacity="0.5"/>
+            <polygon points="184.5,222.0 184.5,278.0 136.0,306.0 87.5,278.0 87.5,222.0 136.0,194.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.55"/>
+            <polygon points="412.5,222.0 412.5,278.0 364.0,306.0 315.5,278.0 315.5,222.0 364.0,194.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.53"/>
+            <polygon points="241.5,123.0 241.5,179.0 193.0,207.0 144.5,179.0 144.5,123.0 193.0,95.0" fill="rgba(139,92,246,0.04)" stroke="#8b5cf6" stroke-width="0.9" opacity="0.57"/>
+            <polygon points="355.5,123.0 355.5,179.0 307.0,207.0 258.5,179.0 258.5,123.0 307.0,95.0" fill="rgba(8,145,178,0.04)" stroke="#0891b2" stroke-width="0.9" opacity="0.53"/>
+            <polygon points="241.5,321.0 241.5,377.0 193.0,405.0 144.5,377.0 144.5,321.0 193.0,293.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.53"/>
+            <polygon points="355.5,321.0 355.5,377.0 307.0,405.0 258.5,377.0 258.5,321.0 307.0,293.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.55"/>
+            <polygon points="104.4,181.0 104.4,215.0 75.0,232.0 45.6,215.0 45.6,181.0 75.0,164.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.38"/>
+            <polygon points="454.4,181.0 454.4,215.0 425.0,232.0 395.6,215.0 395.6,181.0 425.0,164.0" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.36"/>
+            <polygon points="104.4,285.0 104.4,319.0 75.0,336.0 45.6,319.0 45.6,285.0 75.0,268.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.35"/>
+            <polygon points="454.4,285.0 454.4,319.0 425.0,336.0 395.6,319.0 395.6,285.0 425.0,268.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.35"/>
+            <polygon points="279.4,48.0 279.4,82.0 250.0,99.0 220.6,82.0 220.6,48.0 250.0,31.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.37"/>
+            <polygon points="279.4,418.0 279.4,452.0 250.0,469.0 220.6,452.0 220.6,418.0 250.0,401.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.35"/>
+            <polygon points="45.6,241.0 45.6,259.0 30.0,268.0 14.4,259.0 14.4,241.0 30.0,232.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.25"/>
+            <polygon points="485.6,241.0 485.6,259.0 470.0,268.0 454.4,259.0 454.4,241.0 470.0,232.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.25"/>
+            <polygon points="118.9,67.0 118.9,83.0 105.0,91.0 91.1,83.0 91.1,67.0 105.0,59.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.22"/>
+            <polygon points="408.9,67.0 408.9,83.0 395.0,91.0 381.1,83.0 381.1,67.0 395.0,59.0" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.22"/>
+            <polygon points="118.9,417.0 118.9,433.0 105.0,441.0 91.1,433.0 91.1,417.0 105.0,409.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.21"/>
+            <polygon points="408.9,417.0 408.9,433.0 395.0,441.0 381.1,433.0 381.1,417.0 395.0,409.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.21"/>
+          </svg>
 
-        <!-- Logo centered over the hex cluster, CSS animated -->
-        <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png"
-             alt="Maurer Lab"
-             class="contact-logo-img">
-
-        <!-- Replay hint (invisible, just in case) -->
+          <!-- Logo centered over hex cluster -->
+          <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png"
+               alt="Maurer Lab"
+               class="contact-logo-img">
+        </div>
       </div>
     </div>
-      <div class="contact-block">
-        <span class="contact-block-label">Lab Space</span>
-        <p>4215, 4217 &amp; 4225 CHEM Building<br>930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
-      </div>
       <a href="mailto:acmaurer@umich.edu" class="contact-email-cta">acmaurer@umich.edu &rarr;</a>
       <p class="contact-note">
         <strong>Please email to inquire about open positions.</strong> Note: you must already be accepted to the University of Michigan to apply for an undergraduate or graduate student position. See the <a href="join.html">Join Us</a> page for currently listed opportunities.
