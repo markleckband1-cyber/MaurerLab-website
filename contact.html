@@ -41,110 +41,51 @@
     .contact-note a { color: #0891b2; text-decoration: none; }
     .contact-note a:hover { color: #c026d3; }
 
-    /* ── LOGO REVEAL ANIMATION ── */
-    .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: center; justify-content: center; padding: 1rem 0; }
-    .logo-reveal-container { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
-    .logo-reveal-svg { width: 100%; height: auto; display: block; }
-    .logo-replay-btn {
-      position: absolute; bottom: -28px; right: 0;
-      background: none; border: none; cursor: pointer;
-      font-size: 1.1rem; color: rgba(139,92,246,0.5);
-      transition: color 0.2s;
+    /* ── CONTACT LOGO BOX ── */
+    .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; }
+    .contact-logo-box {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1;
+      background: #0a0612;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
     }
-    .logo-replay-btn:hover { color: #8b5cf6; }
+    .contact-hex-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .contact-logo-img {
+      position: relative;
+      z-index: 2;
+      width: 82%;
+      height: auto;
+      display: block;
+      animation: logo-glow-pulse 3.2s ease-in-out infinite;
+    }
+    @keyframes logo-glow-pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(192,38,211,0.5))
+                drop-shadow(0 0 24px rgba(139,92,246,0.25));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 22px rgba(139,92,246,0.8))
+                drop-shadow(0 0 45px rgba(8,145,178,0.4))
+                drop-shadow(0 0 8px rgba(232,121,249,0.6));
+        transform: scale(1.025);
+      }
+    }
     @media (max-width: 900px) {
-      .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: center; justify-content: center; padding: 1rem 0; }
-      .logo-reveal-container { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
+      .contact-logo-wrap { position: static; }
+      .contact-logo-box { max-width: 320px; margin: 0 auto; }
     }
-
-    .contact-hex-wrap { position: sticky; top: 120px; }
-    .contact-hex-svg { width: 100%; height: auto; display: block; overflow: visible; }
-    .contact-divider { display: block; width: 100%; height: 60px; pointer-events: none; margin: 3rem 0; }
-    .contact-location { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border: 1px solid rgba(120,90,180,0.15); border-radius: 8px; overflow: hidden; }
-    .contact-location-info { padding: 2rem; }
-    .contact-location-info h3 { font-size: 1.1rem; font-weight: 500; color: #18151f; margin: 0 0 0.5rem; }
-    .contact-location-info p { font-size: 0.9rem; color: #4a4460; line-height: 1.75; margin: 0 0 1rem; }
-    .contact-location-info a { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #0891b2; text-decoration: none; border: 1px solid rgba(8,145,178,0.35); border-radius: 3px; padding: 0.45rem 1rem; }
-    .contact-map-embed { background: #f0edf8; min-height: 240px; display: flex; align-items: stretch; }
-    .contact-map-embed iframe { width: 100%; min-height: 240px; border: 0; display: block; }
-    .site-footer { position: relative; overflow: hidden; background: #04020e; }
-    .footer-bg { position: absolute; inset: 0; z-index: 0; }
-    .footer-bg-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; display: block; }
-    .footer-bg-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(4,2,16,0.55), rgba(8,4,28,0.45)); }
-    .footer-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 3rem 3rem 2rem; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; align-items: start; }
-    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    .footer-logo-img { height: 90px; width: auto; max-width: 320px; display: block; }
-    .footer-umich-img { height: 32px; width: auto; max-width: 220px; display: block; opacity: 0.9; }
-    .footer-nav { display: flex; flex-direction: column; gap: 0.55rem; background: transparent; border: none; padding: 0; }
-    .footer-nav-label, .footer-address-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #0891b2; margin: 0 0 0.4rem; display: block; }
-    .footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.55); text-decoration: none; display: block; }
-    .footer-nav a:hover { color: #e879f9; }
-    .footer-address { display: flex; flex-direction: column; gap: 0.3rem; }
-    .footer-address p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin: 0; }
-    .footer-address a { font-size: 0.85rem; color: #0891b2; text-decoration: none; display: block; }
-    .footer-bottom { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 1rem 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; color: rgba(255,255,255,0.22); font-family: 'Space Mono', monospace; }
-    @media (max-width: 860px) {
-      body > nav { padding: 0.8rem 1.5rem; }
-      body > nav.nav-scrolled { padding: 0.35rem 1.5rem; }
-      main { padding: 3rem 1.5rem 4rem; }
-      .contact-section { grid-template-columns: 1fr; gap: 3rem; }
-  
-    /* ── LOGO REVEAL ANIMATION ── */
-    .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: center; justify-content: center; padding: 1rem 0; }
-    .logo-reveal-container { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
-    .logo-reveal-svg { width: 100%; height: auto; display: block; }
-    .logo-replay-btn {
-      position: absolute; bottom: -28px; right: 0;
-      background: none; border: none; cursor: pointer;
-      font-size: 1.1rem; color: rgba(139,92,246,0.5);
-      transition: color 0.2s;
-    }
-    .logo-replay-btn:hover { color: #8b5cf6; }
-    @media (max-width: 900px) {
-      .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: center; justify-content: center; padding: 1rem 0; }
-      .logo-reveal-container { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
-    }
-
-    .contact-hex-wrap { position: static; }
-      .contact-location { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 500px) { .nav-links { display: none; } .footer-inner { grid-template-columns: 1fr; } }
-
-/* ── MOBILE NAV ── */
-.nav-hamburger {
-  display: none; flex-direction: column; justify-content: center;
-  gap: 5px; width: 36px; height: 36px;
-  background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
-}
-.nav-hamburger span {
-  display: block; height: 2px; width: 100%;
-  background: rgba(255,255,255,0.85); border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-@media (max-width: 768px) {
-  header > nav, body > nav { padding: 0.6rem 1.5rem !important; }
-  header > nav.nav-scrolled, body > nav.nav-scrolled { padding: 0.35rem 1.5rem !important; }
-  .nav-logo img { height: 58px !important; }
-  .nav-scrolled .nav-logo img { height: 42px !important; }
-  .nav-hamburger { display: flex; }
-  .nav-links {
-    display: flex !important; flex-direction: column;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(8,4,18,0.97); backdrop-filter: blur(12px);
-    align-items: center; justify-content: center;
-    gap: 2.2rem; z-index: 150;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.25s ease; padding: 0; margin: 0;
-  }
-  .nav-links.mobile-open { opacity: 1; pointer-events: all; }
-  .nav-links li { list-style: none; }
-  .nav-links a { font-size: 1.2rem !important; letter-spacing: 0.14em; color: rgba(255,255,255,0.7) !important; }
-  .nav-links a:hover, .nav-links a.active { color: #e879f9 !important; }
-}
   </style>
 </head>
 <body>
@@ -201,217 +142,63 @@
     </div>
 
     <div class="contact-logo-wrap">
-      <div class="logo-reveal-container">
-        <svg class="logo-reveal-svg" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+      <div class="contact-logo-box">
+
+        <!-- Hex cluster background -->
+        <svg class="contact-hex-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
   <defs>
-
-    <!-- Clip: hexagon that morphs to rectangle (revealing logo) -->
-    <clipPath id="hex-to-rect">
-      <polygon id="hex-clip-poly" points="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0">
-        <!-- Phase 1: hex grows from 0 to full logo-covering size -->
-        <animate attributeName="points"
-          values="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0;348.7,165.0 348.7,175.0 340.0,180.0 331.3,175.0 331.3,165.0 340.0,160.0;409.3,130.0 409.3,210.0 340.0,250.0 270.7,210.0 270.7,130.0 340.0,90.0;513.2,70.0 513.2,270.0 340.0,370.0 166.8,270.0 166.8,70.0 340.0,-30.0"
-          keyTimes="0;0.08;0.35;0.65"
-          dur="2.4s" fill="freeze"
-          calcMode="spline"
-          keySplines="0.4 0 0.6 1;0.2 0 0.5 1;0.3 0 0.4 1"/>
-      </polygon>
-      <!-- Phase 2: rectangle slides in to fill full logo area -->
-      <rect x="340" y="0" width="0" height="340">
-        <animate attributeName="x" values="340;0" dur="0.9s" begin="1.55s" fill="freeze"
-          calcMode="spline" keySplines="0.4 0 0.2 1"/>
-        <animate attributeName="width" values="0;680" dur="0.9s" begin="1.55s" fill="freeze"
-          calcMode="spline" keySplines="0.4 0 0.2 1"/>
-      </rect>
+    <radialGradient id="cg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#8b5cf6" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#c026d3" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cg-glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#22d3ee" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cg-glow-f"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="cg-logo-f"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="cg-circle">
+      <circle cx="250" cy="250" r="230"/>
     </clipPath>
-
-    <!-- Gradients -->
-    <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#c026d3" stop-opacity="0.5"/>
-      <stop offset="50%"  stop-color="#8b5cf6" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="edge-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="60%"  stop-color="#22d3ee" stop-opacity="0"/>
-      <stop offset="85%"  stop-color="#22d3ee" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="sweep-grad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#22d3ee" stop-opacity="0.3"/>
-      <stop offset="50%"  stop-color="#8b5cf6" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#e879f9" stop-opacity="0.25"/>
-    </linearGradient>
-    <filter id="hex-glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="scatter-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="logo-glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-
   </defs>
-
-  <!-- Background -->
-  <rect width="680" height="340" fill="transparent"/>
-
-  <!-- ══ PHASE 1: GROWING HEX ══ -->
-  <!-- Ambient glow bloom that grows with the hex -->
-  <ellipse cx="340" cy="170" rx="0" ry="0" fill="url(#core-glow)">
-    <animate attributeName="rx" values="0;0;120;260;320" keyTimes="0;0.06;0.35;0.65;1" dur="2.4s" fill="freeze"
-      calcMode="spline" keySplines="0.4 0 1 1;0.2 0 0.5 1;0.3 0 0.4 1;0.3 0 0.4 1"/>
-    <animate attributeName="ry" values="0;0;100;220;270" keyTimes="0;0.06;0.35;0.65;1" dur="2.4s" fill="freeze"
-      calcMode="spline" keySplines="0.4 0 1 1;0.2 0 0.5 1;0.3 0 0.4 1;0.3 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0;0.8;0.9;0.5" keyTimes="0;0.06;0.35;0.65;1" dur="2.4s" fill="freeze"/>
-  </ellipse>
-
-  <!-- Hex outline that grows then fades as logo appears -->
-  <polygon points="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0" fill="rgba(139,92,246,0.08)" stroke="#8b5cf6" stroke-width="2" filter="url(#hex-glow)">
-    <animate attributeName="points"
-      values="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0;348.7,165.0 348.7,175.0 340.0,180.0 331.3,175.0 331.3,165.0 340.0,160.0;411.0,129.0 411.0,211.0 340.0,252.0 269.0,211.0 269.0,129.0 340.0,88.0;517.5,67.5 517.5,272.5 340.0,375.0 162.5,272.5 162.5,67.5 340.0,-35.0"
-      keyTimes="0;0.08;0.35;0.65" dur="2.4s" fill="freeze"
-      calcMode="spline" keySplines="0.4 0 0.6 1;0.2 0 0.5 1;0.3 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;1;1;1;0.6;0" keyTimes="0;0.08;0.35;0.65;0.85;1" dur="3.2s" fill="freeze"/>
-    <animate attributeName="stroke-width" values="2;2.5;1.5;0.8" keyTimes="0;0.35;0.65;1" dur="3.2s" fill="freeze"/>
-  </polygon>
-
-  <!-- Inner hex (smaller, contrasting color) -->
-  <polygon points="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0" fill="none" stroke="#c026d3" stroke-width="1" opacity="0">
-    <animate attributeName="points"
-      values="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0;346.9,166.0 346.9,174.0 340.0,178.0 333.1,174.0 333.1,166.0 340.0,162.0;387.6,142.5 387.6,197.5 340.0,225.0 292.4,197.5 292.4,142.5 340.0,115.0;461.2,100.0 461.2,240.0 340.0,310.0 218.8,240.0 218.8,100.0 340.0,30.0"
-      keyTimes="0;0.08;0.35;0.65" dur="2.4s" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.8;0.6;0.3;0" keyTimes="0;0.12;0.35;0.65;0.85" dur="3.2s" fill="freeze"/>
-  </polygon>
-
-  <!-- Leading edge glow ring -->
-  <polygon points="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0" fill="none" stroke="#22d3ee" stroke-width="4" opacity="0" filter="url(#hex-glow)">
-    <animate attributeName="points"
-      values="340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0 340.0,170.0;348.7,165.0 348.7,175.0 340.0,180.0 331.3,175.0 331.3,165.0 340.0,160.0;413.6,127.5 413.6,212.5 340.0,255.0 266.4,212.5 266.4,127.5 340.0,85.0;521.9,65.0 521.9,275.0 340.0,380.0 158.1,275.0 158.1,65.0 340.0,-40.0"
-      keyTimes="0;0.08;0.35;0.65" dur="2.4s" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.9;0.7;0.2;0" keyTimes="0;0.1;0.35;0.6;0.85" dur="3.2s" fill="freeze"/>
-    <animate attributeName="stroke-width" values="4;3;2;0.5" keyTimes="0;0.2;0.5;0.85" dur="3.2s" fill="freeze"/>
-  </polygon>
-
-  <!-- ══ PHASE 2: LOGO REVEAL ══ -->
-  <image href="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png"
-         x="0" y="30" width="680" height="279"
-         clip-path="url(#hex-to-rect)"
-         preserveAspectRatio="xMidYMid meet"
-         opacity="0">
-    <animate attributeName="opacity" values="0;0;0.5;1" keyTimes="0;0.4;0.65;0.85" dur="3.2s" fill="freeze"/>
-  </image>
-
-  <!-- Sweep glow over logo after reveal -->
-  <rect x="0" y="0" width="680" height="340" fill="url(#sweep-grad)" opacity="0" clip-path="url(#hex-to-rect)">
-    <animate attributeName="opacity" values="0;0;0.5;0" keyTimes="0;0.65;0.78;1" dur="3.8s" fill="freeze"/>
-  </rect>
-
-  <!-- ══ PHASE 3: LOGO PULSES (after reveal) ══ -->
-  <!-- Persistent hex outline around logo area -->
-  <polygon points="526.2,62.5 526.2,277.5 340.0,385.0 153.8,277.5 153.8,62.5 340.0,-45.0" fill="none" stroke="#8b5cf6" stroke-width="1.2" opacity="0" filter="url(#hex-glow)">
-    <animate attributeName="opacity" values="0;0;0.5;0.7;0.4" keyTimes="0;0.7;0.85;0.92;1" dur="3.8s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3s" begin="3.8s" repeatCount="indefinite"/>
-    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="3s" begin="3.8s" repeatCount="indefinite"/>
-  </polygon>
-
-  <!-- ══ SCATTERED HEXAGONS (fly in after logo appears) ══ -->
-  <polygon points="60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0" fill="none" stroke="#c026d3" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0 60.0,50.0;79.1,39.0 79.1,61.0 60.0,72.0 40.9,61.0 40.9,39.0 60.0,28.0" dur="0.5s" begin="1.80s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.7" dur="0.4s" begin="1.80s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.7;0.28;0.7" dur="3.5s" begin="2.30s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0" fill="none" stroke="#22d3ee" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0 620.0,45.0;635.6,36.0 635.6,54.0 620.0,63.0 604.4,54.0 604.4,36.0 620.0,27.0" dur="0.5s" begin="1.92s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.65" dur="0.4s" begin="1.92s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.65;0.26;0.65" dur="4.2s" begin="2.42s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0" fill="none" stroke="#8b5cf6" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0 30.0,200.0;43.9,192.0 43.9,208.0 30.0,216.0 16.1,208.0 16.1,192.0 30.0,184.0" dur="0.5s" begin="2.04s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.55" dur="0.4s" begin="2.04s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.55;0.22;0.55" dur="5.1s" begin="2.54s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0" fill="none" stroke="#0891b2" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0 645.0,210.0;662.3,200.0 662.3,220.0 645.0,230.0 627.7,220.0 627.7,200.0 645.0,190.0" dur="0.5s" begin="2.16s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.6" dur="0.4s" begin="2.16s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.6;0.24;0.6" dur="3.8s" begin="2.66s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0" fill="none" stroke="#e879f9" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0 80.0,310.0;100.8,298.0 100.8,322.0 80.0,334.0 59.2,322.0 59.2,298.0 80.0,286.0" dur="0.5s" begin="2.28s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.65" dur="0.4s" begin="2.28s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.65;0.26;0.65" dur="4.7s" begin="2.78s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0" fill="none" stroke="#22d3ee" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0 600.0,300.0;613.9,292.0 613.9,308.0 600.0,316.0 586.1,308.0 586.1,292.0 600.0,284.0" dur="0.5s" begin="2.40s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.55" dur="0.4s" begin="2.40s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.55;0.22;0.55" dur="5.5s" begin="2.90s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0" fill="none" stroke="#8b5cf6" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0 180.0,25.0;192.1,18.0 192.1,32.0 180.0,39.0 167.9,32.0 167.9,18.0 180.0,11.0" dur="0.5s" begin="2.52s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.5" dur="0.4s" begin="2.52s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.5;0.20;0.5" dur="6.0s" begin="3.02s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0" fill="none" stroke="#c026d3" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0 500.0,320.0;515.6,311.0 515.6,329.0 500.0,338.0 484.4,329.0 484.4,311.0 500.0,302.0" dur="0.5s" begin="2.64s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.55" dur="0.4s" begin="2.64s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.55;0.22;0.55" dur="4.0s" begin="3.14s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0" fill="none" stroke="#0891b2" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0 120.0,290.0;130.4,284.0 130.4,296.0 120.0,302.0 109.6,296.0 109.6,284.0 120.0,278.0" dur="0.5s" begin="2.76s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.45" dur="0.4s" begin="2.76s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.45;0.18;0.45" dur="5.8s" begin="3.26s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0" fill="none" stroke="#e879f9" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0 560.0,60.0;572.1,53.0 572.1,67.0 560.0,74.0 547.9,67.0 547.9,53.0 560.0,46.0" dur="0.5s" begin="2.88s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.5" dur="0.4s" begin="2.88s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.5;0.20;0.5" dur="6.5s" begin="3.38s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0" fill="none" stroke="#22d3ee" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0 30.0,100.0;38.7,95.0 38.7,105.0 30.0,110.0 21.3,105.0 21.3,95.0 30.0,90.0" dur="0.5s" begin="3.00s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.4" dur="0.4s" begin="3.00s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.4;0.16;0.4" dur="7.0s" begin="3.50s" repeatCount="indefinite"/>
-  </polygon>
-  <polygon points="650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0" fill="none" stroke="#8b5cf6" stroke-width="0.9" opacity="0" filter="url(#scatter-glow)">
-    <animate attributeName="points" values="650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0 650.0,130.0;660.4,124.0 660.4,136.0 650.0,142.0 639.6,136.0 639.6,124.0 650.0,118.0" dur="0.5s" begin="3.12s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.4 1"/>
-    <animate attributeName="opacity" values="0;0.4" dur="0.4s" begin="3.12s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.4;0.16;0.4" dur="6.2s" begin="3.62s" repeatCount="indefinite"/>
-  </polygon>
-  <circle cx="60" cy="50" r="2" fill="#c026d3" opacity="0">
-    <animate attributeName="opacity" values="0;0.56" dur="0.3s" begin="2.00s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.56;0.21;0.56" dur="3.5s" begin="2.40s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="620" cy="45" r="2" fill="#22d3ee" opacity="0">
-    <animate attributeName="opacity" values="0;0.52" dur="0.3s" begin="2.12s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.52;0.20;0.52" dur="4.2s" begin="2.52s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="30" cy="200" r="2" fill="#8b5cf6" opacity="0">
-    <animate attributeName="opacity" values="0;0.44" dur="0.3s" begin="2.24s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.44;0.17;0.44" dur="5.1s" begin="2.64s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="645" cy="210" r="2" fill="#0891b2" opacity="0">
-    <animate attributeName="opacity" values="0;0.48" dur="0.3s" begin="2.36s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.48;0.18;0.48" dur="3.8s" begin="2.76s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="80" cy="310" r="2" fill="#e879f9" opacity="0">
-    <animate attributeName="opacity" values="0;0.52" dur="0.3s" begin="2.48s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.52;0.20;0.52" dur="4.7s" begin="2.88s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="600" cy="300" r="2" fill="#22d3ee" opacity="0">
-    <animate attributeName="opacity" values="0;0.44" dur="0.3s" begin="2.60s" fill="freeze"/>
-    <animate attributeName="opacity" values="0.44;0.17;0.44" dur="5.5s" begin="3.00s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- ══ PERSISTENT LOGO GLOW PULSE ══ -->
-  <rect width="680" height="340" fill="rgba(139,92,246,0)" clip-path="url(#hex-to-rect)">
-    <animate attributeName="fill"
-      values="rgba(139,92,246,0);rgba(192,38,211,0.06);rgba(8,145,178,0.05);rgba(139,92,246,0)"
-      dur="4s" begin="3.5s" repeatCount="indefinite"/>
-  </rect>
-
+  <rect width="500" height="500" fill="#0a0612" rx="0"/>
+  <ellipse cx="250" cy="250" rx="180" ry="160" fill="url(#cg-glow)" opacity="0.8"><animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite"/><animate attributeName="rx" values="160;195;160" dur="3.2s" repeatCount="indefinite"/></ellipse>
+  <ellipse cx="250" cy="250" rx="130" ry="120" fill="url(#cg-glow2)" opacity="0.6"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.2s" begin="1.6s" repeatCount="indefinite"/></ellipse>
+  <polygon points="345.3,195.0 345.3,305.0 250.0,360.0 154.7,305.0 154.7,195.0 250.0,140.0" fill="rgba(139,92,246,0.06)" stroke="#8b5cf6" stroke-width="2.0" opacity="0.9" filter="url(#cg-glow-f)"><animate attributeName="opacity" values="0.41;0.90;0.41" dur="3.2s" begin="0s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.0;4.0;2.0" dur="3.2s" begin="0s" repeatCount="indefinite"/></polygon>
+  <polygon points="323.6,207.5 323.6,292.5 250.0,335.0 176.4,292.5 176.4,207.5 250.0,165.0" fill="none" stroke="#c026d3" stroke-width="1.2" opacity="0.55"/>
+  <polygon points="182.0,220.0 182.0,280.0 130.0,310.0 78.0,280.0 78.0,220.0 130.0,190.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.6"/>
+  <polygon points="422.0,220.0 422.0,280.0 370.0,310.0 318.0,280.0 318.0,220.0 370.0,190.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.58"/>
+  <polygon points="242.0,116.0 242.0,176.0 190.0,206.0 138.0,176.0 138.0,116.0 190.0,86.0" fill="rgba(139,92,246,0.04)" stroke="#8b5cf6" stroke-width="0.9" opacity="0.62"/>
+  <polygon points="362.0,116.0 362.0,176.0 310.0,206.0 258.0,176.0 258.0,116.0 310.0,86.0" fill="rgba(8,145,178,0.04)" stroke="#0891b2" stroke-width="0.9" opacity="0.58"/>
+  <polygon points="242.0,324.0 242.0,384.0 190.0,414.0 138.0,384.0 138.0,324.0 190.0,294.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.58"/>
+  <polygon points="362.0,324.0 362.0,384.0 310.0,414.0 258.0,384.0 258.0,324.0 310.0,294.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.6"/>
+  <polygon points="97.9,176.0 97.9,214.0 65.0,233.0 32.1,214.0 32.1,176.0 65.0,157.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.42"/>
+  <polygon points="467.9,176.0 467.9,214.0 435.0,233.0 402.1,214.0 402.1,176.0 435.0,157.0" fill="none" stroke="#0891b2" stroke-width="0.7" opacity="0.4"/>
+  <polygon points="97.9,286.0 97.9,324.0 65.0,343.0 32.1,324.0 32.1,286.0 65.0,267.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.38"/>
+  <polygon points="467.9,286.0 467.9,324.0 435.0,343.0 402.1,324.0 402.1,286.0 435.0,267.0" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.38"/>
+  <polygon points="282.9,36.0 282.9,74.0 250.0,93.0 217.1,74.0 217.1,36.0 250.0,17.0" fill="none" stroke="#8b5cf6" stroke-width="0.7" opacity="0.4"/>
+  <polygon points="282.9,426.0 282.9,464.0 250.0,483.0 217.1,464.0 217.1,426.0 250.0,407.0" fill="none" stroke="#c026d3" stroke-width="0.7" opacity="0.38"/>
+  <polygon points="39.1,239.0 39.1,261.0 20.0,272.0 0.9,261.0 0.9,239.0 20.0,228.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.28"/>
+  <polygon points="499.1,239.0 499.1,261.0 480.0,272.0 460.9,261.0 460.9,239.0 480.0,228.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.28"/>
+  <polygon points="110.6,56.0 110.6,74.0 95.0,83.0 79.4,74.0 79.4,56.0 95.0,47.0" fill="none" stroke="#8b5cf6" stroke-width="0.5" opacity="0.25"/>
+  <polygon points="420.6,56.0 420.6,74.0 405.0,83.0 389.4,74.0 389.4,56.0 405.0,47.0" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.25"/>
+  <polygon points="110.6,426.0 110.6,444.0 95.0,453.0 79.4,444.0 79.4,426.0 95.0,417.0" fill="none" stroke="#c026d3" stroke-width="0.5" opacity="0.24"/>
+  <polygon points="420.6,426.0 420.6,444.0 405.0,453.0 389.4,444.0 389.4,426.0 405.0,417.0" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.24"/>
+  <polygon points="192.1,13.0 192.1,27.0 180.0,34.0 167.9,27.0 167.9,13.0 180.0,6.0" fill="none" stroke="#8b5cf6" stroke-width="0.4" opacity="0.22"/>
+  <polygon points="332.1,13.0 332.1,27.0 320.0,34.0 307.9,27.0 307.9,13.0 320.0,6.0" fill="none" stroke="#c026d3" stroke-width="0.4" opacity="0.22"/>
+  <polygon points="192.1,473.0 192.1,487.0 180.0,494.0 167.9,487.0 167.9,473.0 180.0,466.0" fill="none" stroke="#22d3ee" stroke-width="0.4" opacity="0.2"/>
+  <polygon points="332.1,473.0 332.1,487.0 320.0,494.0 307.9,487.0 307.9,473.0 320.0,466.0" fill="none" stroke="#0891b2" stroke-width="0.4" opacity="0.2"/>
 </svg>
-        <button class="logo-replay-btn"
-          onclick="(function(){var s=document.querySelector('.logo-reveal-svg');var c=s.cloneNode(true);s.parentNode.replaceChild(c,s);})();"
-          title="Replay">&#8635;</button>
+
+        <!-- Logo centered over the hex cluster, CSS animated -->
+        <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png"
+             alt="Maurer Lab"
+             class="contact-logo-img">
+
+        <!-- Replay hint (invisible, just in case) -->
       </div>
     </div>
-      <div class="contact-block">
-        <span class="contact-block-label">Office</span>
-        <p>4024 CHEM</p>
-      </div>
       <div class="contact-block">
         <span class="contact-block-label">Lab Space</span>
         <p>4215, 4217 &amp; 4225 CHEM Building<br>930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
