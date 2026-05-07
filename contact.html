@@ -41,18 +41,20 @@
     .contact-note a { color: #0891b2; text-decoration: none; }
     .contact-note a:hover { color: #c026d3; }
 
-    /* ── LOGO ANIMATION ── */
+    /* ── LOGO REVEAL ANIMATION ── */
     .contact-logo-wrap { position: sticky; top: 120px; display: flex; align-items: center; justify-content: center; }
-    .logo-anim-container { position: relative; width: 320px; height: 320px; display: flex; align-items: center; justify-content: center; }
-    .logo-anim-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .logo-anim-img { position: relative; z-index: 2; width: 55%; height: 55%; object-fit: contain; filter: drop-shadow(0 0 16px rgba(192,38,211,0.4)); animation: logo-pulse 3s ease-in-out infinite; }
-    @keyframes logo-pulse {
-      0%, 100% { filter: drop-shadow(0 0 12px rgba(192,38,211,0.35)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 24px rgba(139,92,246,0.6)); transform: scale(1.04); }
+    .logo-reveal-container { position: relative; width: 100%; max-width: 680px; }
+    .logo-reveal-svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 18px rgba(8,145,178,0.25)); }
+    .logo-replay-btn {
+      position: absolute; bottom: -28px; right: 0;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1rem; color: rgba(139,92,246,0.5);
+      transition: color 0.2s;
     }
+    .logo-replay-btn:hover { color: #8b5cf6; }
     @media (max-width: 900px) {
       .contact-logo-wrap { position: static; }
-      .logo-anim-container { width: 240px; height: 240px; }
+      .logo-reveal-container { max-width: 380px; }
     }
 
     .contact-hex-wrap { position: sticky; top: 120px; }
@@ -87,18 +89,20 @@
       main { padding: 3rem 1.5rem 4rem; }
       .contact-section { grid-template-columns: 1fr; gap: 3rem; }
   
-    /* ── LOGO ANIMATION ── */
+    /* ── LOGO REVEAL ANIMATION ── */
     .contact-logo-wrap { position: sticky; top: 120px; display: flex; align-items: center; justify-content: center; }
-    .logo-anim-container { position: relative; width: 320px; height: 320px; display: flex; align-items: center; justify-content: center; }
-    .logo-anim-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .logo-anim-img { position: relative; z-index: 2; width: 55%; height: 55%; object-fit: contain; filter: drop-shadow(0 0 16px rgba(192,38,211,0.4)); animation: logo-pulse 3s ease-in-out infinite; }
-    @keyframes logo-pulse {
-      0%, 100% { filter: drop-shadow(0 0 12px rgba(192,38,211,0.35)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 24px rgba(139,92,246,0.6)); transform: scale(1.04); }
+    .logo-reveal-container { position: relative; width: 100%; max-width: 680px; }
+    .logo-reveal-svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 18px rgba(8,145,178,0.25)); }
+    .logo-replay-btn {
+      position: absolute; bottom: -28px; right: 0;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1rem; color: rgba(139,92,246,0.5);
+      transition: color 0.2s;
     }
+    .logo-replay-btn:hover { color: #8b5cf6; }
     @media (max-width: 900px) {
       .contact-logo-wrap { position: static; }
-      .logo-anim-container { width: 240px; height: 240px; }
+      .logo-reveal-container { max-width: 380px; }
     }
 
     .contact-hex-wrap { position: static; }
@@ -165,6 +169,92 @@
     <h1 class="contact-hero-h1">Get in <em>Touch</em></h1>
     <p class="contact-hero-sub">We&rsquo;d love to hear from you &mdash; about research, collaborations, or joining the lab.</p>
   </div>
+</header>
+
+<main>
+  <div class="contact-section">
+    <div class="contact-left">
+      <span class="contact-info-label">Principal Investigator</span>
+      <p class="contact-pi-name">Anna Maurer, PhD</p>
+      <span class="contact-pi-title">Assistant Professor of Biophysics &middot; University of Michigan</span>
+      <div class="contact-block">
+        <span class="contact-block-label">Appointments &amp; Affiliations</span>
+        <p>
+          Assistant Professor, <a href="https://lsa.umich.edu/biophysics" target="_blank">Biophysics</a><br>
+          University of Michigan College of LSA<br>
+          Assistant Professor, Microbiology and Immunology<br>
+          <a href="https://research.umich.edu/m-pact/" target="_blank">M-PACT Scholar</a>
+        </p>
+      </div>
+      <div class="contact-block">
+        <span class="contact-block-label">Office</span>
+        <p>4024 CHEM</p>
+      </div>
+      <div class="contact-block">
+        <span class="contact-block-label">Lab Space</span>
+        <p>4215, 4217 &amp; 4225 CHEM Building<br>930 N. University Ave.<br>Ann Arbor, MI 48109-1055</p>
+      </div>
+      <a href="mailto:acmaurer@umich.edu" class="contact-email-cta">acmaurer@umich.edu &rarr;</a>
+      <p class="contact-note">
+        <strong>Please email to inquire about open positions.</strong> Note: you must already be accepted to the University of Michigan to apply for an undergraduate or graduate student position. See the <a href="join.html">Join Us</a> page for currently listed opportunities.
+      </p>
+    </div>
+
+    <div class="contact-logo-wrap">
+      <div class="logo-reveal-container">
+        <svg class="logo-reveal-svg" viewBox="0 0 1277 525" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="logo-clip">
+              <circle cx="220" cy="262" r="0">
+                <animate id="logoReveal"
+                  attributeName="r"
+                  values="0;0;60;200;500;1100"
+                  keyTimes="0;0.05;0.2;0.45;0.72;1"
+                  dur="3.2s" begin="0.3s"
+                  fill="freeze"
+                  calcMode="spline"
+                  keySplines="0 0 1 1;0.2 0 0.6 1;0.2 0 0.5 1;0.25 0 0.4 1;0.3 0 0.3 1"/>
+              </circle>
+            </clipPath>
+            <radialGradient id="reveal-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="70%" stop-color="#22d3ee" stop-opacity="0"/>
+              <stop offset="90%" stop-color="#22d3ee" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <image href="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png"
+                 x="0" y="0" width="1277" height="525"
+                 clip-path="url(#logo-clip)"
+                 preserveAspectRatio="xMidYMid meet"/>
+
+          <!-- Leading edge glow -->
+          <circle cx="220" cy="262" r="0" fill="url(#reveal-glow)">
+            <animate attributeName="r"
+              values="0;0;80;220;520;1100"
+              keyTimes="0;0.05;0.2;0.45;0.72;1"
+              dur="3.2s" begin="0.3s" fill="freeze"
+              calcMode="spline"
+              keySplines="0 0 1 1;0.2 0 0.6 1;0.2 0 0.5 1;0.25 0 0.4 1;0.3 0 0.3 1"/>
+            <animate attributeName="opacity"
+              values="0;0;0.9;0.9;0.4;0"
+              keyTimes="0;0.05;0.25;0.6;0.85;1"
+              dur="3.2s" begin="0.3s" fill="freeze"/>
+          </circle>
+
+          <!-- Subtle pulse after reveal -->
+          <rect width="1277" height="525" fill="rgba(139,92,246,0)" clip-path="url(#logo-clip)">
+            <animate attributeName="fill"
+              values="rgba(139,92,246,0);rgba(139,92,246,0.05);rgba(139,92,246,0)"
+              dur="2.5s" begin="3.5s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
+
+        <button class="logo-replay-btn"
+          onclick="(function(){var s=document.querySelector('.logo-reveal-svg');var c=s.cloneNode(true);s.parentNode.replaceChild(c,s);})()"
+          title="Replay">&#8635;</button>
+      </div>
+    </div>
 </header>
 
 <main>
