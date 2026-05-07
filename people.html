@@ -219,82 +219,102 @@
     </radialGradient>
     <linearGradient id="dna-l" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#c026d3" stop-opacity="0"/>
-      <stop offset="12%"  stop-color="#c026d3" stop-opacity="0.75"/>
-      <stop offset="50%"  stop-color="#8b5cf6" stop-opacity="0.7"/>
-      <stop offset="88%"  stop-color="#0891b2" stop-opacity="0.75"/>
+      <stop offset="12%"  stop-color="#c026d3" stop-opacity="0.85"/>
+      <stop offset="50%"  stop-color="#8b5cf6" stop-opacity="0.8"/>
+      <stop offset="88%"  stop-color="#0891b2" stop-opacity="0.85"/>
       <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="dna-r" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#0891b2" stop-opacity="0"/>
-      <stop offset="12%"  stop-color="#0891b2" stop-opacity="0.75"/>
-      <stop offset="50%"  stop-color="#22d3ee" stop-opacity="0.7"/>
-      <stop offset="88%"  stop-color="#c026d3" stop-opacity="0.75"/>
+      <stop offset="12%"  stop-color="#0891b2" stop-opacity="0.85"/>
+      <stop offset="50%"  stop-color="#22d3ee" stop-opacity="0.8"/>
+      <stop offset="88%"  stop-color="#c026d3" stop-opacity="0.85"/>
       <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
     </linearGradient>
+    <!-- Wide center-to-edge fades — overlap fully in center so no box -->
     <linearGradient id="fade-l" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.9"/>
+      <stop offset="0%"   stop-color="#0a0612" stop-opacity="1"/>
+      <stop offset="70%"  stop-color="#0a0612" stop-opacity="1"/>
       <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="fade-r" x1="1" y1="0" x2="0" y2="0">
-      <stop offset="0%"   stop-color="#0a0612" stop-opacity="0.9"/>
+      <stop offset="0%"   stop-color="#0a0612" stop-opacity="1"/>
+      <stop offset="70%"  stop-color="#0a0612" stop-opacity="1"/>
       <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
     </linearGradient>
-    <filter id="glow-m"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <filter id="glow-c"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-m"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-c"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
   <rect width="1440" height="320" fill="#0a0612"/>
   <rect width="1440" height="320" fill="url(#hg)"/>
-  <path d="M 200,0 C 342,20 342,36 200,40 C 58,44 58,60 200,80 C 342,100 342,116 200,120 C 58,124 58,140 200,160 C 342,180 342,196 200,200 C 58,204 58,220 200,240 C 342,260 342,276 200,280 C 58,284 58,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="0.7" opacity="0.16"/>
-  <path d="M 200,0 C 58,20 58,36 200,40 C 342,44 342,60 200,80 C 58,100 58,116 200,120 C 342,124 342,140 200,160 C 58,180 58,196 200,200 C 342,204 342,220 200,240 C 58,260 58,276 200,280 C 342,284 342,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="0.7" opacity="0.16"/>
-  <path d="M 200,0 C 326,20 326,36 200,40 C 74,44 74,60 200,80 C 326,100 326,116 200,120 C 74,124 74,140 200,160 C 326,180 326,196 200,200 C 74,204 74,220 200,240 C 326,260 326,276 200,280 C 74,284 74,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="0.9" opacity="0.22"/>
-  <path d="M 200,0 C 74,20 74,36 200,40 C 326,44 326,60 200,80 C 74,100 74,116 200,120 C 326,124 326,140 200,160 C 74,180 74,196 200,200 C 326,204 326,220 200,240 C 74,260 74,276 200,280 C 326,284 326,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="0.9" opacity="0.22"/>
-  <path d="M 200,0 C 313,20 313,36 200,40 C 87,44 87,60 200,80 C 313,100 313,116 200,120 C 87,124 87,140 200,160 C 313,180 313,196 200,200 C 87,204 87,220 200,240 C 313,260 313,276 200,280 C 87,284 87,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="1.0" opacity="0.28"/>
-  <path d="M 200,0 C 87,20 87,36 200,40 C 313,44 313,60 200,80 C 87,100 87,116 200,120 C 313,124 313,140 200,160 C 87,180 87,196 200,200 C 313,204 313,220 200,240 C 87,260 87,276 200,280 C 313,284 313,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="1.0" opacity="0.28"/>
-  <path d="M 200,0 C 305,20 305,36 200,40 C 95,44 95,60 200,80 C 305,100 305,116 200,120 C 95,124 95,140 200,160 C 305,180 305,196 200,200 C 95,204 95,220 200,240 C 305,260 305,276 200,280 C 95,284 95,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="1.8" opacity="0.9" filter="url(#glow-m)"/>
-  <path d="M 200,0 C 95,20 95,36 200,40 C 305,44 305,60 200,80 C 95,100 95,116 200,120 C 305,124 305,140 200,160 C 95,180 95,196 200,200 C 305,204 305,220 200,240 C 95,260 95,276 200,280 C 305,284 305,300 200,320" fill="none" stroke="url(#dna-l)" stroke-width="1.8" opacity="0.9" filter="url(#glow-m)"/>
-  <circle cx="305" cy="20" r="3.2" fill="#c026d3" opacity="0.55"/>
-  <circle cx="95" cy="20" r="3.2" fill="#0891b2" opacity="0.55"/>
-  <circle cx="305" cy="60" r="3.2" fill="#c026d3" opacity="0.69"/>
-  <circle cx="95" cy="60" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="305" cy="100" r="3.2" fill="#c026d3" opacity="0.75"/>
-  <circle cx="95" cy="100" r="3.2" fill="#0891b2" opacity="0.75"/>
-  <circle cx="305" cy="140" r="3.2" fill="#c026d3" opacity="0.69"/>
-  <circle cx="95" cy="140" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="305" cy="180" r="3.2" fill="#c026d3" opacity="0.55"/>
-  <circle cx="95" cy="180" r="3.2" fill="#0891b2" opacity="0.55"/>
-  <circle cx="305" cy="220" r="3.2" fill="#c026d3" opacity="0.69"/>
-  <circle cx="95" cy="220" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="305" cy="260" r="3.2" fill="#c026d3" opacity="0.75"/>
-  <circle cx="95" cy="260" r="3.2" fill="#0891b2" opacity="0.75"/>
-  <circle cx="305" cy="300" r="3.2" fill="#c026d3" opacity="0.69"/>
-  <circle cx="95" cy="300" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <path d="M 1240,0 C 1382,20 1382,36 1240,40 C 1098,44 1098,60 1240,80 C 1382,100 1382,116 1240,120 C 1098,124 1098,140 1240,160 C 1382,180 1382,196 1240,200 C 1098,204 1098,220 1240,240 C 1382,260 1382,276 1240,280 C 1098,284 1098,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="0.7" opacity="0.16"/>
-  <path d="M 1240,0 C 1098,20 1098,36 1240,40 C 1382,44 1382,60 1240,80 C 1098,100 1098,116 1240,120 C 1382,124 1382,140 1240,160 C 1098,180 1098,196 1240,200 C 1382,204 1382,220 1240,240 C 1098,260 1098,276 1240,280 C 1382,284 1382,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="0.7" opacity="0.16"/>
-  <path d="M 1240,0 C 1366,20 1366,36 1240,40 C 1114,44 1114,60 1240,80 C 1366,100 1366,116 1240,120 C 1114,124 1114,140 1240,160 C 1366,180 1366,196 1240,200 C 1114,204 1114,220 1240,240 C 1366,260 1366,276 1240,280 C 1114,284 1114,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="0.9" opacity="0.22"/>
-  <path d="M 1240,0 C 1114,20 1114,36 1240,40 C 1366,44 1366,60 1240,80 C 1114,100 1114,116 1240,120 C 1366,124 1366,140 1240,160 C 1114,180 1114,196 1240,200 C 1366,204 1366,220 1240,240 C 1114,260 1114,276 1240,280 C 1366,284 1366,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="0.9" opacity="0.22"/>
-  <path d="M 1240,0 C 1353,20 1353,36 1240,40 C 1127,44 1127,60 1240,80 C 1353,100 1353,116 1240,120 C 1127,124 1127,140 1240,160 C 1353,180 1353,196 1240,200 C 1127,204 1127,220 1240,240 C 1353,260 1353,276 1240,280 C 1127,284 1127,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="1.0" opacity="0.28"/>
-  <path d="M 1240,0 C 1127,20 1127,36 1240,40 C 1353,44 1353,60 1240,80 C 1127,100 1127,116 1240,120 C 1353,124 1353,140 1240,160 C 1127,180 1127,196 1240,200 C 1353,204 1353,220 1240,240 C 1127,260 1127,276 1240,280 C 1353,284 1353,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="1.0" opacity="0.28"/>
-  <path d="M 1240,0 C 1345,20 1345,36 1240,40 C 1135,44 1135,60 1240,80 C 1345,100 1345,116 1240,120 C 1135,124 1135,140 1240,160 C 1345,180 1345,196 1240,200 C 1135,204 1135,220 1240,240 C 1345,260 1345,276 1240,280 C 1135,284 1135,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="1.8" opacity="0.9" filter="url(#glow-c)"/>
-  <path d="M 1240,0 C 1135,20 1135,36 1240,40 C 1345,44 1345,60 1240,80 C 1135,100 1135,116 1240,120 C 1345,124 1345,140 1240,160 C 1135,180 1135,196 1240,200 C 1345,204 1345,220 1240,240 C 1135,260 1135,276 1240,280 C 1345,284 1345,300 1240,320" fill="none" stroke="url(#dna-r)" stroke-width="1.8" opacity="0.9" filter="url(#glow-c)"/>
-  <circle cx="1345" cy="20" r="3.2" fill="#0891b2" opacity="0.55"/>
-  <circle cx="1135" cy="20" r="3.2" fill="#22d3ee" opacity="0.55"/>
-  <circle cx="1345" cy="60" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="1135" cy="60" r="3.2" fill="#22d3ee" opacity="0.69"/>
-  <circle cx="1345" cy="100" r="3.2" fill="#0891b2" opacity="0.75"/>
-  <circle cx="1135" cy="100" r="3.2" fill="#22d3ee" opacity="0.75"/>
-  <circle cx="1345" cy="140" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="1135" cy="140" r="3.2" fill="#22d3ee" opacity="0.69"/>
-  <circle cx="1345" cy="180" r="3.2" fill="#0891b2" opacity="0.55"/>
-  <circle cx="1135" cy="180" r="3.2" fill="#22d3ee" opacity="0.55"/>
-  <circle cx="1345" cy="220" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="1135" cy="220" r="3.2" fill="#22d3ee" opacity="0.69"/>
-  <circle cx="1345" cy="260" r="3.2" fill="#0891b2" opacity="0.75"/>
-  <circle cx="1135" cy="260" r="3.2" fill="#22d3ee" opacity="0.75"/>
-  <circle cx="1345" cy="300" r="3.2" fill="#0891b2" opacity="0.69"/>
-  <circle cx="1135" cy="300" r="3.2" fill="#22d3ee" opacity="0.69"/>
-  <rect x="335" y="0" width="770" height="320" fill="#0a0612" opacity="0.7"/>
-  <rect x="0" y="0" width="115" height="320" fill="url(#fade-l)"/>
-  <rect x="1325" y="0" width="115" height="320" fill="url(#fade-r)"/>
+  <path d="M 180,0 C 327,20 327,36 180,40 C 33,44 33,60 180,80 C 327,100 327,116 180,120 C 33,124 33,140 180,160 C 327,180 327,196 180,200 C 33,204 33,220 180,240 C 327,260 327,276 180,280 C 33,284 33,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="0.6" opacity="0.14"/>
+  <path d="M 180,0 C 33,20 33,36 180,40 C 327,44 327,60 180,80 C 33,100 33,116 180,120 C 327,124 327,140 180,160 C 33,180 33,196 180,200 C 327,204 327,220 180,240 C 33,260 33,276 180,280 C 327,284 327,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="0.6" opacity="0.14"/>
+  <path d="M 180,0 C 308,20 308,36 180,40 C 52,44 52,60 180,80 C 308,100 308,116 180,120 C 52,124 52,140 180,160 C 308,180 308,196 180,200 C 52,204 52,220 180,240 C 308,260 308,276 180,280 C 52,284 52,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="0.8" opacity="0.2"/>
+  <path d="M 180,0 C 52,20 52,36 180,40 C 308,44 308,60 180,80 C 52,100 52,116 180,120 C 308,124 308,140 180,160 C 52,180 52,196 180,200 C 308,204 308,220 180,240 C 52,260 52,276 180,280 C 308,284 308,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="0.8" opacity="0.2"/>
+  <path d="M 180,0 C 293,20 293,36 180,40 C 67,44 67,60 180,80 C 293,100 293,116 180,120 C 67,124 67,140 180,160 C 293,180 293,196 180,200 C 67,204 67,220 180,240 C 293,260 293,276 180,280 C 67,284 67,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="1.0" opacity="0.28"/>
+  <path d="M 180,0 C 67,20 67,36 180,40 C 293,44 293,60 180,80 C 67,100 67,116 180,120 C 293,124 293,140 180,160 C 67,180 67,196 180,200 C 293,204 293,220 180,240 C 67,260 67,276 180,280 C 293,284 293,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="1.0" opacity="0.28"/>
+  <path id="lha" d="M 180,0 C 285,20 285,36 180,40 C 75,44 75,60 180,80 C 285,100 285,116 180,120 C 75,124 75,140 180,160 C 285,180 285,196 180,200 C 75,204 75,220 180,240 C 285,260 285,276 180,280 C 75,284 75,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="2" opacity="0.92" filter="url(#glow-m)"><animate attributeName="d" values="M 180,0 C 285,20 285,36 180,40 C 75,44 75,60 180,80 C 285,100 285,116 180,120 C 75,124 75,140 180,160 C 285,180 285,196 180,200 C 75,204 75,220 180,240 C 285,260 285,276 180,280 C 75,284 75,300 180,320;M 180,0 C 291,20 291,36 180,40 C 69,44 69,60 180,80 C 291,100 291,116 180,120 C 69,124 69,140 180,160 C 291,180 291,196 180,200 C 69,204 69,220 180,240 C 291,260 291,276 180,280 C 69,284 69,300 180,320;M 180,0 C 285,20 285,36 180,40 C 75,44 75,60 180,80 C 285,100 285,116 180,120 C 75,124 75,140 180,160 C 285,180 285,196 180,200 C 75,204 75,220 180,240 C 285,260 285,276 180,280 C 75,284 75,300 180,320" dur="4.2s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.4 1;0.4 0 0.4 1"/></path>
+  <path id="lhb" d="M 180,0 C 75,20 75,36 180,40 C 285,44 285,60 180,80 C 75,100 75,116 180,120 C 285,124 285,140 180,160 C 75,180 75,196 180,200 C 285,204 285,220 180,240 C 75,260 75,276 180,280 C 285,284 285,300 180,320" fill="none" stroke="url(#dna-l)" stroke-width="2" opacity="0.92" filter="url(#glow-m)"><animate attributeName="d" values="M 180,0 C 75,20 75,36 180,40 C 285,44 285,60 180,80 C 75,100 75,116 180,120 C 285,124 285,140 180,160 C 75,180 75,196 180,200 C 285,204 285,220 180,240 C 75,260 75,276 180,280 C 285,284 285,300 180,320;M 180,0 C 69,20 69,36 180,40 C 291,44 291,60 180,80 C 69,100 69,116 180,120 C 291,124 291,140 180,160 C 69,180 69,196 180,200 C 291,204 291,220 180,240 C 69,260 69,276 180,280 C 291,284 291,300 180,320;M 180,0 C 75,20 75,36 180,40 C 285,44 285,60 180,80 C 75,100 75,116 180,120 C 285,124 285,140 180,160 C 75,180 75,196 180,200 C 285,204 285,220 180,240 C 75,260 75,276 180,280 C 285,284 285,300 180,320" dur="4.2s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.4 1;0.4 0 0.4 1"/></path>
+  <circle cx="285" cy="20" r="3" fill="#c026d3" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.0s" begin="0.0s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="20" r="3" fill="#8b5cf6" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.0s" begin="0.0s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="20" x2="75" y2="20" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="60" r="3" fill="#c026d3" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="60" r="3" fill="#8b5cf6" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="60" x2="75" y2="60" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="100" r="3" fill="#c026d3" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="4.4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="100" r="3" fill="#8b5cf6" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="4.4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="100" x2="75" y2="100" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="140" r="3" fill="#c026d3" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.0s" begin="0.9s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="140" r="3" fill="#8b5cf6" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.0s" begin="0.9s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="140" x2="75" y2="140" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="180" r="3" fill="#c026d3" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.7s" begin="1.2s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="180" r="3" fill="#8b5cf6" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.7s" begin="1.2s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="180" x2="75" y2="180" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="220" r="3" fill="#c026d3" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="4.4s" begin="1.5s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="220" r="3" fill="#8b5cf6" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="4.4s" begin="1.5s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="220" x2="75" y2="220" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="260" r="3" fill="#c026d3" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="3.0s" begin="1.8s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="260" r="3" fill="#8b5cf6" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="3.0s" begin="1.8s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="260" x2="75" y2="260" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="285" cy="300" r="3" fill="#c026d3" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="2.1s" repeatCount="indefinite"/></circle>
+  <circle cx="75" cy="300" r="3" fill="#8b5cf6" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="2.1s" repeatCount="indefinite"/></circle>
+  <line x1="285" y1="300" x2="75" y2="300" stroke="url(#dna-l)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="180" cy="0" r="4" fill="#e879f9" opacity="0.7" filter="url(#glow-m)"><animate attributeName="cy" values="0;320;0" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><animate attributeName="opacity" values="0;0.8;0.9;0.8;0" keyTimes="0;0.1;0.5;0.9;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle>
+  <path d="M 1260,0 C 1407,20 1407,36 1260,40 C 1113,44 1113,60 1260,80 C 1407,100 1407,116 1260,120 C 1113,124 1113,140 1260,160 C 1407,180 1407,196 1260,200 C 1113,204 1113,220 1260,240 C 1407,260 1407,276 1260,280 C 1113,284 1113,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="0.6" opacity="0.14"/>
+  <path d="M 1260,0 C 1113,20 1113,36 1260,40 C 1407,44 1407,60 1260,80 C 1113,100 1113,116 1260,120 C 1407,124 1407,140 1260,160 C 1113,180 1113,196 1260,200 C 1407,204 1407,220 1260,240 C 1113,260 1113,276 1260,280 C 1407,284 1407,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="0.6" opacity="0.14"/>
+  <path d="M 1260,0 C 1388,20 1388,36 1260,40 C 1132,44 1132,60 1260,80 C 1388,100 1388,116 1260,120 C 1132,124 1132,140 1260,160 C 1388,180 1388,196 1260,200 C 1132,204 1132,220 1260,240 C 1388,260 1388,276 1260,280 C 1132,284 1132,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="0.8" opacity="0.2"/>
+  <path d="M 1260,0 C 1132,20 1132,36 1260,40 C 1388,44 1388,60 1260,80 C 1132,100 1132,116 1260,120 C 1388,124 1388,140 1260,160 C 1132,180 1132,196 1260,200 C 1388,204 1388,220 1260,240 C 1132,260 1132,276 1260,280 C 1388,284 1388,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="0.8" opacity="0.2"/>
+  <path d="M 1260,0 C 1373,20 1373,36 1260,40 C 1147,44 1147,60 1260,80 C 1373,100 1373,116 1260,120 C 1147,124 1147,140 1260,160 C 1373,180 1373,196 1260,200 C 1147,204 1147,220 1260,240 C 1373,260 1373,276 1260,280 C 1147,284 1147,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="1.0" opacity="0.28"/>
+  <path d="M 1260,0 C 1147,20 1147,36 1260,40 C 1373,44 1373,60 1260,80 C 1147,100 1147,116 1260,120 C 1373,124 1373,140 1260,160 C 1147,180 1147,196 1260,200 C 1373,204 1373,220 1260,240 C 1147,260 1147,276 1260,280 C 1373,284 1373,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="1.0" opacity="0.28"/>
+  <path id="rha" d="M 1260,0 C 1365,20 1365,36 1260,40 C 1155,44 1155,60 1260,80 C 1365,100 1365,116 1260,120 C 1155,124 1155,140 1260,160 C 1365,180 1365,196 1260,200 C 1155,204 1155,220 1260,240 C 1365,260 1365,276 1260,280 C 1155,284 1155,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="2" opacity="0.92" filter="url(#glow-c)"><animate attributeName="d" values="M 1260,0 C 1365,20 1365,36 1260,40 C 1155,44 1155,60 1260,80 C 1365,100 1365,116 1260,120 C 1155,124 1155,140 1260,160 C 1365,180 1365,196 1260,200 C 1155,204 1155,220 1260,240 C 1365,260 1365,276 1260,280 C 1155,284 1155,300 1260,320;M 1260,0 C 1371,20 1371,36 1260,40 C 1149,44 1149,60 1260,80 C 1371,100 1371,116 1260,120 C 1149,124 1149,140 1260,160 C 1371,180 1371,196 1260,200 C 1149,204 1149,220 1260,240 C 1371,260 1371,276 1260,280 C 1149,284 1149,300 1260,320;M 1260,0 C 1365,20 1365,36 1260,40 C 1155,44 1155,60 1260,80 C 1365,100 1365,116 1260,120 C 1155,124 1155,140 1260,160 C 1365,180 1365,196 1260,200 C 1155,204 1155,220 1260,240 C 1365,260 1365,276 1260,280 C 1155,284 1155,300 1260,320" dur="3.8s" begin="2.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.4 1;0.4 0 0.4 1"/></path>
+  <path id="rhb" d="M 1260,0 C 1155,20 1155,36 1260,40 C 1365,44 1365,60 1260,80 C 1155,100 1155,116 1260,120 C 1365,124 1365,140 1260,160 C 1155,180 1155,196 1260,200 C 1365,204 1365,220 1260,240 C 1155,260 1155,276 1260,280 C 1365,284 1365,300 1260,320" fill="none" stroke="url(#dna-r)" stroke-width="2" opacity="0.92" filter="url(#glow-c)"><animate attributeName="d" values="M 1260,0 C 1155,20 1155,36 1260,40 C 1365,44 1365,60 1260,80 C 1155,100 1155,116 1260,120 C 1365,124 1365,140 1260,160 C 1155,180 1155,196 1260,200 C 1365,204 1365,220 1260,240 C 1155,260 1155,276 1260,280 C 1365,284 1365,300 1260,320;M 1260,0 C 1149,20 1149,36 1260,40 C 1371,44 1371,60 1260,80 C 1149,100 1149,116 1260,120 C 1371,124 1371,140 1260,160 C 1149,180 1149,196 1260,200 C 1371,204 1371,220 1260,240 C 1149,260 1149,276 1260,280 C 1371,284 1371,300 1260,320;M 1260,0 C 1155,20 1155,36 1260,40 C 1365,44 1365,60 1260,80 C 1155,100 1155,116 1260,120 C 1365,124 1365,140 1260,160 C 1155,180 1155,196 1260,200 C 1365,204 1365,220 1260,240 C 1155,260 1155,276 1260,280 C 1365,284 1365,300 1260,320" dur="3.8s" begin="2.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.4 1;0.4 0 0.4 1"/></path>
+  <circle cx="1365" cy="20" r="3" fill="#0891b2" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.0s" begin="0.0s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="20" r="3" fill="#22d3ee" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.0s" begin="0.0s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="20" x2="1155" y2="20" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="60" r="3" fill="#0891b2" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="60" r="3" fill="#22d3ee" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="60" x2="1155" y2="60" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="100" r="3" fill="#0891b2" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="4.4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="100" r="3" fill="#22d3ee" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="4.4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="100" x2="1155" y2="100" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="140" r="3" fill="#0891b2" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.0s" begin="0.9s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="140" r="3" fill="#22d3ee" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.0s" begin="0.9s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="140" x2="1155" y2="140" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="180" r="3" fill="#0891b2" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.7s" begin="1.2s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="180" r="3" fill="#22d3ee" opacity="0.55"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.85;0.55" dur="3.7s" begin="1.2s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="180" x2="1155" y2="180" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="220" r="3" fill="#0891b2" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="4.4s" begin="1.5s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="220" r="3" fill="#22d3ee" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="4.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="4.4s" begin="1.5s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="220" x2="1155" y2="220" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="260" r="3" fill="#0891b2" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="3.0s" begin="1.8s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="260" r="3" fill="#22d3ee" opacity="0.75"><animate attributeName="r" values="2.5;4;2.5" dur="3.0s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1.00;0.75" dur="3.0s" begin="1.8s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="260" x2="1155" y2="260" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1365" cy="300" r="3" fill="#0891b2" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="2.1s" repeatCount="indefinite"/></circle>
+  <circle cx="1155" cy="300" r="3" fill="#22d3ee" opacity="0.69"><animate attributeName="r" values="2.5;4;2.5" dur="3.7s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.69;0.99;0.69" dur="3.7s" begin="2.1s" repeatCount="indefinite"/></circle>
+  <line x1="1365" y1="300" x2="1155" y2="300" stroke="url(#dna-r)" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="1260" cy="0" r="4" fill="#0891b2" opacity="0.7" filter="url(#glow-c)"><animate attributeName="cy" values="0;320;0" dur="6s" begin="2.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><animate attributeName="opacity" values="0;0.8;0.9;0.8;0" keyTimes="0;0.1;0.5;0.9;1" dur="6s" begin="2.1s" repeatCount="indefinite"/></circle>
+  <rect x="0" y="0" width="505" height="320" fill="url(#fade-l)"/>
+  <rect x="935" y="0" width="505" height="320" fill="url(#fade-r)"/>
 </svg>
   <div class="p-hero-inner">
     <span class="p-eyebrow">The Maurer Lab · University of Michigan</span>
