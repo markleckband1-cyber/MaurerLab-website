@@ -78,14 +78,6 @@
     .vcard-bio { font-size: 0.9rem; color: #4a4460; line-height: 1.65; margin: 0; }
     .vcard-grid .vcard:last-child:nth-child(odd) { grid-column: 1/-1; max-width: 50%; margin: 0 auto; }
 
-    /* BIO EXPAND */
-    .bio-more { display: none; }
-    .bio-wrap.open .bio-more { display: inline; }
-    .bio-btn { display: flex; align-items: center; justify-content: center; gap: 0.3rem; margin: 0.6rem 0 0; background: none; border: none; cursor: pointer; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: #c026d3; width: 100%; padding: 0.3rem 0; }
-    .bio-btn.hidden { display: none; }
-    .bio-arrow { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: transform 0.25s; }
-    .bio-btn.open .bio-arrow { transform: rotate(180deg); }
-
     /* ALUMNI */
     .alumni-group { border: 1px solid rgba(120,90,180,0.18); border-radius: 8px; }
     .alumni-card { display: grid; grid-template-columns: 130px 1fr; border-bottom: 1px solid rgba(120,90,180,0.18); background: #fff; align-items: start; }
@@ -390,8 +382,7 @@
         <span class="pi-role">Principal Investigator</span>
         <p class="pi-bio">Anna is a Michigan native, first-generation college student who transferred from Macomb Community College to the University of Michigan and completed her Bachelors of Science in Cellular and Molecular Biology in 2012. She completed her graduate studies under Luk Vandenberghe on host and viral factors of adeno-associated viral (AAV) capsid assembly at Harvard Medical School in 2019. For her postdoctoral work, she studied cellular regulation of AAV-delivered DNA under Robert Tjian at UC Berkeley. In her independent research group, she will continue to study AAV vector biology through the lens of the host cell. Anna's passion for science is matched by her passion to increase diversity among biomedical researchers by raising awareness about research careers among community college students and mentoring them through transfer to a four-year institution to pursue STEM degrees.</p>
         <p class="pi-interests">Outside of lab, Anna enjoys music, dancing, flow arts, hiking, running, shooting pool, yard games, eating all kinds of cuisine, beer snobbery, and college football.</p>
-      </div>
-    </div>
+        </div>
   </div>
 
   <!-- ═══════ LAB MANAGER & SENIOR SCIENTIST ═══════ -->
@@ -414,29 +405,22 @@
   <!-- ═══════ POSTDOCTORAL RESEARCHERS ═══════ -->
 
 
-  <!-- ═══════ GRADUATE STUDENTS ═══════ -->
-
-  <div class="hcard-group">
-    <div class="hcard">
-      <div class="hcard-photo-col">
-        <div class="hcard-circle">
-          <img src="assets/img/Uchenna_Nwaege_hs.jpg" alt="Uchenna Nwaege" style="object-position: center 20%;">
-        </div>
-      </div>
-      <div class="hcard-body">
-        <p class="hcard-name">Uchenna Nwaege, B.S.</p>
-        <span class="hcard-role">PhD Student</span>
-        <p class="hcard-bio">Uchenna is from Los Angeles, beginning his academic journey at Santa Monica College before joining a furniture startup as a Data Engineer. He later transferred to the University of California, Riverside, where he applied Bayesian inference to predict mutation rates in simulated bacterial populations and earned his Bachelor's degree in Physics in 2023. Now pursuing a PhD, Uchenna seeks to understand AAV capsid assembly. Outside of research, he enjoys biking, playing tennis, cooking international dishes, and traveling.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- divider -->
-  <div class="people-divider-line"></div>
-
   <!-- ═══════ UNDERGRADUATE RESEARCHERS ═══════ -->
 
   <div class="vcard-grid">
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="assets/img/Uchenna_Nwaege_hs.jpg" alt="Uchenna Nwaege" style="object-position: center 20%;">
+        </div>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Uchenna Nwaege, B.S.</p>
+        <span class="vcard-role">PhD Student</span>
+        <p class="vcard-bio">Uchenna is from Los Angeles, beginning his academic journey at Santa Monica College before joining a furniture startup as a Data Engineer. He later transferred to the University of California, Riverside, where he applied Bayesian inference to predict mutation rates in simulated bacterial populations and earned his Bachelor's degree in Physics in 2023. Now pursuing a PhD, Uchenna seeks to understand AAV capsid assembly. Outside of research, he enjoys biking, playing tennis, cooking international dishes, and traveling.</p>
+      </div>
+    </div>
 
     <div class="vcard">
       <div class="vcard-photo-area">
@@ -447,10 +431,7 @@
       <div class="vcard-body">
         <p class="vcard-name">Jade Griffin</p>
         <span class="vcard-role">Undergraduate Researcher</span>
-        <div class="bio-wrap">
-          <p class="vcard-bio">Jade is from New York, double majoring in biochemistry and biophysics at U-M. She has a strong interest in virus research and hopes to explore other areas like cancer research. Jade hopes to pursue a PhD and run her own research lab one day. She is also an active member of the Women in Science and Engineering Residence Program.<span class="bio-more"> Outside of academics, Jade loves archery, reading, and musical theatre.</span></p>
-        </div>
-        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+        <p class="vcard-bio">Jade is from New York, double majoring in biochemistry and biophysics at U-M. She has a strong interest in virus research and hopes to explore other areas like cancer research. Jade hopes to pursue a PhD and run her own research lab one day. She is also an active member of the Women in Science and Engineering Residence Program. Outside of academics, Jade loves archery, reading, and musical theatre.</p>
       </div>
     </div>
 
@@ -463,13 +444,9 @@
       <div class="vcard-body">
         <p class="vcard-name">Brittany Mollette</p>
         <span class="vcard-role">Undergraduate Researcher</span>
-        <div class="bio-wrap">
-          <p class="vcard-bio">Brittany is a non-traditional transfer student from Ypsilanti, MI, now majoring in Human Origins, Biology, and Behavior at U-M. Her previous research experience in biological anthropology earned the UROP Blue Ribbon Award. She is currently gaining laboratory experience studying mammalian cell responses to viral vectors.<span class="bio-more"> Brittany is interested in exploring how molecular and microbial factors influence human health and hopes to continue developing her research skills in graduate school. Outside of the lab she enjoys live music, weightlifting, plant cultivation, and the art of collecting.</span></p>
-        </div>
-        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+        <p class="vcard-bio">Brittany is a non-traditional transfer student from Ypsilanti, MI, now majoring in Human Origins, Biology, and Behavior at U-M. Her previous research experience in biological anthropology earned the UROP Blue Ribbon Award. She is currently gaining laboratory experience studying mammalian cell responses to viral vectors. Brittany is interested in exploring how molecular and microbial factors influence human health and hopes to continue developing her research skills in graduate school. Outside of the lab she enjoys live music, weightlifting, plant cultivation, and the art of collecting.</p>
       </div>
     </div>
-
 
     <div class="vcard">
       <div class="vcard-photo-area">
@@ -493,10 +470,20 @@
       <div class="vcard-body">
         <p class="vcard-name">Sandra Alcini</p>
         <span class="vcard-role">UROP Researcher</span>
-        <div class="bio-wrap">
-          <p class="vcard-bio">Sandra is an undergraduate at U-M and a UROP researcher for Maurer Lab. She is majoring in biochemistry with minors in Italian and philosophy. Sandra plans to continue her research into graduate school and pursue pharmaceutical design. Outside of school, Sandra is a mom and has a hair salon in Ann Arbor.<span class="bio-more"> She loves hiking in northern Michigan and gardening in her backyard with her chickens.</span></p>
+        <p class="vcard-bio">Sandra is an undergraduate at U-M and a UROP researcher for Maurer Lab. She is majoring in biochemistry with minors in Italian and philosophy. Sandra plans to continue her research into graduate school and pursue pharmaceutical design. Outside of school, Sandra is a mom and has a hair salon in Ann Arbor. She loves hiking in northern Michigan and gardening in her backyard with her chickens.</p>
+      </div>
+    </div>
+
+    <div class="vcard">
+      <div class="vcard-photo-area">
+        <div class="vcard-circle">
+          <img src="assets/img/maurerlab_hs13.jpg" alt="Yashwanth Bajji">
         </div>
-        <button class="bio-btn"><span class="btn-label">Read more</span><span class="bio-arrow"></span></button>
+      </div>
+      <div class="vcard-body">
+        <p class="vcard-name">Yashwanth Bajji</p>
+        <span class="vcard-role">Undergraduate Researcher</span>
+        <p class="vcard-bio">Yash is from Troy, Michigan and is a senior majoring in Biophysics with minors in Mathematics and Religion. He aims to become an MD, but still plans to continue wet lab research in the future. Outside of the lab and school, he enjoys playing football with his friends, cooking, and trying new restaurants around campus.</p>
       </div>
     </div>
 
@@ -543,15 +530,15 @@
     <div class="past-chip"><span class="past-chip-name">Richard Stewart, PhD</span><span class="past-chip-role">Former postdoc · industry</span></div>
     <div class="past-chip"><span class="past-chip-name">Caroline Hastings, B.S.</span><span class="past-chip-role">Former undergraduate · industry</span></div>
   </div>
-
+  </div>
 </main>
 
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-bg">
     <img src="assets/img/footer-lights-darker.jpg" alt="" class="footer-bg-img">
-    <div class="footer-bg-overlay"></div>
-  </div>
+    <div class="footer-bg-overlay">
+        </div>
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" alt="Maurer Lab" class="footer-logo-img">
@@ -570,8 +557,7 @@
       <p>Room 4217 &middot; 930 N. University Ave.</p>
       <p>Ann Arbor, MI 48109-1055</p>
       <a href="mailto:acmaurer@umich.edu">acmaurer@umich.edu</a>
-    </div>
-  </div>
+        </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Maurer Lab &middot; University of Michigan</span>
   </div>
@@ -586,18 +572,6 @@
 })();
 </script>
 <script>
-(function() {
-  document.querySelectorAll('.bio-btn').forEach(function(btn) {
-    var wrap = btn.previousElementSibling;
-    if (!wrap || !wrap.classList.contains('bio-wrap')) { btn.style.display='none'; return; }
-    if (!wrap.querySelector('.bio-more')) { btn.style.display='none'; return; }
-    btn.addEventListener('click', function() {
-      var open = wrap.classList.toggle('open');
-      btn.classList.toggle('open', open);
-      btn.querySelector('.btn-label').textContent = open ? 'Show less' : 'Read more';
-    });
-  });
-})();
 </script>
 <script>
 (function() {
