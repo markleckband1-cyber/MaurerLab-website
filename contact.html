@@ -42,7 +42,7 @@
     .contact-note a:hover { color: #c026d3; }
 
     /* ── CONTACT LOGO HEX ── */
-    .contact-logo-wrap { position: sticky; top: 80px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; }
+    .contact-logo-wrap { position: relative; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; }
     .contact-logo-hex-outer { position: relative; width: 100%; max-width: 440px; aspect-ratio: 1; }
     .contact-hex-border-svg { position: absolute; inset: -10px; width: calc(100% + 20px); height: calc(100% + 20px); pointer-events: none; z-index: 3; }
     .contact-logo-hex-inner {
@@ -55,7 +55,7 @@
     .contact-logo-img {
       position: relative; z-index: 2;
       width: 80%; height: auto; display: block;
-      animation: logo-glow-pulse 3.2s ease-in-out infinite;
+      animation: logo-glow-pulse 6s ease-in-out infinite;
     }
     @keyframes logo-glow-pulse {
       0%, 100% { filter: drop-shadow(0 0 10px rgba(192,38,211,0.5)) drop-shadow(0 0 22px rgba(139,92,246,0.25)); transform: scale(1); }
@@ -132,12 +132,12 @@
           </defs>
           <!-- Outer glow hex -->
           <polygon points="460.4,128.5 460.4,371.5 250.0,493.0 39.6,371.5 39.6,128.5 250.0,7.0" fill="none" stroke="url(#hex-border-grad)" stroke-width="2.5" opacity="0.7" filter="url(#border-glow)">
-            <animate attributeName="opacity" values="0.45;0.9;0.45" dur="3.2s" repeatCount="indefinite"/>
-            <animate attributeName="stroke-width" values="2.5;4;2.5" dur="3.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.45;0.9;0.45" dur="6s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-width" values="2.5;4;2.5" dur="6s" repeatCount="indefinite"/>
           </polygon>
           <!-- Inner border hex -->
           <polygon points="455.2,131.5 455.2,368.5 250.0,487.0 44.8,368.5 44.8,131.5 250.0,13.0" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.4">
-            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="6s" begin="3s" repeatCount="indefinite"/>
           </polygon>
         </svg>
 
@@ -157,9 +157,9 @@
             <!-- Ambient glow -->
             <ellipse cx="250" cy="250" rx="170" ry="155" fill="url(#cg-glow)">
               <animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite"/>
-              <animate attributeName="rx" values="155;185;155" dur="3.2s" repeatCount="indefinite"/>
+              <animate attributeName="rx" values="155;185;155" dur="6s" repeatCount="indefinite"/>
             </ellipse>
-            <polygon points="340.9,197.5 340.9,302.5 250.0,355.0 159.1,302.5 159.1,197.5 250.0,145.0" fill="rgba(139,92,246,0.07)" stroke="#8b5cf6" stroke-width="2.0" opacity="0.9" filter="url(#cg-glow-f)"><animate attributeName="opacity" values="0.41;0.90;0.41" dur="3.2s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.0;4.0;2.0" dur="3.2s" repeatCount="indefinite"/></polygon>
+            <polygon points="340.9,197.5 340.9,302.5 250.0,355.0 159.1,302.5 159.1,197.5 250.0,145.0" fill="rgba(139,92,246,0.07)" stroke="#8b5cf6" stroke-width="2.0" opacity="0.9" filter="url(#cg-glow-f)"><animate attributeName="opacity" values="0.41;0.90;0.41" dur="6s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.0;4.0;2.0" dur="6s" repeatCount="indefinite"/></polygon>
             <polygon points="319.3,210.0 319.3,290.0 250.0,330.0 180.7,290.0 180.7,210.0 250.0,170.0" fill="none" stroke="#c026d3" stroke-width="1.1" opacity="0.5"/>
             <polygon points="184.5,222.0 184.5,278.0 136.0,306.0 87.5,278.0 87.5,222.0 136.0,194.0" fill="rgba(192,38,211,0.04)" stroke="#c026d3" stroke-width="0.9" opacity="0.55"/>
             <polygon points="412.5,222.0 412.5,278.0 364.0,306.0 315.5,278.0 315.5,222.0 364.0,194.0" fill="rgba(34,211,238,0.04)" stroke="#22d3ee" stroke-width="0.9" opacity="0.53"/>
@@ -194,86 +194,7 @@
       </p>
     </div>
 
-    <div class="contact-logo-wrap">
-      <!-- Animated logo -->
-      <div class="logo-anim-container">
-        <!-- Outer pulsing gradient ring -->
-        <svg class="logo-anim-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ring-grad1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#c026d3"/>
-              <stop offset="33%" stop-color="#8b5cf6"/>
-              <stop offset="66%" stop-color="#0891b2"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-            <linearGradient id="ring-grad2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#22d3ee"/>
-              <stop offset="50%" stop-color="#e879f9"/>
-              <stop offset="100%" stop-color="#c026d3"/>
-            </linearGradient>
-            <radialGradient id="glow-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.18"/>
-              <stop offset="60%" stop-color="#c026d3" stop-opacity="0.07"/>
-              <stop offset="100%" stop-color="#0a0612" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <!-- Background glow -->
-          <circle cx="200" cy="200" r="180" fill="url(#glow-grad)">
-            <animate attributeName="r" values="160;185;160" dur="3s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-          </circle>
-
-          <!-- Outer ring -->
-          <circle cx="200" cy="200" r="168" fill="none" stroke="url(#ring-grad1)" stroke-width="2" opacity="0.6">
-            <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="12s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" repeatCount="indefinite"/>
-          </circle>
-
-          <!-- Inner ring -->
-          <circle cx="200" cy="200" r="148" fill="none" stroke="url(#ring-grad2)" stroke-width="1.2" opacity="0.4">
-            <animateTransform attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="8s" repeatCount="indefinite"/>
-          </circle>
-
-          <!-- Dashed orbit ring -->
-          <circle cx="200" cy="200" r="158" fill="none" stroke="#8b5cf6" stroke-width="0.6" stroke-dasharray="8 12" opacity="0.25">
-            <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite"/>
-          </circle>
-
-          <!-- Orbiting dots -->
-          <circle r="5" fill="#e879f9" opacity="0.85">
-            <animateMotion dur="6s" repeatCount="indefinite">
-              <mpath href="#orbit-path"/>
-            </animateMotion>
-            <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
-          </circle>
-          <circle r="4" fill="#22d3ee" opacity="0.8">
-            <animateMotion dur="6s" begin="2s" repeatCount="indefinite">
-              <mpath href="#orbit-path"/>
-            </animateMotion>
-          </circle>
-          <circle r="3.5" fill="#8b5cf6" opacity="0.75">
-            <animateMotion dur="6s" begin="4s" repeatCount="indefinite">
-              <mpath href="#orbit-path"/>
-            </animateMotion>
-          </circle>
-
-          <!-- Orbit path (invisible) -->
-          <path id="orbit-path" d="M 200 32 A 168 168 0 1 1 199.99 32" fill="none"/>
-
-          <!-- Corner hex accents -->
-          <polygon points="200,45 212,52 212,66 200,73 188,66 188,52" fill="none" stroke="#c026d3" stroke-width="1" opacity="0.35"/>
-          <polygon points="200,327 212,334 212,348 200,355 188,348 188,334" fill="none" stroke="#0891b2" stroke-width="1" opacity="0.35"/>
-          <polygon points="55,200 67,207 67,221 55,228 43,221 43,207" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.3"/>
-          <polygon points="345,200 357,207 357,221 345,228 333,221 333,207" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.3"/>
-        </svg>
-
-        <!-- The actual logo in the center -->
-        <img src="assets/img/MaurerLabs-Logo_FinalFrame100cropped.png" 
-             alt="Maurer Lab" 
-             class="logo-anim-img">
-      </div>
-    </div>
+    
   <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(192,38,211,0.4) 20%,rgba(139,92,246,0.55) 40%,rgba(8,145,178,0.55) 60%,rgba(34,211,238,0.4) 80%,transparent 100%);margin:2.5rem 3rem;"></div>
 
   <div class="contact-location">
